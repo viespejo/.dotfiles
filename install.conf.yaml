@@ -1,0 +1,5 @@
+- link:
+    ~/.config/nvim/init.vim:
+        relink: true
+        path: nvimrc
+- clean: ['~']
