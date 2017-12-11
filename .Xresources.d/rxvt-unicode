@@ -1,0 +1,22 @@
+!! font
+URxvt.font: 		xft:DejaVuSansMono Nerd Font:pixelsize=14
+!URxvt.font: 		xft:SauceCodePro Nerd Font Mono:pixelsize=16
+
+!! transparency
+!URxvt.transparent: 	true
+!URxvt.shading:		15
+!URxvt.background:       [70]#000000
+!URxvt*background: rgba:0000/0000/0000/eeee
+
+URxvt.depth:		32
+URxvt.scrollBar:	false
+URxvt.intensityStyles:	false
+
+!! extensions
+URxvt.perl-ext-common:	default,matcher,resize-font,clipboard
+URxvt.perl-lib:		$HOME/.config/Scripts
+URxvt.url-launcher:	/usr/bin/google-chrome-stable
+URxvt.matcher.button:	1
+URxvt.resize-font.smaller:	C-Down
+URxvt.resize-font.bigger:	C-Up
+URxvt.colorUL:		#4682B4

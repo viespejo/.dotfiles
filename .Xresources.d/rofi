@@ -1,0 +1,15 @@
+!! rofi
+rofi.color-enabled:	true
+! State:           'bg',    'fg',    'bgalt', 'hlbg',  'hlfg'
+rofi.color-normal: #2b303b, #eff1f5, #2b303b, #eff1f5, #2b303b
+rofi.color-urgent: #2b303b, #bf616a, #2b303b, #bf616a, #2b303b
+rofi.color-active: #2b303b, #8fa1b3, #2b303b, #8fa1b3, #2b303b
+!                  'bg',    'border'
+rofi.color-window: #2b303b, #eff1f5
+
+rofi.fake-transparency:	true
+rofi.lines:		9
+rofi.bw:		0
+rofi.opacity:		"10"
+rofi.hide-scrollbar:	true
+rofi.width:		30
