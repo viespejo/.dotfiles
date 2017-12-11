@@ -14,7 +14,7 @@ URxvt.intensityStyles:	false
 
 !! extensions
 URxvt.perl-ext-common:	default,matcher,resize-font,clipboard
-URxvt.perl-lib:		$HOME/.config/Scripts
+URxvt.perl-lib:		$HOME/.dotfiles/urxvt-perls/
 URxvt.url-launcher:	/usr/bin/google-chrome-stable
 URxvt.matcher.button:	1
 URxvt.resize-font.smaller:	C-Down

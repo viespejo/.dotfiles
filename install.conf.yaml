@@ -1,11 +1,11 @@
 - link:
+    ~/.xinitrc:
+        relink: true
+        path: xinitrc
     ~/.config/nvim/init.vim:
         relink: true
         path: nvimrc
     ~/.Xresources:
         relink: true
-        path: .Xresources
-    ~/.Xresources.d:
-        relink: true
-        path: .Xresources.d
+        path: Xresources
 - clean: ['~']
