@@ -8,4 +8,7 @@
     ~/.Xresources:
         relink: true
         path: Xresources
+    ~/.tmux.conf:
+        relink: true
+        path: tmux.conf
 - clean: ['~']
