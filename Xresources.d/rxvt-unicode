@@ -5,8 +5,8 @@ URxvt.font: 		xft:DejaVuSansMono Nerd Font:pixelsize=14
 !! transparency
 !URxvt.transparent: 	true
 !URxvt.shading:		15
-!URxvt.background:       [70]#000000
-!URxvt*background: rgba:0000/0000/0000/eeee
+URxvt.background:       [85]#000000
+!URxvt*background: rgba:0000/0000/0000/dddd
 
 URxvt.depth:		32
 URxvt.scrollBar:	false

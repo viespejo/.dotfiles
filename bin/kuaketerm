@@ -1,0 +1,72 @@
+#!/bin/bash
+
+function map {
+    xdotool windowmap $wid
+    xdotool windowfocus $wid
+}
+
+function unmap {
+    xdotool windowunmap $wid 
+}
+
+function toggle {
+    is_mapped=$(xdotool search --onlyvisible --classname $wmname 2> /dev/null)
+
+    if [[ -z $is_mapped ]]; then
+        map
+    else
+        unmap
+    fi
+}
+
+function waitwid {
+
+    # wait until the window has been created
+    until [[ ! -z $wid ]]; do
+        wid=$(xdotool search --classname $wmname 2> /dev/null)
+    done
+
+    # map and focus
+    map
+
+    # wait until window has focus
+    until [[ $(xdotool getactivewindow) == $wid ]]; do
+        :
+    done
+}
+
+function usage {
+    echo "Usage: toggle -n <wm_name> -c <command> [-i <initial>]"
+    echo
+    echo "  wm_name : The WM_NAME of the window to toggle"
+    echo "  command : The command creating the window to be toggled" 
+    echo "  initial : initial command to run after the window has been created"  
+    echo
+    exit 1
+}
+
+while getopts ":n:i:c:" option; do
+    case $option in
+        n) wmname=$OPTARG ;;
+        i) init_command=$OPTARG ;;
+        c) command=$OPTARG ;;
+        *) usage ;;
+    esac
+done
+
+[[ -z $wmname || -z $command ]] && usage
+
+wid=$(xdotool search --classname $wmname 2> /dev/null)
+if [[ -z $wid ]]; then
+
+    # run the command
+    $command &
+
+    # run init command
+    if [[ -n $init_command ]]; then
+        waitwid
+        $init_command
+    fi
+else
+    toggle
+fi

@@ -67,6 +67,9 @@ Plug 'AlessandroYorba/Despacio'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
 
+" Started Page
+Plug 'mhinz/vim-startify'
+
 " ----------------------------------------------------------------------------
 " Autocomplete
 " ----------------------------------------------------------------------------
@@ -312,6 +315,8 @@ set notermguicolors "used in terminal
 
 " Theme
 silent! colo despacio
+hi MatchParen cterm=bold ctermfg=167 
+hi Normal ctermbg=none
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
@@ -333,6 +338,10 @@ let g:lightline = {
 " ============================================================================
 " PLUGINS CONF {{{
 " ============================================================================
+
+" Started Page
+let g:startify_bookmarks = [
+      \ {'df': '~/.dotfiles'} ]
 
 " ----------------------------------------------------------------------------
 " deoplete
