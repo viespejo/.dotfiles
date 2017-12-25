@@ -16,7 +16,7 @@ URxvt.intensityStyles:	false
 URxvt.perl-ext-common:	default,matcher,resize-font,selection-to-clipboard,keyboard-select
 URxvt.resize-font.smaller:	C-Down
 URxvt.resize-font.bigger:	C-Up
-URxvt.keysym.M-h:    matcher:select
+URxvt.keysym.M-e:    matcher:select
 URxvt.keysym.M-s:    perl:keyboard-select:activate
 URxvt.url-launcher: google-chrome-stable
 URxvt.colorUL:		#4682B4

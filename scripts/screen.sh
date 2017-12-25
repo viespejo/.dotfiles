@@ -9,10 +9,10 @@ d() { if [[ $(xrandr -q | grep VGA1\ con) ]]
 	then param $1
 	else echo "No VGA input detected."
 	fi ;}
-dual() { xrandr --output HDMI1 --auto --output VGA1 --auto --right-of HDMI1 ;}
-laptop() { xrandr --output LVDS1 --auto --output VGA1 --off ;}
+dual() { xrandr --output EDP1 --auto --output VGA1 --auto --right-of EDP1 ;}
+laptop() { xrandr --output EDP1 --auto --output VGA1 --off ;}
 hdmi() { xrandr --output HDMI1 --auto --output VGA1 --off ;}
-vga() { xrandr --output VGA1 --auto --output HDMI1 --off ;}
+vga() { xrandr --output VGA1 --auto --output EDP1 --off ;}
 #mirror() { xrandr --addmode VGA1 $lapres && xrandr --output LVDS1 --mode $lapres --output VGA1 --mode $lapres ;}
 
 param() {

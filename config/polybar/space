@@ -15,7 +15,7 @@ col = #00f
 ;bg = ${xrdb:color2}
 
 [bar/top]
-monitor = ${env:MONITOR:LVDS-1}
+monitor = ${env:MONITOR:eDP-1}
 width = 100%
 height = 22
 
@@ -33,10 +33,12 @@ module-margin = 4
 font-0 = NotoSans-Regular:size=8;2
 font-1 = MaterialIcons:size=10;4
 font-2 = DejaVuSansMono Nerd Font:size=8;2
-font-3 = FontAwesome:size=10;0
+font-3 = FontAwesome:size=10;2
 
-modules-left = powermenu mpd
-modules-right = volume backlight wireless-network wired-network battery date
+; modules-left = powermenu mpd
+modules-left = powermenu
+; modules-right = volume backlight wireless-network wired-network battery date
+modules-right = volume backlight battery date
 
 tray-position = right
 tray-padding = 5
@@ -45,7 +47,7 @@ tray-maxsize = 16
 ; tray-background = #0063ff
 
 [bar/bottom]
-monitor = ${env:MONITOR:LVDS-1}
+monitor = ${env:MONITOR:eDP-1}
 bottom = true
 width = 100%
 height = 27
@@ -105,6 +107,7 @@ ramp-capacity-1-foreground = #ffa900
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
+ramp-capacity-font = 4
 
 bar-capacity-width = 10
 bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
@@ -120,6 +123,7 @@ animation-charging-1 = 
 animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-4 = 
+animation-charging-font = 4
 animation-charging-framerate = 750
 
 [module/i3]

@@ -39,7 +39,7 @@ Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 " " ----------------------------------------------------------------------------
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/denite.nvim'
+Plug 'Shougo/denite.nvim', { 'do': function('DoRemote') }
 Plug 'chemzqm/denite-extra'
 Plug 'Shougo/neomru.vim'
 Plug 'Shougo/neoyank.vim'
@@ -66,6 +66,7 @@ Plug 'AlessandroYorba/Despacio'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'itchyny/lightline.vim'
+Plug 'maximbaz/lightline-ale'
 
 " Started Page
 Plug 'mhinz/vim-startify'
@@ -107,7 +108,7 @@ Plug 'w0rp/ale'
 " ----------------------------------------------------------------------------
 " find and replace
 " ----------------------------------------------------------------------------
-Plug 'brooth/far.vim'
+Plug 'brooth/far.vim', { 'do': function('DoRemote') }
 
 " ----------------------------------------------------------------------------
 " tabs / buffers / files management
@@ -320,10 +321,23 @@ hi Normal ctermbg=none
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [['linter_errors', 'linter_warnings', 'linter_ok' ],
+      \             [ 'lineinfo' ],
+      \             [ 'percent' ],
+      \             [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head'
+      \ },
+      \ 'component_expand': {
+      \  'linter_warnings': 'lightline#ale#warnings',
+      \  'linter_errors': 'lightline#ale#errors',
+      \  'linter_ok': 'lightline#ale#ok',
+      \ },
+      \ 'component_type': {
+      \     'linter_warnings': 'warning',
+      \     'linter_errors': 'error',
       \ },
       \ }
 
@@ -508,7 +522,9 @@ let g:javascript_conceal_arrow_function = "⇒"
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'php': ['php', 'phpcs'],
+\   'go': ['gometalinter']
 \}
+let g:ale_go_gometalinter_options = '--fast'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 " ----------------------------------------------------------------------------
