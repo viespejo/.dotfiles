@@ -11,31 +11,31 @@ source ~/.dotfiles/zplug/init.zsh
 
 # plugins
 zplug "modules/completion", from:prezto
-# zplug "lukechilds/zsh-better-npm-completion", defer:2
+zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
-# zplug "plugins/git",   from:oh-my-zsh
-# zplug "djui/alias-tips"
+zplug "plugins/git",   from:oh-my-zsh
+zplug "djui/alias-tips"
 zplug "modules/history", from:prezto
-# zplug "plugins/common-aliases", from:oh-my-zsh
+zplug "plugins/common-aliases", from:oh-my-zsh
 
-# zplug "tmuxinator/tmuxinator", use:"completion/tmuxinator.zsh"
+zplug "tmuxinator/tmuxinator", use:"completion/tmuxinator.zsh"
 
 # Async for zsh, used by pure
 zplug "mafredri/zsh-async", from:github, defer:0
 # Theme!
 zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 
-# # Install packages that have not been installed yet
-# if ! zplug check --verbose; then
-#     printf "Install? [y/N]: "
-#     if read -q; then
-#         echo; zplug install
-#     else
-#         echo
-#     fi
-# fi
+# Install packages that have not been installed yet
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    else
+        echo
+    fi
+fi
 
 # Then, source plugins and add commands to $PATH
 # zplug load --verbose
@@ -113,7 +113,7 @@ alias tunnel_mysql_tresbadc19='echo '\''Connecting to tresbadc19...'\'';ssh -Nf 
 alias tunnel_mysql_sesmavaltcv01='echo '\''Connecting to sesmavaltcv01...'\'';ssh -Nf vicente.espejo@sesmavaltcv01 -L 3310:127.0.0.1:3306'
 alias tunnel_mysql_denver='echo '\''Connecting to denver...'\'';ssh -Nf vincente@denver -L 3308:127.0.0.1:3306'
 alias tunnel_apache_denver='echo '\''Connecting to denver...'\'';ssh -Nf vincente@denver -L 172.19.115.171:9080:localhost:80'
-alias tomtoolpath='cd /www/ZendApplications/tomtool'
+alias gtt='cd /www/ZendApplications/tomtool'
 alias vim='nvim'
 
 # export NVM_DIR="$HOME/.nvm"
