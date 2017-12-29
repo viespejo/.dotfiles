@@ -1,18 +1,9 @@
+; vim:ft=dosini
 [colors]
-background = ${xrdb:color0}
-;background = #000
-background-alt = #444
-foreground = ${xrdb:color7}
-;foreground = #dfdfdf
+background = #00000000
+foreground = #ccffffff
 foreground-alt = #555
-primary = ${xrdb:color3}
-;primary = ${xrdb:color3}
-secondary = ${xrdb:color5}
-;secondary = #e60053
 alert = #bd2c40
-col = #00f
-;fg = ${xrdb:color7}
-;bg = ${xrdb:color2}
 
 [bar/top]
 monitor = ${env:MONITOR:eDP-1}
@@ -20,11 +11,8 @@ width = 100%
 height = 22
 
 fixed-center = false
-background = #00000000
-foreground = #ccffffff
-
-line-color = ${bar/bottom.background}
-line-size = 16
+background = ${colors.background}
+foreground = ${colors.foreground}
 
 spacing = 2
 padding-right = 5
@@ -43,19 +31,16 @@ modules-right = volume backlight battery date
 tray-position = right
 tray-padding = 5
 tray-maxsize = 16
-;tray-transparent = true
-; tray-background = #0063ff
 
 [bar/bottom]
 monitor = ${env:MONITOR:eDP-1}
 bottom = true
 width = 100%
-height = 27
+height = 22
 
-background = ${bar/top.background}
-foreground = ${bar/top.foreground}
+background = ${colors.background}
+foreground = ${colors.foreground}
 
-line-color = ${bar/top.background}
 line-size = 2
 
 spacing = 3
@@ -63,15 +48,16 @@ padding-right = 4
 module-margin-left = 0
 module-margin-right = 6
 
-font-0 = NotoSans-Regular:size=8;0
-font-1 = unifont:size=6;-3
-font-2 = FontAwesome:size=8;-2
-font-3 = NotoSans-Regular:size=8;-1
-font-4 = MaterialIcons:size=10;-1
-font-5 = DejaVuSansMono Nerd Font:size=8:antialias=false;0
+font-0 = NotoSans-Regular:size=8;2
+font-1 = MaterialIcons:size=10;4
+font-2 = DejaVuSansMono Nerd Font:size=8;2
+font-3 = FontAwesome:size=10;2
 
 modules-left = i3
 modules-right = cpu memory
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 [module/backlight]
 type = internal/xbacklight
@@ -129,72 +115,58 @@ animation-charging-framerate = 750
 [module/i3]
 type = internal/i3
 
-ws-icon-0 = term;
-ws-icon-1 = web;
-ws-icon-2 = code;
-ws-icon-3 = music;
-ws-icon-4 = irssi;
+index-sort = true
+fuzzy-match = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
 ws-icon-default = 
 
 format = <label-state> <label-mode>
 
-label-dimmed-underline = ${BAR.background}
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+;   %output%
+; Default: %icon%  %name%
+label-focused = %icon%
+label-focused-font = 4
+label-focused-underline = #fba922
+label-focused-padding = 4
 
-label-active = %icon%
-label-active-foreground = #fff
-label-active-background = #773f3f3f
-label-active-underline = #c9665e
-label-active-font = 5
-label-active-padding = 4
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-unfocused = %icon%
+label-unfocused-font = 4
+label-unfocused-padding = 4
 
-label-occupied = %icon%
-label-occupied-foreground = #dd
-label-occupied-underline = #666
-label-occupied-font = 5
-label-occupied-padding = 4
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-visible = %icon%
+label-visible-font = 4
+label-visible-underline = ${colors.foreground-alt}
+label-visible-padding = 4
 
-label-urgent = %icon%
-label-urgent-foreground = #000000
-label-urgent-background = #bd2c40
-label-urgent-underline = #9b0a20
-label-urgent-font = 5
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+label-urgent = %index%
+label-urgent-font = 4
+label-urgent-foreground = ${bar/top.background}
+label-urgent-background = ${colors.alert}
 label-urgent-padding = 4
-
-label-empty = %icon%
-label-empty-foreground = #55
-label-empty-font = 5
-label-empty-padding = 4
-
-label-monocle = 
-label-monocle-underline = ${module/bspwm.label-active-underline}
-label-monocle-background = #33ffffff
-label-monocle-padding = 2
-
-label-locked = 
-label-locked-foreground = #bd2c40
-label-locked-underline = ${module/bspwm.label-monocle-underline}
-label-locked-padding = ${module/bspwm.label-monocle-padding}
-
-label-sticky = 
-label-sticky-foreground = #fba922
-label-sticky-underline = ${module/bspwm.label-monocle-underline}
-label-sticky-padding = ${module/bspwm.label-monocle-padding}
-
-label-private = 
-label-private-foreground = #bd2c40
-label-private-underline = ${module/bspwm.label-monocle-underline}
-label-private-padding = ${module/bspwm.label-monocle-padding}
-
-[module/bspwm-tmp]
-type = internal/bspwm
-format = <label-state>
-
-label-active = 
-label-active-padding = 1
-label-occupied = 
-label-occupied-padding = 1
-label-empty = 
-label-empty-padding = 1
 
 [module/cpu]
 type = internal/cpu
@@ -280,7 +252,7 @@ bar-progress-empty-foreground = #44
 
 [module/wireless-network]
 type = internal/network
-interface = net1
+interface = wifi1
 interval = 3.0
 ping-interval = 10
 
@@ -298,12 +270,12 @@ ramp-signal-4 = 
 animation-packetloss-0 = 
 animation-packetloss-0-foreground = #ffa64c
 animation-packetloss-1 = 
-animation-packetloss-1-foreground = ${bar/top.foreground}
+animation-packetloss-1-foreground = ${colors.foreground}
 animation-packetloss-framerate = 500
 
 [module/wired-network]
 type = internal/network
-interface = eno1
+interface = net1
 interval = 3.0
 label-connected =    %{F#99}%local_ip%%{F-}
 label-disconnected-foreground = #66
@@ -335,59 +307,39 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
-; [module/volume]
-; type = internal/volume
-; speaker-mixer = Speaker
-; headphone-mixer = Headphone
-; headphone-id = 9
-
-; format-volume = <ramp-volume> <label-volume>
-; label-muted =   muted
-; label-muted-foreground = #66
-
-; ramp-volume-0 = 
-; ramp-volume-1 = 
-; ramp-volume-2 = 
-; ramp-volume-3 = 
 
 [module/powermenu]
 type = custom/menu
 
+format-spacing = 3
 ; format-padding = 5
 
-label-open = %{T2}
-label-close = %{T2}
+label-open = 
+label-close = 
 ; Optional item separator
 ; Default: none
 label-separator = |
 
 menu-0-0 = Terminate WM
 menu-0-0-foreground = #fba922
-menu-0-0-exec = bspc quit -1
+menu-0-0-exec = i3-msg exit
 menu-0-1 = Reboot
 menu-0-1-foreground = #fba922
-menu-0-1-exec = menu_open-1
+menu-0-1-exec = menu-open-1
 menu-0-2 = Power off
 menu-0-2-foreground = #fba922
-menu-0-2-exec = menu_open-2
+menu-0-2-exec = menu-open-2
 
 menu-1-0 = Cancel
 menu-1-0-foreground = #fba922
-menu-1-0-exec = menu_open-0
+menu-1-0-exec = menu-open-0
 menu-1-1 = Reboot
 menu-1-1-foreground = #fba922
-menu-1-1-exec = sudo reboot
+menu-1-1-exec = reboot
 
-menu-2-0 = Power off
+menu-2-0 = Cancel
 menu-2-0-foreground = #fba922
-menu-2-0-exec = sudo poweroff
-menu-2-1 = Cancel
+menu-2-0-exec = menu-open-0
+menu-2-1 = Power off
 menu-2-1-foreground = #fba922
-menu-2-1-exec = menu_open-0
-
-[module/clock]
-type = internal/date
-interval = 2
-date = %%{F#999}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
-
-; vim:ft=dosini
+menu-2-1-exec = shutdown -h now

@@ -152,7 +152,7 @@ bindsym $mod+Escape		workspace prev
 bindsym $mod+Shift+Escape 	exec i3-msg exit
 
 bindsym $mod+BackSpace		exec $flash
-bindsym $mod+Shift+BackSpace	exec gksudo reboot
+bindsym $mod+Shift+BackSpace	exec reboot
 
 bindsym $mod+grave		exec $flash
 #bindsym $mod+asciitilde
