@@ -162,7 +162,7 @@ label-visible-padding = 4
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-urgent = %index%
+label-urgent = %icon%
 label-urgent-font = 4
 label-urgent-foreground = ${bar/top.background}
 label-urgent-background = ${colors.alert}
