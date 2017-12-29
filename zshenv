@@ -2,4 +2,4 @@
 
 # Always sourced first.
 
-export ZDOTDIR=~/.dotfiles/zsh
+export ZDOTDIR=~/.config/zsh
