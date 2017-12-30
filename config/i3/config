@@ -159,7 +159,7 @@ bindsym $mod+Shift+BackSpace	exec reboot
 bindsym $mod+grave		exec $flash
 #bindsym $mod+asciitilde
 #STOP/HIDE EVERYTHING:
-bindsym $mod+Shift+Delete	exec $truemute ; exec $truepause ; workspace lmao ; exec $term -e htop ; exec $term -e ranger
+bindsym $mod+Shift+Delete	exec $truemute ; exec $truepause ; workspace lmao ; exec $term -e htop ; exec $term -e zsh -ic ranger
 
 
 ###---Letter Key Bindings---###
@@ -172,7 +172,7 @@ bindsym $mod+w		exec --no-startup-id $BROWSER
 #bindsym $mod+e			exec $term -e neomutt
 #bindsym $mod+Shift+e
 
-bindsym $mod+r 			exec $term -e ranger
+bindsym $mod+r 			exec $term -e zsh -ic ranger
 bindsym $mod+Shift+r		restart
 
 bindsym $mod+t			split toggle
@@ -420,7 +420,7 @@ bindsym XF86PowerOff		exec sudo shutdown -h now
 bindsym XF86Calculator		exec $term -e R -q
 bindsym XF86Sleep		exec sudo zzz
 #bindsym XF86WakeUp		exec
-bindsym XF86Explorer		exec $term -e ranger
+bindsym XF86Explorer		exec $term -e zsh -ic ranger
 #bindsym XF86Send		exec
 #bindsym XF86Xfer		exec
 bindsym XF86WWW			exec --no-startup-id $BROWSER
@@ -429,7 +429,7 @@ bindsym XF86ScreenSaver		exec exec --no-startup-id ~/.config/i3/lock.sh
 #bindsym XF86RotateWindows	exec
 #bindsym XF86TaskPane		exec
 #bindsym XF86Favorites		exec
-bindsym XF86MyComputer		exec $term -e ranger
+bindsym XF86MyComputer		exec $term -e zsh -ic ranger
 #bindsym XF86Back		exec
 #bindsym XF86Forward		exec
 bindsym XF86Eject		exec sudo umount -R /mnt
@@ -481,7 +481,7 @@ bindsym XF86KbdBrightnessUp	exec --no-startup-id python3.6 ~/.i3/kb-lights.py +
 #bindsym XF86Reply		exec
 #bindsym XF86MailForward	exec
 #bindsym XF86Save		exec
-bindsym XF86Documents		exec $term -e ranger ~/Documents
+bindsym XF86Documents		exec $term -e zsh -ic ranger ~/Documents
 #bindsym XF86Battery		exec
 #bindsym XF86Bluetooth		exec
 bindsym XF86WLAN		exec --no-startup-id sudo systemctl restart NetworkManager
