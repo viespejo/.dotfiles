@@ -29,7 +29,7 @@ set $flash --no-startup-id bash ~/.dotfiles/scripts/flash_win.sh
 #Torrent daemon:
 #exec --no-startup-id transmission-daemon
 #udisks2 helper
-exec --no-startup-id udiskie -s
+exec --no-startup-id udiskie -t
 #Wifi applet:
 exec --no-startup-id nm-applet
 #Mount other drives:

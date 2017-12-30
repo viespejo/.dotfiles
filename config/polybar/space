@@ -31,7 +31,7 @@ modules-right = volume backlight battery date
 
 tray-position = right
 tray-padding = 5
-tray-maxsize = 22
+tray-maxsize = 16
 
 [bar/bottom]
 monitor = ${env:MONITOR:eDP-1}
