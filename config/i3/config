@@ -130,7 +130,7 @@ for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 800 600
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -name dropdown -e tmux new -s TMUX
+exec --no-startup-id $term -name dropdown -e tmux new -s Dropdown
 
 #Then I have a window running R I use for basic arithmetic
 #I'll later bind this to mod+a.
