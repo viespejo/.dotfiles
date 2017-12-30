@@ -10,7 +10,6 @@ monitor = ${env:MONITOR:eDP-1}
 width = 100%
 height = 24
 
-fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -56,7 +55,9 @@ font-1 = MaterialIcons:size=13;4
 font-2 = DejaVuSansMono Nerd Font:size=11;2
 font-3 = FontAwesome:size=12;2
 
+fixed-center = false
 modules-left = i3
+modules-center = music
 modules-right = xkeyboard cpu memory
 
 scroll-up = i3wm-wsnext
@@ -91,6 +92,16 @@ label-layout-padding-left = 2
 label-indicator = %name%
 label-indicator-padding = 2
 label-indicator-background = #8139e8
+
+[module/music]
+type = custom/script
+interval = 2
+
+label = %output:0:45:...%
+exec = ~/.config/polybar/mpris.sh
+click-left = playerctl previous
+click-middle = playerctl play-pause
+click-right = playerctl next
 
 [module/backlight]
 type = internal/xbacklight
