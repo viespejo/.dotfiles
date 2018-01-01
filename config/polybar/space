@@ -22,7 +22,7 @@ module-margin = 4
 font-0 = Cantarell:size=11;3
 font-1 = MaterialIcons:size=13;4
 font-2 = DejaVuSansMono Nerd Font:size=11;2
-font-3 = FontAwesome:size=12;2
+font-3 = FontAwesome5Free:style=Solid:size=11;2
 
 ; modules-left = powermenu mpd
 modules-left = powermenu xwindow
@@ -52,8 +52,8 @@ module-margin-right = 6
 ; font-0 = NotoSans-Regular:size=8;2
 font-0 = Cantarell:size=11;3
 font-1 = MaterialIcons:size=13;4
-font-2 = DejaVuSansMono Nerd Font:size=11;2
-font-3 = FontAwesome:size=12;2
+font-2 = FontAwesome5Free:style=Solid:size=11;2
+font-3 = DejaVuSansMono Nerd Font:style=Bold:size=18;2
 
 fixed-center = false
 modules-left = i3
@@ -76,7 +76,7 @@ type = internal/xkeyboard
 ;   <label-indicator> (default)
 format = <label-layout><label-indicator>
 
-format-prefix = "%{T2}%{T-}"
+format-prefix = "%{T3}%{T-}"
 
 ; Available tokens:
 ;   %layout%
@@ -143,9 +143,9 @@ bar-capacity-width = 10
 bar-capacity-format = %{+u}%{+o}%fill%%empty%%{-u}%{-o}
 bar-capacity-fill = █
 bar-capacity-fill-foreground = #ddffffff
-bar-capacity-fill-font = 3
+bar-capacity-fill-font = 4
 bar-capacity-empty = █
-bar-capacity-empty-font = 3
+bar-capacity-empty-font = 4
 bar-capacity-empty-foreground = #44ffffff
 
 animation-charging-0 = 
@@ -245,7 +245,7 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-format-prefix = "%{T2}%{T-}"
+format-prefix = "%{T4}%{T-}"
 date = %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 label-padding = 1
 date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
@@ -261,12 +261,12 @@ bar-used-foreground-1 = #aaff77
 bar-used-foreground-2 = #fba922
 bar-used-foreground-3 = #ff5555
 bar-used-indicator = |
-bar-used-indicator-font = 6
+bar-used-indicator-font = 2
 bar-used-indicator-foreground = #ff
 bar-used-fill = ─
-bar-used-fill-font = 6
+bar-used-fill-font = 2
 bar-used-empty = ─
-bar-used-empty-font = 6
+bar-used-empty-font = 2
 bar-used-empty-foreground = #444444
 
 [module/mpd]
