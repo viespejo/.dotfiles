@@ -26,7 +26,7 @@
     dmenu = /usr/bin/rofi -dmenu -p dunst:
     browser = /usr/bin/google-chrome-stable -new-tab
     icon_position = left
-    icon_path = /usr/share/icons/Papirus/32x32/status/:/usr/share/icons/Papirus/32x32/devices
+    icon_path = /usr/share/icons/Papirus/32x32/apps/:/usr/share/icons/Papirus/32x32/status/:/usr/share/icons/Papirus/32x32/devices
     frame_width = 0
     frame_color = "#ffffff"
 
