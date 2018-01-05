@@ -12,6 +12,7 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 
 for i in $(polybar -m | awk -F: '{print $1}'); do MONITOR=$i polybar top -c ~/.config/polybar/space & MONITOR=$i polybar bottom -c ~/.config/polybar/space & done
 feh --bg-fill ~/.config/wallpapers/space.png
+. ~/.config/i3/tmpscreen.sh
 
 # for i in $(polybar -m | awk -F: '{print $1}'); do MONITOR=$i polybar example -c ~/.config/polybar/config & done
 # feh --bg-fill ~/.config/wallpapers/space.png
