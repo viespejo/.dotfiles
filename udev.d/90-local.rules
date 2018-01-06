@@ -1,0 +1,2 @@
+ACTION=="add", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", RUN+="/bin/sh /home/its32ve1/.dotfiles/scripts/usbsound.sh added"
+ACTION=="remove", SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", RUN+="/bin/sh /home/its32ve1/.dotfiles/scripts/usbsound.sh removed"
