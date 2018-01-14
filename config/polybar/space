@@ -160,14 +160,20 @@ animation-charging-framerate = 750
 type = internal/i3
 
 index-sort = true
-fuzzy-match = true
+; fuzzy-match = true
 
-ws-icon-0 = 1;
+ws-icon-0 = 1;
 ws-icon-1 = 2;
-ws-icon-2 = 3;
-ws-icon-3 = 4;
-ws-icon-4 = 5;
-ws-icon-default = 
+ws-icon-2 = 3;
+; ws-icon-3 = 4;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
 
 format = <label-state> <label-mode>
 
@@ -177,7 +183,7 @@ format = <label-state> <label-mode>
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-focused = %icon%
+label-focused = %{T1}%index%%{T-} %icon%
 label-focused-font = 2
 label-focused-underline = #fba922
 label-focused-padding = 3
@@ -187,7 +193,7 @@ label-focused-padding = 3
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-unfocused = %icon%
+label-unfocused = %{T1}%index%%{T-} %icon%
 label-unfocused-font = 2
 label-unfocused-padding = 3
 
@@ -196,7 +202,7 @@ label-unfocused-padding = 3
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-visible = %icon%
+label-visible = %{T1}%index%%{T-} %icon%
 label-visible-font = 2
 label-visible-underline = ${colors.foreground-alt}
 label-visible-padding = 3
@@ -206,7 +212,7 @@ label-visible-padding = 3
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-urgent = %icon%
+label-urgent = %{T1}%index%%{T-} %icon%
 label-urgent-font = 2
 label-urgent-foreground = ${bar/top.background}
 label-urgent-background = ${colors.alert}
