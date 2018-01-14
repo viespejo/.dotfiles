@@ -394,9 +394,9 @@ bindsym $mod+Shift+bracketright exec $bigfor
 
 #Print screen takes a screenshot.
 #With shift, it takes one only of the given window.
-bindsym Print 			exec --no-startup-id scrot -e 'mv $f /tmp'
-bindsym Shift+Print 		exec --no-startup-id scrot -u -e 'mv $f /tmp'
-bindsym --release Ctrl+Shift+Print	exec --no-startup-id scrot -s -e 'mv $f /tmp' 
+bindsym Print 			exec --no-startup-id scrot -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
+bindsym Shift+Print 		exec --no-startup-id scrot -u -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
+bindsym --release Ctrl+Shift+Print	exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t "image/png" < $f' && notify-send 'screenshot' 'taken in clipboard'
 
 #For recording audio/video or stop recording. Also screenkey for visual typing.
 bindsym $mod+Print		exec --no-startup-id screenkey
