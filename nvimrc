@@ -590,6 +590,7 @@ nnoremap <A-l> <C-w>l
 " Pre/Next Buffers
 nnoremap <silent> <C-H> :bp<CR>
 nnoremap <silent> <C-l> :bn<CR>
+nnoremap <silent> <Leader>3 :b#<CR>
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -739,7 +740,7 @@ nnoremap [Space]w
 " ----------------------------------------------------------------------------
 
 " General fuzzy search
-nnoremap <silent> [Space]<space> :<C-u>Denite buffer file_mru<CR>
+nnoremap <silent> [Space]<space> :<C-u>Denite file_mru buffer<CR>
 
 nnoremap <silent> [Space]p :<C-u>Denite
 \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
