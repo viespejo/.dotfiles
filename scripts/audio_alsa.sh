@@ -10,9 +10,8 @@ do
 done
 filename="$HOME/audio$n.flac"
 
+polybar-msg hook is-recording 2
 #The actual ffmpeg command:
-
 ffmpeg -y \
  -f alsa -ar 44100 -i hw:1 \
  $filename
-

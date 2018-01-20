@@ -19,7 +19,7 @@ exec --no-startup-id feh --bg-fill ~/.config/wallpapers/space.png
 #exec_always --no-startup-id wal -c -i ~/.config/wallpapers/wall.jpg
 
 set $video --no-startup-id bash ~/.dotfiles/scripts/video.sh
-set $stoprec --no-startup-id killall ffmpeg & killall screenkey
+set $stoprec --no-startup-id killall ffmpeg & killall screenkey & polybar-msg hook is-recording 1
 set $flash --no-startup-id bash ~/.dotfiles/scripts/flash_win.sh
 
 

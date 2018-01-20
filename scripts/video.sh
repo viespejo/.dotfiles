@@ -4,15 +4,15 @@
 
 #Picks a file name for the output file based on availability:
 
-while [[ -f $HOME/video$n.mkv ]]
+while [[ -f $HOME/Videos/video$n.mkv ]]
 do
 	n=$((n+1))
 done
-filename="$HOME/video$n.mkv"
+filename="$HOME/Videos/video$n.mkv"
 
 
+polybar-msg hook is-recording 2
 #The actual ffmpeg command:
-
 ffmpeg \
 -f x11grab \
 -s $(xdpyinfo | grep dimensions | awk '{print $2;}') \

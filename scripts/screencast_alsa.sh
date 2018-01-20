@@ -10,8 +10,8 @@ do
 done
 filename="$HOME/screencast$n.mkv"
 
+polybar-msg hook is-recording 2
 #The actual ffmpeg command:
-
 ffmpeg -y \
 -f x11grab \
 -s $(xdpyinfo | grep dimensions | awk '{print $2;}') \

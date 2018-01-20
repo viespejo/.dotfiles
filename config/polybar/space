@@ -58,10 +58,12 @@ font-3 = DejaVuSansMono Nerd Font:style=Bold:size=9;2
 fixed-center = false
 modules-left = i3
 modules-center = music
-modules-right = xkeyboard cpu memory
+modules-right = is-recording xkeyboard cpu memory
 
 scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
+
+enable-ipc = true
 
 [module/xwindow]
 type = internal/xwindow
@@ -394,3 +396,10 @@ menu-2-0-exec = menu-open-0
 menu-2-1 = Power off
 menu-2-1-foreground = #fba922
 menu-2-1-exec = shutdown -h now
+
+[module/is-recording]
+type = custom/ipc
+hook-0 = echo
+hook-1 = echo " "
+format-foreground = ${colors.alert}
+initial = 1
