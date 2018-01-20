@@ -3,8 +3,10 @@ d	~/Documents
 D	~/Downloads
 p	~/Pictures
 m	~/Music
-b	~/Books
-s	~/.config/Scripts
+b	~/Documents/Books
+V	~/Videos
+s	~/.dotfiles/scripts
 r	/
 cf	~/.config
 cm	~/.dotfiles
+tt /www/ZendApplications/tomtool
