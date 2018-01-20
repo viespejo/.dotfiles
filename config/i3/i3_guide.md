@@ -1,28 +1,19 @@
-# A friendly guide to Luke's i3 rice
+# A friendly guide to Vicente's i3 rice (based in Luke's)
 
 Use vim keys (h/j/k/l) to navigate this document. Pressing W will fit it to window width. + and - zoom in and out. f to toggle fullscreen. q to quit, i for Night Mode. (These are general mupdf shortcuts.)
 
 + Mod+F1 will show this document at any time.
 + By "Mod" I mean the Super Key, usually known as "the Windows Key."
 
-Questions or suggestions? Email me at [luke@lukesmith.xyz](mailto:luke@lukesmith.xyz).
+## General
 
-## Basic goals and principles of my rice:
-
-+ Naturalness -- I want the number of keypresses I have to make to get what I want to be as little as possible.
-+ Economy -- All the basic programs I use should be simple and light on system resources. Because of this, many are terminal or ncurses programs.
-+ Keyboard/vim-centrality -- All my terminal apps (and other programs) use vim keys when possible. My hands never need leave the home row or thereabout.
-+ Lots of color -- Many rices stick to one general color palatte. I like my system to be very vibrant. If you disagree, you can easily change it.
-
-## General changes
-
-+ Capslock is now an alternative escape. Makes vim-craft much more efficient.
-+ The menu button (usually between the right Alt and Ctrl) is an alternative Super/Mod button. This is to make one-handing on my laptops easier.
-+ The rice also uses the US International keyboard by default. This allows you to type a lot of characters in many different European languages.
++ Capslock is an alternative escape. Makes vim-craft much more efficient.
++ Super and Alt keys are switched
++ The rice uses the US International keyboard by default. Of course you have the Spanish layout available. Hold both Shift keys to switch layout.
 
 # The Polybar Status Bar
 
-If you're new to i3, notice the status bar on the top of the screen. This is Polybar. To the left side, you'll see the numbers of your current workspace(s). If you have a song playing in mpd, its name will appear to the left as well. On the right side, you'll see various system status notifiers, date, CPU tempurature, remaining hard drive space, etc. I'm sure you can figure it out. Several modules will be click-sensitive, although if you're using my system as indended, you probably won't be doing much clicking.
+If you're new to i3, notice the status bar on the top and bottom of the screen.
 
 # Shortcut keys
 
@@ -52,22 +43,19 @@ Be sure you play around with these. Be flexible with the basic commands and the 
 ## Basic Programs
 
 + Mod+r -- ranger (file browser/manager)
-+ Mod+e -- mutt (email)
-+ Mod+m -- ncmpcpp (music player)
++ Mod+m -- spotify
 + Mod+a -- R calculator (close with Mod+a for reusability)
 + Mod+i -- htop (system info)
-+ Mod+N -- newsbeuter (RSS feed reader)
 + Mod+y -- calcurse (calendar and schedule)
-+ Mod+u -- "Dropdown" terminal (close with Mod+u for reusability)
++ Mod+u or Ctrl+; -- "Dropdown" terminal (close with Mod+u or Ctrl+; for reusability)
 + Mod+Shift+Enter -- new tmux window
 
 ## Larger programs
 
 + Mod+A -- Pavucontrol (audio system control)
-+ Mod+W -- Firefox
-+ Mod+B -- Blender
++ Mod+w -- Google Chrome
++ Mod+B -- Inkscape
 + Mod+G -- GIMP
-+ Mod+P -- MyPaint
 
 ## System
 
@@ -77,7 +65,7 @@ Be sure you play around with these. Be flexible with the basic commands and the 
 + Mod+Shift+Backspace -- reboot (And this one!)
 + Mod+Shift+Escape -- exit i3 (And this one as well!)
 + Mod+F1 -- Shows this document
-+ Mod+F2 -- Recreate dynamic config files (see below)
++ Mod+F2 -- Recreate dynamic config files - shortcuts (see below)
 + Mod+F3 -- arandr (For adding screens/HDMI/VGA connections)
 + Mod+F4 -- Hibernate
 + Mod+F5 -- Reset Network Manager*
@@ -89,9 +77,7 @@ Be sure you play around with these. Be flexible with the basic commands and the 
 
 ## Audio
 
-I use ncmpcpp as a music player, which is a front end for mpd. If you prefer cmus or mocp, I have commented out shortcuts you can activate for it instead in the i3 config.
-
-+ Mod+m -- ncmpcpp music player
++ Mod+m -- spotify
 + Mod+. -- Next track
 + Mod+, -- Previous track
 + Mod+< -- Restart track
@@ -117,18 +103,18 @@ There are ten workspaces. They work just like those in vanilla i3 with some addi
 
 ## Recording
 
-I use scrot and ffmpeg to make different recordings of the desktop and audio. All of these recording shortcuts will output into `~`, and will not overwrite previous recordings.
+I use scrot and ffmpeg to make different recordings of the desktop and audio. All of these recording shortcuts will output into `~/Pictures` or `~/Videos`, and will not overwrite previous recordings.
 
 + Print Screen -- Take a scrot screenshot
 + Shift+Print Screen -- Take a scrot screenshot of only selected window
++ Ctrl+Shift+Print Screen -- Take a scrot screenshot by selecting a window or rectangle with the mouse.
 + Mod+Insert -- Begin screencast. 
 + Mod+ScrollLock -- Begin audio recording.
 + Mod+Pause -- Begin screen recording without audio.
 + Mod+Print Screen -- Start screenkey
 + Mod+Delete -- kills ffmpeg, thus ending recordings and screen
-+ ThinkVantage button (on Thinkpads) -- kills ffmpeg, thus ending recordings
 
-Each of the recording scripts are located in `~/.config/Scripts/`. You can check them out or modify them if needed.
+Each of the recording scripts are located in `~/.dotfiles/scripts/`. You can check them out or modify them if needed.
 
 ## Other buttons
 
@@ -138,7 +124,7 @@ I've mapped those extra buttons that some keyboards have (play and pause buttons
 
 ## Easy config access
 
-Open a terminal and type `cfc`. This will open a file where you will see customizable pairs of key shortcuts and config files. Enter any of these shortcuts in bash or ranger to immediately open the file in vim.
+Open a terminal and type `cfc`. This will open a file where you will see customizable pairs of key shortcuts and config files. Enter any of these shortcuts in zsh or ranger to immediately open the file in vim.
 
 You may add new entries here and they will be refreshed when you refresh i3 (Mod+R) or simply press Mod+F2,
 
@@ -150,37 +136,17 @@ Each line has a shortcut key/keys and its target. These can be used in serveral 
 
 ranger works similarly. When in ranger, just press `g` then the shortcut of the folder you want to go to. You may also press `t` plus the shortcut to open a new tab there. `m` plus the shortcut moves the selected files to the folder and `Y` copies them there. **Get good at this. It will make management of even the most complex file system easy.**
 
-Lastly qutebrowser implements these shortcuts as well. When you see a file or image you want to download, press `;` followed by the folder shortcut and qutebrowser will let you select the file with its hint system. The file will then download to the directory you chose.
-
 ## Dynamically constructed configs
 
-To keep these different shortcuts in sync, my rice will dynamically reconstruct the configs to bash, qutebrowser and ranger each time you refresh i3 (Mod+R) or run the refresh configs script (Mod+F2).
+To keep these different shortcuts in sync, my rice will dynamically reconstruct the shortcuts config file for zsh and ranger each time you refresh i3 (Mod+R) or run the refresh configs script (Mod+F2).
 
-Each time i3 starts or restarts, it will run `~/.config/Scripts/shortcuts.py`, which reads the entries in the folder shortcut and config shortcut files and then translate them into the approriate syntax of all three programs.
+Each time i3 starts or restarts, it will run `~/dotfile/config/scripts/shortcuts`, which reads the entries in the folder shortcut and config shortcut files and then translate them into the approriate syntax of all two programs.
 
-It then takes that output and appends it to base configs of each program (`~/.config/Scripts/bashrc`, `~/config/qutebrowser/keys.conf.base`, `~/.config/rc.conf.base`) and puts the output in the proper places for each program.
-
-## So what do I need to know?
-
-Use the files in `cff` and `cfc` to add/change shortcuts. These shortcuts will be synced between bash, ranger and qutebrowser when you press Mod+F2 to refresh them. If you want to make permanent changes to your bash/ranger/qutebrowser configs, make them to the base files which you can access with `cfb`, `cfr`, and `cfq`, respectively, then press Mod+F2 to make those changes active.
+It then takes that output and appends it to shortcuts config file of each program (`~/.config/zsh/.zshortcuts`, `~/.config/ranger/shortcuts.conf`) and puts the output in the proper places for each program.
 
 # Explore and customize
 
 Don't like something about the rice? Change it. If you have a problem, try figuring it out yourself, but if you can't, ask on my YouTube or by my email.
 
-EDIT: July 31, 2017. All the feedback I've gotten is tremendous and I'm glad this has gotten so many people into customization!
-
-# Contact
-
-[Support the Channel!](https://patreon.com/lukesmith)
-
-[luke@lukesmith.xyz](mailto:luke@lukesmith.xyz)
-
+# I thanks Luke for his rice!
 [http://lukesmith.xyz](http://lukesmith.xyz)
-
-[Send Me Money!](https://paypal.me/LukeMSmith)
-
-[My Github Page](https://github.com/LukeSmithxyz)
-
-[Twitter](https://twitter.com/lukesfiat)
-
