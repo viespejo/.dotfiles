@@ -101,20 +101,8 @@ zle -N zle-keymap-select
 #####################################################################
 alias gk='gitk --all --date-order&'
 alias ls='ls --color'
-# XDebug PHP
-alias phpxd='xd'
-function xd {
-    export XDEBUG_CONFIG="idekey=XDEBUG_VIESPEJO";
-    php $*
-    unset XDEBUG_CONFIG
-}
-alias tunnel_mysql_tresmadc19='echo '\''Connecting to tresmadc19...'\'';ssh -Nf tresmadc19 -L 3307:127.0.0.1:3306'
-alias tunnel_mysql_tresbadc19='echo '\''Connecting to tresbadc19...'\'';ssh -Nf tresbadc19 -L 3309:127.0.0.1:3306'
-alias tunnel_mysql_sesmavaltcv01='echo '\''Connecting to sesmavaltcv01...'\'';ssh -Nf vicente.espejo@sesmavaltcv01 -L 3310:127.0.0.1:3306'
-alias tunnel_mysql_denver='echo '\''Connecting to denver...'\'';ssh -Nf vincente@denver -L 3308:127.0.0.1:3306'
-alias tunnel_apache_denver='echo '\''Connecting to denver...'\'';ssh -Nf vincente@denver -L 172.19.115.171:9080:localhost:80'
-alias gtt='cd /www/ZendApplications/tomtool'
 alias vim='nvim'
+alias v='nvim'
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -122,3 +110,5 @@ alias vim='nvim'
 
 # For directory and config shortcuts:
 source ~/.config/zsh/.zshortcuts
+# local config
+[ -f ~/.zshrc_local ] && source ~/.zshrc_local
