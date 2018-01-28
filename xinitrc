@@ -1,3 +1,6 @@
+# disable pc speaker
+xset -b
+
 xautolock -time 10 -locker '~/.config/i3/lock.sh' &
 xss-lock -- ~/.config/i3/lock.sh &
 userresources=$HOME/.Xresources
