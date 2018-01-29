@@ -313,13 +313,13 @@ bindsym $mod+Shift+0	move container to workspace $ws10
 #for_window [class="Blender"] move to workspace $ws6
 #for_window [class="Thunderbird"] move to workspace $ws9
 #for_window [class="marble"] move to workspace $ws7
-for_window [class="Google-chrome"] move to workspace $ws2
+#for_window [class="Google-chrome"] move to workspace $ws2
 for_window [class="Spotify"] move to workspace $ws7
 #for_window [title="GIMP Startup"] move workspace $ws5
 for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="gimp-toolbox"] floating disable
 for_window [window_role="gimp-dock"] floating disable
-for_window [class="Inkscape"] move workspace $ws5
+#for_window [class="Inkscape"] move workspace $ws5
 #for_window [window_role="tr-main"] move to workspace $ws8
 #for_window [title="projectM"] exec --no-startup-id transset-df -a --dec .25
 #for_window [class="st"] exec --no-startup-id transset-df -a --dec .25

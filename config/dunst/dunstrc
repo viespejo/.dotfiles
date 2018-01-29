@@ -24,7 +24,7 @@
     startup_notification = false
     show_indicators = no
     dmenu = /usr/bin/rofi -dmenu -p dunst:
-    browser = /usr/bin/google-chrome-stable -new-tab
+    browser = /usr/bin/google-chrome-stable
     icon_position = left
     icon_path = /usr/share/icons/Papirus/32x32/apps/:/usr/share/icons/Papirus/32x32/status/:/usr/share/icons/Papirus/32x32/devices
     frame_width = 0
