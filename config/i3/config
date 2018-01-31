@@ -359,8 +359,8 @@ bindsym $mod+F7		exec transset-df -a --dec .15
 bindsym $mod+F8		exec transset-df -a --inc .15
 bindsym $mod+F9		exec --no-startup-id mount -a
 bindsym $mod+F10	exec --no-startup-id ~/.dotfiles/scripts/screen.sh l ;; exec --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+F11	exec --no-startup-id ~/.dotfiles/scripts/screen.sh v ;; exec --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+F12	exec --no-startup-id ~/.dotfiles/scripts/screen.sh d ;; exec --no-startup-id ~/.config/polybar/launch.sh
+bindsym $mod+F11	exec --no-startup-id ~/.dotfiles/scripts/screen.sh w ;; exec --no-startup-id ~/.config/polybar/launch.sh
+bindsym $mod+F12	exec --no-startup-id ~/.dotfiles/scripts/screen.sh h ;; exec --no-startup-id ~/.config/polybar/launch.sh
 
 
 ###---Arrow Keys---###
