@@ -4,6 +4,8 @@ if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
 if [[ ! -f /tmp/screen.png ]]; then . "$DIR/tmpscreen.sh"; fi
 
-# pkill compton
-i3lock -u -e -i /tmp/screen.png
-# compton -b
+# killall compton
+killall -SIGUSR1 dunst # pause
+i3lock -n -u -e -i /tmp/screen.png
+killall -SIGUSR2 dunst # resume
+# compton
