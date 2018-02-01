@@ -11,7 +11,7 @@ export VISUAL=nvim
 export BROWSER=google-chrome-stable
 export MANPAGER="nvim +'set ft=man' -"
 export MANWIDTH=80
-export GOPATH=$HOME/code/go
+# export GOPATH=$HOME/code/go
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
 # --hidden: Search hidden files and folders
@@ -21,7 +21,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 
 typeset -aU path
 path=(
-    $GOPATH/bin
+    # $GOPATH/bin
     $HOME/bin
     $path
 )
