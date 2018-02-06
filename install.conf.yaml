@@ -23,5 +23,8 @@
     ~/.gtkrc-2.0:
         relink: true
         path: gtkrc-2.0
+    ~/.curlrc:
+        relink: true
+        path: curlrc
 
 - clean: ['~']
