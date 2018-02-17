@@ -35,7 +35,7 @@ exec --no-startup-id nm-applet
 #Mount other drives:
 exec --no-startup-id sudo mount -a
 #Composite manager:
-exec --no-startup-id compton
+#exec --no-startup-id compton
 #Refresh zsh/ranger shortcuts:
 exec --no-startup-id bash ~/.dotfiles/scripts/shortcuts
 #Try to load VGA screen if available:
