@@ -5,7 +5,7 @@
 ###---Basic Definitions---###
 #Needed for i3-gaps
 hide_edge_borders both
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 4
 gaps inner 15
 gaps outer 15
 font pango:DejaVuSansMono Nerd Font 9
