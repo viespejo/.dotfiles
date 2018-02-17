@@ -15,7 +15,7 @@ set $term i3-sensible-terminal
 floating_modifier $mod
 
 #Add wallpaper:
-exec --no-startup-id feh --bg-fill ~/.config/wallpapers/space.png
+exec --no-startup-id feh --bg-fill ~/.config/wallpapers/arch_grey.jpg
 #exec_always --no-startup-id wal -c -i ~/.config/wallpapers/wall.jpg
 
 set $video --no-startup-id bash ~/.dotfiles/scripts/video.sh
