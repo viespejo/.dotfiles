@@ -316,8 +316,8 @@ set notermguicolors "used in terminal
 
 " Theme
 silent! colo despacio
-hi MatchParen cterm=bold ctermfg=167 
-hi Normal ctermbg=none
+hi MatchParen cterm=bold ctermfg=167
+" hi Normal ctermbg=none
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
