@@ -1,6 +1,7 @@
 ; vim:ft=dosini
 [colors]
-background = #00000000
+; background = #00000000
+background = #222222
 foreground = #ccffffff
 foreground-alt = #555
 alert = #bd2c40
@@ -8,7 +9,10 @@ alert = #bd2c40
 [bar/top]
 monitor = ${env:MONITOR:eDP-1}
 width = 100%
-height = 18
+height = 20
+
+border-bottom = 2
+border-bottom-color = #333333
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -22,13 +26,13 @@ module-margin = 3
 ; font-0 = NotoSans-Regular:size=8;2
 font-0 = Cantarell:style=Bold:size=10;2
 ; font-1 = MaterialIcons:size=12;15
-font-1 = FontAwesome5Free:style=Solid:size=10;2
+font-1 = FontAwesome5Free:style=Solid:size=10;3
 font-2 = DejaVuSansMono Nerd Font:size=10;2
 
 ; modules-left = powermenu mpd
 modules-left = powermenu xwindow
 ; modules-right = volume backlight wireless-network wired-network battery date
-modules-right = volume backlight battery date
+modules-right = backlight volume battery date
 
 tray-position = right
 tray-padding = 5
@@ -38,7 +42,10 @@ tray-maxsize = 16
 monitor = ${env:MONITOR:eDP-1}
 bottom = true
 width = 100%
-height = 18
+height = 20
+
+border-top = 2
+border-top-color = #333333
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -52,7 +59,7 @@ module-margin = 3
 
 font-0 = Cantarell:style=Bold:size=10;2
 font-1 = DejaVuSansMono Nerd Font:style=Bold:size=16;2
-font-2 = FontAwesome5Free:style=Solid:size=10;2
+font-2 = FontAwesome5Free:style=Solid:size=10;3
 font-3 = DejaVuSansMono Nerd Font:style=Bold:size=9;2
 
 fixed-center = false
@@ -106,23 +113,34 @@ click-middle = playerctl play-pause
 click-right = playerctl next
 
 [module/backlight]
-type = internal/xbacklight
-format = <ramp><bar>
+type = internal/backlight
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format-prefix = " "
+format = <bar>
 
-bar-width = 10
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+
+; Only applies if <bar> is used
+bar-width = 5
 bar-indicator = |
-bar-indicator-font = 2
-bar-indicator-foreground = #ff
 bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #c9665e
 bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = #44
 
 [module/battery]
 type = internal/battery

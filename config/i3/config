@@ -473,13 +473,13 @@ bindsym XF86Search		exec $BROWSER https://duckduckgo.com
 #bindsym XF86Finance		exec
 #bindsym XF86Game		exec
 bindsym XF86Shop		exec $BROWSER https://ebay.com
-bindsym XF86MonBrightnessDown	exec --no-startup-id xbacklight -dec 15
-bindsym XF86MonBrightnessUp	exec --no-startup-id xbacklight -inc 15
+bindsym XF86MonBrightnessDown	exec --no-startup-id sudo /home/its32ve1/.dotfiles/scripts/bright_down
+bindsym XF86MonBrightnessUp	exec --no-startup-id sudo /home/its32ve1/.dotfiles/scripts/bright_up
 bindsym XF86AudioMedia		exec $music; workspace $ws7
 bindsym XF86Display		exec --no-startup-id arandr
 #bindsym XF86KbdLightOnOff	exec
-bindsym XF86KbdBrightnessDown	exec --no-startup-id python3.6 ~/.i3/kb-lights.py -
-bindsym XF86KbdBrightnessUp	exec --no-startup-id python3.6 ~/.i3/kb-lights.py +
+bindsym XF86KbdBrightnessDown	exec --no-startup-id ~/.dotfiles/scripts/bright_down
+bindsym XF86KbdBrightnessUp	exec --no-startup-id ~/.dotfiles/scripts/bright_up
 #bindsym XF86Reply		exec
 #bindsym XF86MailForward	exec
 #bindsym XF86Save		exec
