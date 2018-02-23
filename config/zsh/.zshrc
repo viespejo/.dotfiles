@@ -10,6 +10,7 @@ fi
 source ~/.dotfiles/zplug/init.zsh
 
 # plugins
+zplug "lukechilds/zsh-nvm"
 zplug "modules/completion", from:prezto
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "zsh-users/zsh-history-substring-search"
