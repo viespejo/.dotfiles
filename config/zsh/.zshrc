@@ -10,7 +10,7 @@ fi
 source ~/.dotfiles/zplug/init.zsh
 
 # plugins
-zplug "lukechilds/zsh-nvm"
+#zplug "lukechilds/zsh-nvm"
 zplug "modules/completion", from:prezto
 zplug "lukechilds/zsh-better-npm-completion", defer:2
 zplug "zsh-users/zsh-history-substring-search"
@@ -21,7 +21,7 @@ zplug "djui/alias-tips"
 zplug "modules/history", from:prezto
 zplug "plugins/common-aliases", from:oh-my-zsh
 
-zplug "tmuxinator/tmuxinator", use:"completion/tmuxinator.zsh"
+#zplug "tmuxinator/tmuxinator", use:"completion/tmuxinator.zsh"
 zplug "b4b4r07/enhancd", use:init.sh
 
 # Async for zsh, used by pure

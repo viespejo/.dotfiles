@@ -10,3 +10,4 @@ r	/
 cf	~/.config
 cm	~/.dotfiles
 tt /www/ZendApplications/tomtool
+cg $GOPATH/src

@@ -84,10 +84,18 @@ Plug 'mhinz/vim-startify'
  " PHP
  " Plug 'padawan-php/deoplete-padawan'
 
+
+" Language Server Protocol support
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 " NCM - Nvim Completion Manager
 Plug 'roxma/nvim-completion-manager'
 " javascript completion
 Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+
+" Plug 'roxma/ncm-flow'
 " language server protocol framework
 " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 " php completion via LanguageClient-neovim
@@ -181,7 +189,7 @@ Plug 'mattn/emmet-vim'
 " ----------------------------------------------------------------------------
 " Javascript
 Plug 'pangloss/vim-javascript', {'for': ['javascript']}
-Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
+" Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 " Plug 'othree/yajs.vim', {'for': ['javascript']}
 " Plug 'othree/es.next.syntax.vim', {'for': ['javascript']}
 Plug 'mxw/vim-jsx', {'for': ['javascript']}
@@ -216,8 +224,8 @@ set hidden
 set ignorecase smartcase
 set wildmenu
 set wildmode=full
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab smarttab
 set scrolloff=5
 set encoding=utf-8
@@ -407,20 +415,16 @@ call denite#custom#var('file_rec/git', 'command',
 " ----------------------------------------------------------------------------
 " NCM
 " ----------------------------------------------------------------------------
-" css completion via `csscomplete#CompleteCSS`
-" The `'cm_refresh_patterns'` is PCRE.
-" Be careful with `'scoping': 1` here, not all sources, especially omnifunc,
-" can handle this feature properly.
-au User CmSetup call cm#register_source({'name' : 'cm-css',
-		\ 'priority': 9, 
-		\ 'scoping': 1,
-		\ 'scopes': ['css','scss'],
-		\ 'abbreviation': 'css',
-		\ 'cm_refresh_patterns':[':\s+\w*$'],
-		\ 'cm_refresh': {'omnifunc': 'csscomplete#CompleteCSS'},
-		\ })
+let g:LanguageClient_diagnosticsEnable = 0
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'css': ['css-languageserver', '--stdio']
+    \ }
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" let g:LanguageClient_loggingLevel = 'DEBUG'
 " ----------------------------------------------------------------------------
 " phpcd
 " ----------------------------------------------------------------------------
@@ -504,7 +508,6 @@ let g:javascript_conceal_prototype      = "¶"
 let g:javascript_conceal_static         = "•"
 let g:javascript_conceal_super          = "Ω"
 let g:javascript_conceal_arrow_function = "⇒"
-
 " ----------------------------------------------------------------------------
 " Linting
 " ----------------------------------------------------------------------------
@@ -522,11 +525,21 @@ let g:javascript_conceal_arrow_function = "⇒"
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'php': ['php', 'phpcs'],
-\   'go': ['gometalinter']
+\   'go': ['gometalinter'],
+\   'css': ['stylelint']
 \}
+" let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_go_gometalinter_options = '--fast'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\   'css': ['prettier'],
+\   'json': ['prettier']
+\}
+let g:ale_fix_on_save = 1
+
 " ----------------------------------------------------------------------------
 " CtrlSpace
 " ----------------------------------------------------------------------------
@@ -793,6 +806,15 @@ nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 " Tagbar
 " ----------------------------------------------------------------------------
 nnoremap <silent> <leader>tt :TagbarToggle<CR>
+
+" ----------------------------------------------------------------------------
+" Emmet
+" ----------------------------------------------------------------------------
+let g:user_emmet_settings = {
+  \    'javascript.jsx' : {
+  \        'extends' : 'jsx',
+  \    },
+\}
 
 " ----------------------------------------------------------------------------
 " Expand Region
