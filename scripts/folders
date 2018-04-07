@@ -9,5 +9,6 @@ s	~/.dotfiles/scripts
 r	/
 cf	~/.config
 cm	~/.dotfiles
+cml	~/.dotfiles-local
 tt /www/ZendApplications/tomtool
 cg $GOPATH/src
