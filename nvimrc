@@ -59,7 +59,7 @@ Plug 'terryma/vim-multiple-cursors'
 " Color
 " ----------------------------------------------------------------------------
 Plug 'AlessandroYorba/Despacio'
-
+Plug 'joshdick/onedark.vim'
 " ----------------------------------------------------------------------------
 " Status Line
 " ----------------------------------------------------------------------------
@@ -318,13 +318,15 @@ set nostartofline
 " color
 set background=dark
 set notermguicolors "used in terminal
-" if (has("termguicolors"))
-"   set termguicolors
-" endif
+if (has("termguicolors"))
+  set termguicolors
+endif
 
 " Theme
-silent! colo despacio
-hi MatchParen cterm=bold ctermfg=167
+"silent! colo despacio
+let g:onedark_terminal_italics = 1
+silent! colo onedark
+" hi MatchParen cterm=bold ctermfg=167
 " hi Normal ctermbg=none
 let g:lightline = {
       \ 'active': {
@@ -347,6 +349,7 @@ let g:lightline = {
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
       \ },
+      \ 'colorscheme': 'onedark',
       \ }
 
 
@@ -411,6 +414,7 @@ call denite#custom#map('normal', 'r',
 call denite#custom#alias('source', 'file_rec/git', 'file_rec')
 call denite#custom#var('file_rec/git', 'command',
 \ ['git', 'ls-files', '-co', '--exclude-standard'])
+call denite#custom#option('default', 'highlight_mode_insert', 'Search')
 
 " ----------------------------------------------------------------------------
 " NCM
