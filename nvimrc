@@ -188,12 +188,13 @@ Plug 'mattn/emmet-vim'
 " Syntax Highlighting and Indentation
 " ----------------------------------------------------------------------------
 " Javascript
-Plug 'pangloss/vim-javascript', {'for': ['javascript']}
+" Plug 'pangloss/vim-javascript', {'for': ['javascript']}
 " Plug 'othree/javascript-libraries-syntax.vim', {'for': ['javascript']}
 " Plug 'othree/yajs.vim', {'for': ['javascript']}
 " Plug 'othree/es.next.syntax.vim', {'for': ['javascript']}
-Plug 'mxw/vim-jsx', {'for': ['javascript']}
-"
+" Plug 'mxw/vim-jsx', {'for': ['javascript']}
+Plug 'sheerun/vim-polyglot'
+
 call plug#end()
 endif
 
@@ -613,11 +614,11 @@ nnoremap <silent> <Leader>3 :b#<CR>
 noremap j gj
 noremap k gk
 " End pair
-inoremap <C-;> <ESC>A
-" ----------------------------------------------------------------------------
+inoremap <C-l> <ESC>A
+" ---------------------------------------------------------------------------
 " Omnifunction
 " ----------------------------------------------------------------------------
-inoremap <C-/> <C-X><C-O>
+inoremap <C-\> <C-X><C-O>
 
 " ----------------------------------------------------------------------------
 " Moving lines
