@@ -91,9 +91,20 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 " NCM - Nvim Completion Manager
-Plug 'roxma/nvim-completion-manager'
+" Plug 'roxma/nvim-completion-manager'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+
 " javascript completion
-Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+" Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+
+" golang completion
+Plug 'ncm2/ncm2-go'
+
+
 
 " Plug 'roxma/ncm-flow'
 " language server protocol framework
@@ -153,7 +164,7 @@ let g:vdebug_options= {
     \    "on_close" : 'detach',
     \    "break_on_open" : 0,
     \    "ide_key" : 'XDEBUG_VIESPEJO',
-    \    "path_maps" : {},
+    \    "path_maps" : {"/usr/share/nginx": "/home/its32ve1/Data/code/www"},
     \    "debug_window_level" : 0,
     \    "debug_file_level" : 0,
     \    "debug_file" : "",
@@ -241,7 +252,9 @@ set mouse=a
 set clipboard=unnamed
 set foldlevelstart=99
 set grepformat=%f:%l:%c:%m,%f:%l:%m
-set completeopt=menuone,preview
+" IMPORTANTE: :help Ncm2PopupOpen for more information
+set completeopt=noinsert,menuone,noselect
+"set completeopt=menuone,preview
 set nocursorline
 set nrformats=hex
 silent! set cryptmethod=blowfish2
@@ -367,7 +380,10 @@ let g:lightline = {
 
 " Started Page
 let g:startify_bookmarks = [
-      \ {'df': '~/.dotfiles'} ]
+      \ { 'df': '~/.dotfiles'},
+      \ { 'go': '~/.gvm/pkgsets/go1.9.3/global/src'},
+      \ {'react': '~/Data/code/www/reactapps/'},
+      \ ]
 
 " ----------------------------------------------------------------------------
 " deoplete

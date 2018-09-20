@@ -189,7 +189,7 @@ bindsym $mod+i 			exec $term -e htop
 bindsym $mod+Shift+i		resize grow height 10 px or 10 ppt
 
 #bindsym $mod+o			exec --no-startup-id $beg
-bindsym $mod+Shift+o		resize grow width 10 px or 10 ppt
+bindsym $mod+Shift+o		resize grow width 10 px or 10ppt
 
 bindsym $mod+p			exec $pause
 #bindsym $mod+Shift+p		exec mypaint
@@ -226,7 +226,7 @@ bindsym $mod+z			gaps outer current plus 5
 bindsym $mod+Shift+z		gaps outer current minus 5
 
 bindsym $mod+x			exec --no-startup-id ~/.config/i3/lock.sh
-bindsym $mod+Shift+x		exec shutdown -h now
+bindsym $mod+Shift+x		exec ~/.dotfiles/scripts/prompt "Do you want to shutdown?" "shutdown -h now"
 
 #bindsym $mod+c			exec $term -e weechat
 #bindsym $mod+Shift+c
@@ -352,7 +352,7 @@ bindsym --whole-window $mod+button3 floating toggle
 bindsym $mod+F1		exec --no-startup-id mupdf ~/.config/i3/i3_guide.md.pdf
 bindsym $mod+F2		exec --no-startup-id bash ~/.dotfiles/scripts/shortcuts notify
 bindsym $mod+F3		exec --no-startup-id arandr
-bindsym $mod+F4		exec --no-startup-id systemctl hibernate
+bindsym $mod+F4		exec --no-startup-id systemctl suspend
 bindsym $mod+F5		exec --no-startup-id systemctl restart NetworkManager
 #bindsym $mod+F6		exec --no-startup-id urxvt -e transmission-remote-cli
 bindsym $mod+F7		exec transset-df -a --dec .15
