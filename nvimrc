@@ -92,8 +92,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ }
 " NCM - Nvim Completion Manager
 " Plug 'roxma/nvim-completion-manager'
-Plug 'ncm2/ncm2'
 Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
 
@@ -104,7 +104,10 @@ Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 " golang completion
 Plug 'ncm2/ncm2-go'
 
-
+" word completion
+Plug 'ncm2/ncm2-bufword'
+" ultisnips completion
+Plug 'ncm2/ncm2-ultisnips'
 
 " Plug 'roxma/ncm-flow'
 " language server protocol framework
@@ -473,13 +476,13 @@ let g:netrw_localmvcmd="mv"
 " ----------------------------------------------------------------------------
 " multiple-cursor
 " ----------------------------------------------------------------------------
-function! Multiple_cursors_before()
-  call cm#disable_for_buffer()
-endfunction
+  function! Multiple_cursors_before()
+      call ncm2#lock('vim-multiple-cursors')
+  endfunction
 
-function! Multiple_cursors_after()
-    call cm#enable_for_buffer()
-endfunction
+  function! Multiple_cursors_after()
+      call ncm2#unlock('vim-multiple-cursors')
+  endfunction
 
 " ----------------------------------------------------------------------------
 " undotree
@@ -556,7 +559,7 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_fixers = {
 \   'javascript': ['eslint'],
-\   'css': ['prettier'],
+\   'css': ['stylelint'],
 \   'json': ['prettier']
 \}
 let g:ale_fix_on_save = 1
