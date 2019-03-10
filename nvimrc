@@ -120,6 +120,7 @@ Plug 'ncm2/ncm2-ultisnips'
 " ----------------------------------------------------------------------------
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+Plug 'idanarye/vim-merginal'
 
 " ----------------------------------------------------------------------------
 " linting
@@ -826,6 +827,11 @@ nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
 nnoremap <silent> <leader>gg :GitGutterToggle<CR>
 
+" ----------------------------------------------------------------------------
+" Merginal
+" ----------------------------------------------------------------------------
+nmap <silent> <leader>m :MerginalToggle<CR>
+let g:merginal_splitType = ''
 " ----------------------------------------------------------------------------
 " Tagbar
 " ----------------------------------------------------------------------------
