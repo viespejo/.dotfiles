@@ -506,7 +506,8 @@ let g:jsx_ext_required = 0
 " ----------------------------------------------------------------------------
 " TagBar
 " ----------------------------------------------------------------------------
-
+let g:tagbar_autoclose = 1
+" let g:tagbar_autofocus = 1
 " golang
 let g:tagbar_type_go = {
     \ 'ctagstype' : 'go',
