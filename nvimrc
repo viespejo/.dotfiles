@@ -549,7 +549,7 @@ let g:javascript_conceal_arrow_function = "⇒"
 " autocmd! BufWritePost * Neomake
 
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['standard'],
 \   'php': ['php', 'phpcs'],
 \   'go': ['gometalinter'],
 \   'css': ['stylelint']
@@ -560,7 +560,7 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_fixers = {
-\   'javascript': ['eslint'],
+\   'javascript': ['standard'],
 \   'css': ['stylelint'],
 \   'json': ['prettier']
 \}
