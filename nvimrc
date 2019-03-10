@@ -630,6 +630,14 @@ nnoremap <silent> <C-H> :bp<CR>
 nnoremap <silent> <C-l> :bn<CR>
 nnoremap <silent> <Leader>3 :b#<CR>
 
+" Location list
+nnoremap <silent> <Leader>lo :lop<CR>
+nnoremap <silent> <Leader>lc :lcl<CR>
+
+" Quickfix list
+nnoremap <silent> <Leader>co :cope<CR>
+nnoremap <silent> <Leader>cc :ccl<CR>
+
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
 noremap k gk
