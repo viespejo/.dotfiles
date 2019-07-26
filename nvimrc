@@ -49,7 +49,7 @@ Plug 'Shougo/neoyank.vim'
 " ----------------------------------------------------------------------------
 Plug 'tpope/vim-commentary'
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle'   }
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'terryma/vim-expand-region'
 Plug 'jiangmiao/auto-pairs'
@@ -86,28 +86,28 @@ Plug 'mhinz/vim-startify'
 
 
 " Language Server Protocol support
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
+"Plug 'autozimu/LanguageClient-neovim', {
+"    \ 'branch': 'next',
+"    \ 'do': 'bash install.sh',
+"    \ }
 " NCM - Nvim Completion Manager
 " Plug 'roxma/nvim-completion-manager'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2'
+" Plug 'ncm2/ncm2'
+" Plug 'roxma/nvim-yarp'
 " enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
+" autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " javascript completion
 " Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
-Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
+" Plug 'ncm2/ncm2-tern',  {'do': 'npm install'}
 
 " golang completion
-Plug 'ncm2/ncm2-go'
+" Plug 'ncm2/ncm2-go'
 
 " word completion
-Plug 'ncm2/ncm2-bufword'
+" Plug 'ncm2/ncm2-bufword'
 " ultisnips completion
-Plug 'ncm2/ncm2-ultisnips'
+" Plug 'ncm2/ncm2-ultisnips'
 
 " Plug 'roxma/ncm-flow'
 " language server protocol framework
@@ -115,6 +115,10 @@ Plug 'ncm2/ncm2-ultisnips'
 " php completion via LanguageClient-neovim
 " Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 " autocmd FileType php LanguageClientStart
+"
+Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+
+
 " ----------------------------------------------------------------------------
 " git
 " ----------------------------------------------------------------------------
@@ -190,6 +194,11 @@ Plug 'fatih/vim-go'
 Plug 'sebdah/vim-delve'
 
 " ----------------------------------------------------------------------------
+" R
+" ----------------------------------------------------------------------------
+Plug 'jalvesaq/Nvim-R'
+
+" ----------------------------------------------------------------------------
 " Tagbar
 " ----------------------------------------------------------------------------
 Plug 'majutsushi/tagbar'
@@ -257,7 +266,7 @@ set clipboard=unnamed
 set foldlevelstart=99
 set grepformat=%f:%l:%c:%m,%f:%l:%m
 " IMPORTANTE: :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
+" set completeopt=noinsert,menuone,noselect
 "set completeopt=menuone,preview
 set nocursorline
 set nrformats=hex
@@ -349,14 +358,15 @@ silent! colo onedark
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \             [ 'cocstatus', 'gitbranch', 'readonly', 'filename', 'modified' ] ],
       \   'right': [['linter_errors', 'linter_warnings', 'linter_ok' ],
       \             [ 'lineinfo' ],
       \             [ 'percent' ],
       \             [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
       \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
+      \   'gitbranch': 'fugitive#head',
+      \   'cocstatus': 'coc#status'
       \ },
       \ 'component_expand': {
       \  'linter_warnings': 'lightline#ale#warnings',
@@ -406,20 +416,80 @@ let g:startify_bookmarks = [
 " deoplete-go
 " ----------------------------------------------------------------------------
 " let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-
 " ----------------------------------------------------------------------------
 " denite.nvim
 "---------------------------------------------------------------------------
 
+" ----------------------------------------------------------------------------
+" vim-polyglot
+let g:polyglot_disabled = ['csv']
+" ----------------------------------------------------------------------------
+" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
 if executable('rg')
-  call denite#custom#var('file_rec', 'command',
-        \ ['rg', '--files', '--glob', '!.git'])
+  " === Denite setup ==="
+  " Use ripgrep for searching current directory for files
+  " By default, ripgrep will respect rules in .gitignore
+  "   --files: Print each file that would be searched (but don't search)
+  "   --glob:  Include or exclues files for searching that match the given glob
+  "            (aka ignore .git files)
+  "
+  call denite#custom#var('file/rec', 'command', ['rg', '--files', '--glob', '!.git'])
+
+  " Use ripgrep in place of "grep"
   call denite#custom#var('grep', 'command', ['rg'])
+
+  " Custom options for ripgrep
+  "   --vimgrep:  Show results with every match on it's own line
+  "   --hidden:   Search hidden directories and files
+  "   --heading:  Show the file name above clusters of matches from each file
+  "   --S:        Search case insensitively if the pattern is all lowercase
+  call denite#custom#var('grep', 'default_opts', ['--hidden', '--vimgrep', '--heading', '-S'])
+
+  " Recommended defaults for ripgrep via Denite docs
   call denite#custom#var('grep', 'recursive_opts', [])
-  call denite#custom#var('grep', 'final_opts', [])
+  call denite#custom#var('grep', 'pattern_opt', ['--regexp'])
   call denite#custom#var('grep', 'separator', ['--'])
-  call denite#custom#var('grep', 'default_opts',
-        \ ['--vimgrep', '--no-heading'])
+  call denite#custom#var('grep', 'final_opts', [])
+
+  " Remove date from buffer list
+  call denite#custom#var('buffer', 'date_format', '')
+
+  " Open file commands
+  call denite#custom#map('insert,normal', "<C-t>", '<denite:do_action:tabopen>')
+  call denite#custom#map('insert,normal', "<C-v>", '<denite:do_action:vsplit>')
+  call denite#custom#map('insert,normal', "<C-h>", '<denite:do_action:split>')
+
+  " Custom options for Denite
+  "   auto_resize             - Auto resize the Denite window height automatically.
+  "   prompt                  - Customize denite prompt
+  "   direction               - Specify Denite window direction as directly below current pane
+  "   winminheight            - Specify min height for Denite window
+  "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
+  "   prompt_highlight        - Specify color of prompt
+  "   highlight_matched_char  - Matched characters highlight
+  "   highlight_matched_range - matched range highlight
+  let s:denite_options = {'default' : {
+  \ 'auto_resize': 1,
+  \ 'prompt': 'λ:',
+  \ 'direction': 'rightbelow',
+  \ 'winminheight': '10',
+  \ 'highlight_mode_insert': 'Visual',
+  \ 'highlight_mode_normal': 'Visual',
+  \ 'prompt_highlight': 'Function',
+  \ 'highlight_matched_char': 'Function',
+  \ 'highlight_matched_range': 'Normal'
+  \ }}
+
+  " Loop through denite options and enable them
+  function! s:profile(opts) abort
+    for l:fname in keys(a:opts)
+      for l:dopt in keys(a:opts[l:fname])
+        call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
+      endfor
+    endfor
+  endfunction
+
+  call s:profile(s:denite_options)
 else
   call denite#custom#var('file_rec', 'command',
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
@@ -440,15 +510,15 @@ call denite#custom#option('default', 'highlight_mode_insert', 'Search')
 " ----------------------------------------------------------------------------
 " NCM
 " ----------------------------------------------------------------------------
-let g:LanguageClient_diagnosticsEnable = 0
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'css': ['css-languageserver', '--stdio']
-    \ }
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
+" let g:LanguageClient_diagnosticsEnable = 0
+" let g:LanguageClient_serverCommands = {
+"     \ 'javascript': ['javascript-typescript-stdio'],
+"     \ 'javascript.jsx': ['javascript-typescript-stdio'],
+"     \ 'css': ['css-languageserver', '--stdio']
+"     \ }
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " let g:LanguageClient_loggingLevel = 'DEBUG'
 " ----------------------------------------------------------------------------
 " phpcd
@@ -456,6 +526,33 @@ nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 " let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
 " let g:deoplete#ignore_sources.php = ['omni']
 
+" ----------------------------------------------------------------------------
+" COC
+" ----------------------------------------------------------------------------
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+inoremap <silent><expr> <Tab> pumvisible() ? coc#_select_confirm() : "\<TAB>"
+
+" Use `[c` and `]c` to navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " ----------------------------------------------------------------------------
 " find and replace
@@ -477,13 +574,13 @@ let g:netrw_localmvcmd="mv"
 " ----------------------------------------------------------------------------
 " multiple-cursor
 " ----------------------------------------------------------------------------
-  function! Multiple_cursors_before()
-      call ncm2#lock('vim-multiple-cursors')
-  endfunction
+  " function! Multiple_cursors_before()
+  "     call ncm2#lock('vim-multiple-cursors')
+  " endfunction
 
-  function! Multiple_cursors_after()
-      call ncm2#unlock('vim-multiple-cursors')
-  endfunction
+  " function! Multiple_cursors_after()
+  "     call ncm2#unlock('vim-multiple-cursors')
+  " endfunction
 
 " ----------------------------------------------------------------------------
 " undotree
@@ -548,6 +645,8 @@ let g:javascript_conceal_arrow_function = "⇒"
 " Run neomake on save for all files
 " autocmd! BufWritePost * Neomake
 
+" " Only run linters named in ale_linters settings.
+" let g:ale_linters_explicit = 1
 let g:ale_linters = {
 \   'javascript': ['standard'],
 \   'php': ['php', 'phpcs'],
@@ -556,15 +655,17 @@ let g:ale_linters = {
 \}
 " let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_go_gometalinter_options = '--fast'
-let g:ale_lint_on_text_changed = 'never'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
 let g:ale_fixers = {
 \   'javascript': ['standard'],
 \   'css': ['stylelint'],
-\   'json': ['prettier']
+\   'json': ['prettier'],
+\   'php': ['php_cs_fixer']
 \}
+
 let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
 
 " ----------------------------------------------------------------------------
 " CtrlSpace
@@ -580,6 +681,8 @@ let g:ale_fix_on_save = 1
 " ----------------------------------------------------------------------------
 "let g:go_fmt_autosave = 0
 let g:go_fmt_fail_silently = 1
+" let g:go_def_mapping_enabled = 0
+let g:go_def_mode = 'godef'
 
 " }}}
 
@@ -638,6 +741,10 @@ nnoremap <silent> <Leader>lc :lcl<CR>
 " Quickfix list
 nnoremap <silent> <Leader>co :cope<CR>
 nnoremap <silent> <Leader>cc :ccl<CR>
+
+" Coc list
+nnoremap <silent> <Leader>cc :CocConfig<CR>
+nnoremap <silent> <Leader>cl :CocList<CR>
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -815,12 +922,17 @@ nnoremap <silent> [Space]h :<C-u>Denite help<CR>
 nnoremap <silent> [Space]l :<C-u>Denite line<CR>
 
 " Quick commands
-nnoremap <silent> [Space]c :<C-u>Denite -start-insert command_history<CR>
+nnoremap <silent> [Space]c :<C-u>Denite command_history<CR>
 
 " ----------------------------------------------------------------------------
 " undotree
 " ----------------------------------------------------------------------------
 nnoremap <Leader>u :UndotreeToggle<CR>
+
+" ----------------------------------------------------------------------------
+" Gitgutter
+" ----------------------------------------------------------------------------
+let g:gitgutter_enabled = 0
 
 " ----------------------------------------------------------------------------
 " Fugitive
@@ -878,8 +990,6 @@ au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
-
-au FileType go nmap <Leader>gd <Plug>(go-doc)
 
 au FileType go nmap <Leader>s <Plug>(go-implements)
 

@@ -22,7 +22,6 @@ set $video --no-startup-id bash ~/.dotfiles/scripts/video.sh
 set $stoprec --no-startup-id killall ffmpeg & killall screenkey & polybar-msg hook is-recording 1
 set $flash --no-startup-id bash ~/.dotfiles/scripts/flash_win.sh
 
-
 ###---Starting External Scripts---###
 #Music player daemon:
 #exec --no-startup-id mpd
@@ -473,13 +472,13 @@ bindsym XF86Search		exec $BROWSER https://duckduckgo.com
 #bindsym XF86Finance		exec
 #bindsym XF86Game		exec
 bindsym XF86Shop		exec $BROWSER https://ebay.com
-bindsym XF86MonBrightnessDown	exec --no-startup-id sudo /home/its32ve1/.dotfiles/scripts/bright_down
-bindsym XF86MonBrightnessUp	exec --no-startup-id sudo /home/its32ve1/.dotfiles/scripts/bright_up
+bindsym XF86MonBrightnessDown	exec $term
+bindsym XF86MonBrightnessUp	exec light -A 5
 bindsym XF86AudioMedia		exec $music; workspace $ws7
 bindsym XF86Display		exec --no-startup-id arandr
 #bindsym XF86KbdLightOnOff	exec
-bindsym XF86KbdBrightnessDown	exec --no-startup-id ~/.dotfiles/scripts/bright_down
-bindsym XF86KbdBrightnessUp	exec --no-startup-id ~/.dotfiles/scripts/bright_up
+bindsym XF86KbdBrightnessDown	exec $term
+bindsym XF86KbdBrightnessUp	exec light -A 5
 #bindsym XF86Reply		exec
 #bindsym XF86MailForward	exec
 #bindsym XF86Save		exec

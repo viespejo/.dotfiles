@@ -10,5 +10,5 @@ r	/
 cf	~/.config
 cm	~/.dotfiles
 cml	~/.dotfiles-local
-tt /www/ZendApplications/tomtool
+za ~/Data/code/www/ZendApplications
 cg $GOPATH/src
