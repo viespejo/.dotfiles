@@ -491,7 +491,7 @@ if executable('rg')
 
   call s:profile(s:denite_options)
 else
-  call denite#custom#var('file_rec', 'command',
+  call denite#custom#var('file/rec', 'command',
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
 
@@ -502,8 +502,8 @@ call denite#custom#map('insert', '<C-k>',
 call denite#custom#map('normal', 'r',
       \ '<denite:do_action:quickfix>', 'noremap')
 
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
+call denite#custom#alias('source', 'file/rec/git', 'file/rec')
+call denite#custom#var('file/rec/git', 'command',
 \ ['git', 'ls-files', '-co', '--exclude-standard'])
 call denite#custom#option('default', 'highlight_mode_insert', 'Search')
 
@@ -648,25 +648,30 @@ let g:javascript_conceal_arrow_function = "⇒"
 " " Only run linters named in ale_linters settings.
 " let g:ale_linters_explicit = 1
 let g:ale_linters = {
-\   'javascript': ['standard'],
+\   'javascript': ['eslint'],
 \   'php': ['php', 'phpcs'],
 \   'go': ['gometalinter'],
-\   'css': ['stylelint']
+\   'css': ['stylelint'],
+\   'json': ['jsonlint']
 \}
+let g:ale_javascript_eslint_executable='npx eslint'
+let g:ale_css_stylelint_executable='npx stylelint'
+let g:ale_json_jsonlint_executable='npx jsonlint'
+
 " let g:ale_linter_aliases = {'jsx': 'css'}
 let g:ale_go_gometalinter_options = '--fast'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_echo_msg_format = '[ALE: %linter%] %s [%severity%]'
 
 let g:ale_fixers = {
-\   'javascript': ['standard'],
-\   'css': ['stylelint'],
-\   'json': ['prettier'],
 \   'php': ['php_cs_fixer']
 \}
+j
 
 let g:ale_fix_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
+" let g:ale_lint_on_text_changed = 'never'
 
+let g:ale_sign_error='●'
+let g:ale_sign_warning='..'
 " ----------------------------------------------------------------------------
 " CtrlSpace
 " ----------------------------------------------------------------------------
@@ -894,10 +899,10 @@ nnoremap [Space]w
 " ----------------------------------------------------------------------------
 
 " General fuzzy search
-nnoremap <silent> [Space]<space> :<C-u>Denite file_mru buffer<CR>
+nnoremap <silent> [Space]<space> :<C-u>Denite buffer file_mru <CR>
 
 nnoremap <silent> [Space]p :<C-u>Denite
-\ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+\ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
 
 " Quick registers
 nnoremap <silent> [Space]r :<C-u>Denite register<CR>

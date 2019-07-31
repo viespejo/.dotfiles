@@ -13,7 +13,7 @@ source ~/.dotfiles/zplug/init.zsh
 #zplug "lukechilds/zsh-nvm"
 zplug "modules/completion", from:prezto
 zplug "lukechilds/zsh-better-npm-completion", defer:2
-zplug "buonomo/yarn-completion", nice:10
+zplug "buonomo/yarn-completion", defer:2
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
 
