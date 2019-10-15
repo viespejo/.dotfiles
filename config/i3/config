@@ -343,7 +343,7 @@ for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 #bindsym F8
 #bindsym F9
 #bindsym F10
-bindsym F11		fullscreen toggle
+#bindsym F11		fullscreen toggle
 #bindsym F12
 bindsym --whole-window $mod+button2 kill
 bindsym --whole-window $mod+button3 floating toggle
@@ -396,6 +396,7 @@ bindsym $mod+Shift+bracketright exec $bigfor
 bindsym Print 			exec --no-startup-id scrot -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
 bindsym Shift+Print 		exec --no-startup-id scrot -u -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
 bindsym --release Ctrl+Shift+Print	exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && rm $f' && notify-send 'screenshot' 'taken in clipboard'
+bindsym --release Ctrl+Shift+Alt+Print	exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && mv $f ~/Pictures' && notify-send 'screenshot' 'taken in clipboard'
 
 #For recording audio/video or stop recording. Also screenkey for visual typing.
 bindsym $mod+Print		exec --no-startup-id screenkey

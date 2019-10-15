@@ -60,6 +60,7 @@ Plug 'terryma/vim-multiple-cursors'
 " ----------------------------------------------------------------------------
 Plug 'AlessandroYorba/Despacio'
 Plug 'joshdick/onedark.vim'
+Plug 'mhartington/oceanic-next'
 " ----------------------------------------------------------------------------
 " Status Line
 " ----------------------------------------------------------------------------
@@ -141,8 +142,9 @@ Plug 'brooth/far.vim', { 'do': function('DoRemote') }
 " tabs / buffers / files management
 " ----------------------------------------------------------------------------
 " Plug 'vim-ctrlspace/vim-ctrlspace'
-" Plug 'rbgrouleff/bclose.vim'
+Plug 'rbgrouleff/bclose.vim'
 Plug 'francoiscabrol/ranger.vim'
+" Plug 'tpope/vim-vinegar'
 " Plug 'tpope/vim-eunuch'
 " Plug 'justinmk/vim-dirvish'
 " ----------------------------------------------------------------------------
@@ -219,6 +221,7 @@ Plug 'mattn/emmet-vim'
 " Plug 'mxw/vim-jsx', {'for': ['javascript']}
 Plug 'sheerun/vim-polyglot'
 
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 endif
 
@@ -351,8 +354,9 @@ endif
 
 " Theme
 "silent! colo despacio
-let g:onedark_terminal_italics = 1
-silent! colo onedark
+" let g:onedark_terminal_italics = 1
+" silent! colo onedark
+silent! colo OceanicNext
 " hi MatchParen cterm=bold ctermfg=167
 " hi Normal ctermbg=none
 let g:lightline = {
@@ -366,7 +370,9 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'gitbranch': 'fugitive#head',
-      \   'cocstatus': 'coc#status'
+      \   'cocstatus': 'coc#status',
+      \   'filetype': 'MyFiletype',
+      \   'fileformat': 'MyFileformat',
       \ },
       \ 'component_expand': {
       \  'linter_warnings': 'lightline#ale#warnings',
@@ -377,9 +383,16 @@ let g:lightline = {
       \     'linter_warnings': 'warning',
       \     'linter_errors': 'error',
       \ },
-      \ 'colorscheme': 'onedark',
+      \ 'colorscheme': 'oceanicnext',
       \ }
 
+  function! MyFiletype()
+    return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+  endfunction
+  
+  function! MyFileformat()
+    return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+  endfunction
 
 " let g:airline_theme='base16_ocean'
 " let g:airline_theme='oceanicnext'
@@ -416,15 +429,14 @@ let g:startify_bookmarks = [
 " deoplete-go
 " ----------------------------------------------------------------------------
 " let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
-" ----------------------------------------------------------------------------
-" denite.nvim
-"---------------------------------------------------------------------------
 
 " ----------------------------------------------------------------------------
 " vim-polyglot
-let g:polyglot_disabled = ['csv']
+" let g:polyglot_disabled = ['csv']
+
 " ----------------------------------------------------------------------------
-" let g:deoplete#sources#go#gocode_binary = $GOPATH.'/bin/gocode'
+" denite.nvim
+"---------------------------------------------------------------------------
 if executable('rg')
   " === Denite setup ==="
   " Use ripgrep for searching current directory for files
@@ -451,49 +463,50 @@ if executable('rg')
   call denite#custom#var('grep', 'separator', ['--'])
   call denite#custom#var('grep', 'final_opts', [])
 
-  " Remove date from buffer list
-  call denite#custom#var('buffer', 'date_format', '')
-
-  " Open file commands
-  call denite#custom#map('insert,normal', "<C-t>", '<denite:do_action:tabopen>')
-  call denite#custom#map('insert,normal', "<C-v>", '<denite:do_action:vsplit>')
-  call denite#custom#map('insert,normal', "<C-h>", '<denite:do_action:split>')
-
-  " Custom options for Denite
-  "   auto_resize             - Auto resize the Denite window height automatically.
-  "   prompt                  - Customize denite prompt
-  "   direction               - Specify Denite window direction as directly below current pane
-  "   winminheight            - Specify min height for Denite window
-  "   highlight_mode_insert   - Specify h1-CursorLine in insert mode
-  "   prompt_highlight        - Specify color of prompt
-  "   highlight_matched_char  - Matched characters highlight
-  "   highlight_matched_range - matched range highlight
-  let s:denite_options = {'default' : {
-  \ 'auto_resize': 1,
-  \ 'prompt': 'λ:',
-  \ 'direction': 'rightbelow',
-  \ 'winminheight': '10',
-  \ 'highlight_mode_insert': 'Visual',
-  \ 'highlight_mode_normal': 'Visual',
-  \ 'prompt_highlight': 'Function',
-  \ 'highlight_matched_char': 'Function',
-  \ 'highlight_matched_range': 'Normal'
-  \ }}
-
-  " Loop through denite options and enable them
-  function! s:profile(opts) abort
-    for l:fname in keys(a:opts)
-      for l:dopt in keys(a:opts[l:fname])
-        call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
-      endfor
-    endfor
-  endfunction
-
-  call s:profile(s:denite_options)
 else
   call denite#custom#var('file/rec', 'command',
         \ ['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
 endif
+
+" Remove date from buffer list
+call denite#custom#var('buffer', 'date_format', '')
+
+" Open file commands
+call denite#custom#map('insert,normal', "<C-t>", '<denite:do_action:tabopen>')
+call denite#custom#map('insert,normal', "<C-v>", '<denite:do_action:vsplit>')
+call denite#custom#map('insert,normal', "<C-h>", '<denite:do_action:split>')
+
+" Custom options for Denite
+"   auto_resize             - Auto resize the Denite window height automatically.
+"   prompt                  - Customize denite prompt
+"   direction               - Specify Denite window direction as directly below current pane
+"   winminheight            - Specify min height for Denite window
+"   highlight_mode_insert   - Specify h1-CursorLine in insert mode
+"   prompt_highlight        - Specify color of prompt
+"   highlight_matched_char  - Matched characters highlight
+"   highlight_matched_range - matched range highlight
+let s:denite_options = {'default' : {
+\ 'auto_resize': 1,
+\ 'prompt': 'λ:',
+\ 'direction': 'rightbelow',
+\ 'winminheight': '10',
+\ 'highlight_mode_insert': 'Visual',
+\ 'highlight_mode_normal': 'Visual',
+\ 'prompt_highlight': 'Function',
+\ 'highlight_matched_char': 'Function',
+\ 'highlight_matched_range': 'Normal'
+\ }}
+
+" Loop through denite options and enable them
+function! s:profile(opts) abort
+  for l:fname in keys(a:opts)
+    for l:dopt in keys(a:opts[l:fname])
+      call denite#custom#option(l:fname, l:dopt, a:opts[l:fname][l:dopt])
+    endfor
+  endfor
+endfunction
+
+call s:profile(s:denite_options)
 
 call denite#custom#map('insert', '<C-j>',
       \ '<denite:move_to_next_line>', 'noremap')
@@ -505,8 +518,11 @@ call denite#custom#map('normal', 'r',
 call denite#custom#alias('source', 'file/rec/git', 'file/rec')
 call denite#custom#var('file/rec/git', 'command',
 \ ['git', 'ls-files', '-co', '--exclude-standard'])
-call denite#custom#option('default', 'highlight_mode_insert', 'Search')
 
+" Change matchers to project
+call denite#custom#alias('source', 'file_mru_project', 'file_mru')
+call denite#custom#source(
+	\ 'file_mru_project', 'matchers', ['matcher/fuzzy', 'matcher/project_files'])
 " ----------------------------------------------------------------------------
 " NCM
 " ----------------------------------------------------------------------------
@@ -824,11 +840,12 @@ map <leader>ew :e %%
 map <leader>es :sp %%
 map <leader>ev :vsp %%
 map <leader>et :tabe %%
+map <leader>e. :Ex<CR>
 
 " Adjust viewports to the same size
-map <Leader>= <C-w>=
+map <Leader>2 <C-w>=
 " Maximize viewports to the same size
-map <Leader>_ <C-w>_
+map <Leader>1 <C-w>_
 
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
@@ -839,7 +856,7 @@ map zl zL
 map zh zH
 
 " Wipe buffer 
-nnoremap <silent> Q :bw<CR>
+nnoremap <silent> Q :bd<CR>
 
 " ----------------------------------------------------------------------------
 " fzf
@@ -851,7 +868,7 @@ nnoremap <A-f> :Far <C-R><C-W>
 nnoremap <leader>ag :Ag! 
 nnoremap <leader>rg :Rg! 
 nmap <leader><tab> <plug>(fzf-maps-n)
-nmap <leader>s :Snippets<CR>
+nmap <leader>s :CocList snippets<CR>
 imap <c-x><c-f> <plug>(fzf-complete-path)
 
 " --column: Show column number
@@ -899,14 +916,19 @@ nnoremap [Space]w
 " ----------------------------------------------------------------------------
 
 " General fuzzy search
-nnoremap <silent> [Space]<space> :<C-u>Denite buffer file_mru <CR>
-
+nnoremap <silent> [Space]<space> :<C-u>Denite buffer<CR>
+nnoremap <silent> [Space]a :<C-u>Denite file_mru<CR>
+nnoremap <silent> [Space]s :<C-u>Denite file_mru_project<CR>
 nnoremap <silent> [Space]p :<C-u>Denite
 \ `finddir('.git', ';') != '' ? 'file/rec/git' : 'file/rec'`<CR>
 
 " Quick registers
 nnoremap <silent> [Space]r :<C-u>Denite register<CR>
 
+" ChangeFiletype
+nnoremap <silent> [Space]t :<C-u>Denite filetype<CR>
+" Marks
+nnoremap <silent> [Space]m :<C-u>Denite mark<CR>
 " Quick yank history
 nnoremap <silent> [Space]y :<C-u>Denite neoyank<CR>
 
@@ -917,8 +939,9 @@ nnoremap <silent> [Space]o :<C-u>Denite outline<CR>
 nnoremap <silent> [Space]d
       \ :<C-u>Denite -default-action=cd directory_mru<CR>
 
-" Quick grep from pwd
+" Quick grep
 nnoremap <silent> [Space]g :<C-u>Denite grep:.<CR>
+nnoremap <silent> [Space]j :<C-u>DeniteCursorWord grep:.<CR>
 
 " Quick help
 nnoremap <silent> [Space]h :<C-u>Denite help<CR>
