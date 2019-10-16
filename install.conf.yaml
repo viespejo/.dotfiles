@@ -17,6 +17,9 @@
     ~/.Xresources:
         relink: true
         path: Xresources
+    ~/.Xkeymap:
+        relink: true
+        path: Xkeymap
     ~/.tmux.conf:
         relink: true
         path: tmux.conf
