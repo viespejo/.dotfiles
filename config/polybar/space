@@ -61,6 +61,7 @@ font-0 = Cantarell:style=Bold:size=10;2
 font-1 = DejaVuSansMono Nerd Font:style=Bold:size=16;2
 font-2 = FontAwesome5Free:style=Solid:size=10;3
 font-3 = DejaVuSansMono Nerd Font:style=Bold:size=9;2
+font-4 = Cantarell:style=Bold:size=10;0
 
 fixed-center = false
 modules-left = i3
@@ -205,7 +206,7 @@ format = <label-state> <label-mode>
 ;   %index%
 ;   %output%
 ; Default: %icon%  %name%
-label-focused = %{T1}%index%%{T-} %icon%
+label-focused = %{T5}%index%%{T-} %icon%
 label-focused-font = 2
 label-focused-underline = #fba922
 label-focused-padding = 3
@@ -215,7 +216,7 @@ label-focused-padding = 3
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-unfocused = %{T1}%index%%{T-} %icon%
+label-unfocused = %{T5}%index%%{T-} %icon%
 label-unfocused-font = 2
 label-unfocused-padding = 3
 
