@@ -13,6 +13,6 @@ xinput set-prop 12 "libinput Tapping Enabled" 1
 # setxkbmap -layout us,es -option ctrl:swapcaps,grp:shifts_toggle,altwin:swap_alt_win
 #[[ -f "$usermodmap" ]] && xmodmap "$usermodmap"
 [[ -f "$userkeymap" ]] && xkbcomp "$userkeymap" $DISPLAY
-xcape -e 'Control_L=Escape'
+#xcape -e 'Control_L=Escape'
 #wal -c -i ~/.config/wallpapers/wall.jpg
 exec dbus-launch --exit-with-session i3

@@ -131,7 +131,7 @@ for_window [instance="dropdown"] floating enable
 for_window [instance="dropdown"] resize set 950 800
 for_window [instance="dropdown"] move position center
 for_window [instance="dropdown"] move scratchpad
-exec --no-startup-id $term -n dropdown -e tmux new -s Dropdown
+exec --no-startup-id $term --class dropdown,dropdown --title Dropdown -e tmux new -s Dropdown
 
 #Then I have a window running R I use for basic arithmetic
 #I'll later bind this to mod+a.
@@ -139,7 +139,7 @@ for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 800 300
 for_window [instance="math"] move position center
 for_window [instance="math"] move scratchpad
-exec --no-startup-id $term -f "mono:pixelsize=24" -n math -e R -q
+exec --no-startup-id $term --class math -e R -q
 
 
 ###---Basic Bindings---###
@@ -147,6 +147,7 @@ bindsym $mod+Return 		exec $term
 bindsym $mod+Shift+Return 	exec $term -e tmux
 
 bindsym $mod+Shift+space 	floating toggle
+bindsym $mod+Ctrl+space		sticky toggle
 bindsym $mod+space		focus mode_toggle
 
 bindsym $mod+Escape		workspace prev
@@ -178,17 +179,17 @@ bindsym $mod+t			split toggle
 bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
 
 bindsym $mod+y			exec $term -e calcurse
-bindsym $mod+Shift+y		resize shrink width 10 px or 10ppt
+bindsym $mod+Shift+y		resize shrink width 1 px or 1 ppt
 
 bindsym $mod+u			[instance="dropdown"] scratchpad show; move position center
 bindsym Ctrl+semicolon 	[instance="dropdown"] scratchpad show; move position center
-bindsym $mod+Shift+u		resize shrink height 10 px or 10 ppt
+bindsym $mod+Shift+u		resize shrink height 1 px or 1 ppt
 
 bindsym $mod+i 			exec $term -e htop
-bindsym $mod+Shift+i		resize grow height 10 px or 10 ppt
+bindsym $mod+Shift+i		resize grow height 1 px or 1 ppt
 
 #bindsym $mod+o			exec --no-startup-id $beg
-bindsym $mod+Shift+o		resize grow width 10 px or 10ppt
+bindsym $mod+Shift+o		resize grow width 1 px or 1 ppt
 
 bindsym $mod+p			exec $pause
 #bindsym $mod+Shift+p		exec mypaint

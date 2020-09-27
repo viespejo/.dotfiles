@@ -1,5 +1,3 @@
-# eval `dircolors ~/.dir_colors`
-
 # Check if zplug is installed
 if [[ ! -d ~/.dotfiles/zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.dotfiles/zplug
@@ -47,9 +45,6 @@ zplug load
 # # shift tab completion
 # zmodload zsh/complist
 # bindkey -M menuselect '^[[Z' reverse-menu-complete
-
-#dircolor
-# eval $(dircolors ~/.dotfiles/zsh/dircolors.dark)
 
 # vi mode
 KEYTIMEOUT=1
@@ -110,6 +105,9 @@ alias v='nvim'
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+#dircolor
+eval $(dircolors ~/.dotfiles/config/zsh/dircolors.dark)
 
 # For directory and config shortcuts:
 source ~/.config/zsh/.zshortcuts

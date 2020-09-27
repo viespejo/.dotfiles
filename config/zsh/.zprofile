@@ -6,7 +6,7 @@
 [[ -n $TMUX || $SHLVL -gt 1 ]] && return
 
 export TERM=xterm-256color
-export TERMINAL=st
+export TERMINAL=alacritty
 export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=google-chrome-stable
