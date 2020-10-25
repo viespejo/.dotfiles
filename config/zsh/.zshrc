@@ -21,7 +21,8 @@ zplug "modules/history", from:prezto
 zplug "plugins/common-aliases", from:oh-my-zsh
 
 #zplug "tmuxinator/tmuxinator", use:"completion/tmuxinator.zsh"
-zplug "b4b4r07/enhancd", use:init.sh
+#zplug "b4b4r07/enhancd", use:init.sh
+zplug "skywind3000/z.lua"
 
 # Async for zsh, used by pure
 zplug "mafredri/zsh-async", from:github, defer:0
