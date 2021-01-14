@@ -11,5 +11,5 @@
 	path = fzf
 	url = https://github.com/junegunn/fzf.git
 [submodule "submodules/vim-commentary"]
-	path = submodules/vim-commentary
+	path = vim-submodules/vim-commentary
 	url = https://github.com/tpope/vim-commentary
