@@ -397,7 +397,7 @@ bindsym $mod+Shift+bracketright exec $bigfor
 bindsym Print 			exec --no-startup-id scrot -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
 bindsym Shift+Print 		exec --no-startup-id scrot -u -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
 bindsym --release Ctrl+Shift+Print	exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && rm $f' && notify-send 'screenshot' 'taken in clipboard'
-bindsym --release Ctrl+Shift+Alt+Print	exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && mv $f ~/Pictures' && notify-send 'screenshot' 'taken in clipboard'
+bindsym --release Ctrl+Shift+Alt+Print	exec --no-startup-id flameshot gui
 
 #For recording audio/video or stop recording. Also screenkey for visual typing.
 bindsym $mod+Print		exec --no-startup-id screenkey
