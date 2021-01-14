@@ -15,4 +15,7 @@ xinput set-prop 12 "libinput Tapping Enabled" 1
 [[ -f "$userkeymap" ]] && xkbcomp "$userkeymap" $DISPLAY
 #xcape -e 'Control_L=Escape'
 #wal -c -i ~/.config/wallpapers/wall.jpg
+# reset xkeymap when plug in a new keyboard
+inputplug -d -c ~/.dotfiles/scripts/xkbmap-reset.sh&
+# i3
 exec dbus-launch --exit-with-session i3
