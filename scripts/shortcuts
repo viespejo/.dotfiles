@@ -39,8 +39,8 @@ writeDirs() { echo "alias $1='cd $2 && ls -a'" >> $zsh_shortcuts
 }
 
 writeConfs() {
-	echo "alias $1='vim $2'" >> $zsh_shortcuts
-	echo "map $1 shell nvim $2" >> $ranger_shortcuts ;
+	echo "alias $1='vn $2'" >> $zsh_shortcuts
+	echo "map $1 shell vn $2" >> $ranger_shortcuts ;
 }
 
 IFS=$'\n'
