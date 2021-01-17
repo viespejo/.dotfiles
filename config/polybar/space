@@ -32,7 +32,7 @@ font-2 = DejaVuSansMono Nerd Font:size=10;2
 ; modules-left = powermenu mpd
 modules-left = powermenu xwindow
 ; modules-right = volume backlight wireless-network wired-network battery date
-modules-right = backlight volume battery date
+modules-right = pomodoro backlight volume battery date
 
 tray-position = right
 tray-padding = 5
@@ -112,6 +112,14 @@ exec = ~/.config/polybar/mpris.sh
 click-left = playerctl previous
 click-middle = playerctl play-pause
 click-right = playerctl next
+
+[module/pomodoro]
+type = custom/script
+interval = 1
+click-left = i3-gnome-pomodoro toggle
+click-middle = gnome-pomodoro
+click-right = i3-gnome-pomodoro start-stop
+exec = i3-gnome-pomodoro status --always
 
 [module/backlight]
 type = internal/backlight
