@@ -1,6 +1,6 @@
 - shell:
     - [git submodule update --init --recursive, Installing submodules]
-    - [./fzf/install --all --no-update-rc --no-fish --64, Installing FZF]
+    - [./fzf/install --all --no-update-rc --no-fish, Installing FZF]
     - [rsync -va bin/ ~/bin, Sync "~/bin" folder]
     - [rsync -va config/ ~/.config, Sync "~/.config" folder]
 
