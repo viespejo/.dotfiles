@@ -149,6 +149,7 @@ alias vim='nvim'
 alias v='nvim'
 alias vn='nvim-nightly -u $HOME/.config/nvimn-config/nvim/init.vim'
 alias nvimn='nvim-nightly -u $HOME/.config/nvimn-config/nvim/init.vim'
+alias t='task'
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
