@@ -13,3 +13,9 @@
 [submodule "submodules/vim-commentary"]
 	path = vim-submodules/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+[submodule "vim-submodules/vim-oscyank"]
+	path = vim-submodules/vim-oscyank
+	url = https://github.com/ojroques/vim-oscyank
+[submodule "fzf-marks"]
+	path = fzf-marks
+	url = https://github.com/urbainvaes/fzf-marks
