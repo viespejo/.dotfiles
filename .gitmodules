@@ -19,3 +19,6 @@
 [submodule "fzf-marks"]
 	path = fzf-marks
 	url = https://github.com/urbainvaes/fzf-marks
+[submodule "vim-submodules/fzf.vim"]
+	path = vim-submodules/fzf.vim
+	url = https://github.com/junegunn/fzf.vim
