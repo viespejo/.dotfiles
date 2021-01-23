@@ -1,18 +1,18 @@
 #!/bin/bash
 
-# Config locations
+#dotfiles locations
 folders="$HOME/.dotfiles/scripts/folders"
 configs="$HOME/.dotfiles/scripts/configs"
 
 # Output locations
-zsh_shortcuts="$HOME/.config/zsh/.zshortcuts"
+zsh_shortcuts="$ZDOTDIR/.zshortcuts"
 ranger_shortcuts="$HOME/.config/ranger/shortcuts.conf"
 # qute_shortcuts="$HOME/.config/qutebrowser/shortcuts.py"
 
 # Ensuring that output locations are properly sourced
-cat ~/.config/zsh/.zshrc | grep "source ~/.config/zsh/.zshortcuts" >/dev/null &&
+cat $ZDOTDIR/.zshrc | grep "source ". $zsh_shortcuts ."" >/dev/null &&
 	echo Zshrc already ready. ||
-	(echo "source ~/.config/zsh/.zshortcuts" >> ~/.config/zsh/.zshrc &&
+	(echo "source ". $zsh_shortcuts ."" >> $ZDOTDIR/.zshrc &&
 	echo Zshrc now prepared for shortcuts.)
 
 cat ~/.config/ranger/rc.conf | grep "source ~/.config/ranger/shortcuts.conf" >/dev/null &&
@@ -30,7 +30,7 @@ echo "# vim: filetype=sh" > $zsh_shortcuts
 echo "# ranger shortcuts" > $ranger_shortcuts
 # echo "# qutebrowser shortcuts" > $qute_shortcuts
 
-writeDirs() { echo "alias $1='cd $2 && ls -a'" >> $zsh_shortcuts
+writeDirs() { echo "alias $1='cd $2'" >> $zsh_shortcuts
 	echo "map g$1 cd $2" >> $ranger_shortcuts
 	echo "map t$1 tab_new $2" >> $ranger_shortcuts
 	echo "map m$1 shell mv %s $2" >> $ranger_shortcuts
@@ -39,8 +39,8 @@ writeDirs() { echo "alias $1='cd $2 && ls -a'" >> $zsh_shortcuts
 }
 
 writeConfs() {
-	echo "alias $1='vn $2'" >> $zsh_shortcuts
-	echo "map $1 shell vn $2" >> $ranger_shortcuts ;
+	echo "alias $1='nvimn $2'" >> $zsh_shortcuts
+	echo "map $1 shell nvimn $2" >> $ranger_shortcuts ;
 }
 
 IFS=$'\n'

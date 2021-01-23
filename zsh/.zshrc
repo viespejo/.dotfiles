@@ -1,3 +1,8 @@
+# vim: foldmethod=marker
+
+export EDITOR=nvimn
+export VISUAL=nvimn
+export MANPAGER="nvimn +'set ft=man' -"
 
 # Check if zplug is installed
 if [[ ! -d ~/.dotfiles/zplug ]]; then
@@ -9,7 +14,7 @@ fi
 source ~/.dotfiles/zplug/init.zsh
 
 # History
-source ~/.config/zsh/history.zsh
+source $ZDOTDIR/history.zsh
 
 # plugins
 #zplug "lukechilds/zsh-nvm"
@@ -36,6 +41,7 @@ zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 # zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 #
 zplug "skywind3000/z.lua"
+
 
 # Install packages that have not been installed yet
 if ! zplug check --verbose; then
@@ -80,9 +86,35 @@ fi
 # autosuggestions
 bindkey '^ ' autosuggest-accept
 
-# FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# FZF {{{
+export FZF_DEFAULT_COMMAND='fd --hidden --no-ignore --follow --exclude .git --exclude node_modules --exclude .wine --exclude .vimundo'
+export FZF_DEFAULT_OPTS='-m --reverse --inline-info'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f"
+export FZF_CTRL_T_OPTS="--query=$1 --height 100% --bind='?:toggle-preview' --preview 'bat --style=numbers --color=always --line-range :500 {}'"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
+export FZF_ALT_C_OPTS="--height 100% --bind='?:toggle-preview' --preview 'tree -C -I \'node_modules|.git\' {} | head -200'"
 
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+# command for listing path candidates.
+# - The first argument to the function ($1) is the base path to start traversal
+# - See the source code (completion.{bash,zsh}) for the details.
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude node_modules --exclude .wine --exclude .vimundo --exclude ".git" . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude node_modules --exclude .wine --exclude .vimundo --exclude ".git" . "$1"
+}
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.dotfiles/fzf-marks/fzf-marks.plugin.zsh ] && source ~/.dotfiles/fzf-marks/fzf-marks.plugin.zsh
+
+# Install packages using yay (change to pacman/AUR helper of your choice)
+function in() {
+    yay -Slq | fzf -q "$1" -m --preview 'yay -Si {1}'| xargs -ro yay -S
+}
+
+# }}}
 
 # bindkey shift tab
 if [[ "${terminfo[kcbt]}" != "" ]]; then
@@ -147,21 +179,21 @@ alias gk='gitk --all --date-order&'
 alias ls='ls --color=auto'
 alias vim='nvim'
 alias v='nvim'
-alias vn='nvim-nightly -u $HOME/.config/nvimn-config/nvim/init.vim'
-alias nvimn='nvim-nightly -u $HOME/.config/nvimn-config/nvim/init.vim'
+# alias vn='$HOME/.dotfiles/scripts/nvim-nightly.sh'
+alias vn='nvimn'
 alias t='task'
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 #dircolor
-eval $(dircolors ~/.config/zsh/dircolors.dark)
+eval $(dircolors $ZDOTDIR/dircolors.dark)
 
 # completion list-color 
 eval $(dircolors)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # For directory and config shortcuts:
-source ~/.config/zsh/.zshortcuts
+source $ZDOTDIR/.zshortcuts
 # local config
-[ -f ~/.zshrc_local ] && source ~/.zshrc_local
+[ -f ~/.dotfiles-local/zsh/zshrc_local ] && source ~/.dotfiles-local/zsh/zshrc_local

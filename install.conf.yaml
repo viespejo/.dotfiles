@@ -8,9 +8,9 @@
     ~/.xinitrc:
         relink: true
         path: xinitrc
-    ~/.zshenv:
+    ~/.config/zsh/.zshenv:
         relink: true
-        path: zshenv
+        path: zsh/.zshenv
     ~/.config/nvim/init.vim:
         relink: true
         path: nvim/nvimrc

@@ -1,4 +1,4 @@
-cfz	~/.dotfiles/config/zsh/.zshrc
+cfz	~/.dotfiles/zsh/.zshrc
 cfv	~/.dotfiles/nvim/nvimrc
 cfvn ~/.dotfiles/nvimn/nvimrc
 cfr	~/.dotfiles/config/ranger/rc.conf
