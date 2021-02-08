@@ -107,7 +107,6 @@ _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude node_modules --exclude .wine --exclude .vimundo --exclude ".git" . "$1"
 }
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.dotfiles/fzf-marks/fzf-marks.plugin.zsh ] && source ~/.dotfiles/fzf-marks/fzf-marks.plugin.zsh
 
 # Install packages using yay (change to pacman/AUR helper of your choice)
 function in() {
