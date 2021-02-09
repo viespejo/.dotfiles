@@ -1,0 +1,61 @@
+###############################################################################
+# International Holiday Data provided by Holidata.net
+# https://holidata.net/es-ES/2021.json
+# https://holidata.net/es-ES/2022.json
+#
+# Copyright 2006 - 2021, Paul Beckingham, Federico Hernandez.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+#
+# https://www.opensource.org/licenses/mit-license.php
+#
+###############################################################################
+
+holiday.es-ES1.name=Año Nuevo
+holiday.es-ES1.date=20210101
+holiday.es-ES2.name=Epifanía del Señor
+holiday.es-ES2.date=20210106
+holiday.es-ES3.name=Día de Andalucía
+holiday.es-ES3.date=20210301
+holiday.es-ES9.name=San José
+holiday.es-ES9.date=20210319
+holiday.es-ES13.name=Jueves Santo
+holiday.es-ES13.date=20210401
+holiday.es-ES29.name=Viernes Santo
+holiday.es-ES29.date=20210402
+holiday.es-ES30.name=Pascua
+holiday.es-ES30.date=20210404
+holiday.es-ES39.name=Fiesta del Trabajo
+holiday.es-ES39.date=20210501
+holiday.es-ES40.name=Lunes siguiente al Día de la Comunidad de Madrid
+holiday.es-ES40.date=20210503
+holiday.es-ES52.name=Asunción de la Virgen
+holiday.es-ES52.date=20210815
+holiday.es-ES53.name=Lunes siguiente a la Asunción de la Virgen
+holiday.es-ES53.date=20210816
+holiday.es-ES64.name=Fiesta Nacional de España
+holiday.es-ES64.date=20211012
+holiday.es-ES65.name=Todos los Santos
+holiday.es-ES65.date=20211101
+holiday.es-ES66.name=Día de la Constitución Española
+holiday.es-ES66.date=20211206
+holiday.es-ES67.name=Inmaculada Concepción
+holiday.es-ES67.date=20211208
+holiday.es-ES68.name=Natividad del Señor
+holiday.es-ES68.date=20211225

@@ -1,0 +1,46 @@
+# vim: ft=conf
+
+# Files
+data.location=~/.dotfiles/task/.task
+
+# Color theme
+include ~/.dotfiles/task/gruvbox-dark-256.taskwarrior.theme
+
+# Holidays
+include ~/.dotfiles/task/holidays.es-ES.rc
+calendar.holidays=full
+
+# Style
+color=on
+color.tagged=
+rule.color.merge=0
+verbose=blank,header,footnote,label,new-id,affected,edit,special,unwait,recur
+indent.report=1
+
+# Editor
+editor=nvimn
+
+# Datetime settings
+weekstart=Monday
+
+# Default values
+default.project=Inbox
+
+# Show all projects
+list.all.projects=1
+
+# Remove irrational urgency coefficients
+urgency.annotations.coefficient=0
+urgency.blocking.coefficient=0.0
+urgency.blocked.coefficient=0.0
+urgency.project.coefficient=0.0
+urgency.tags.coefficient=0.0
+
+# Support expected urgency coefficients
+urgency.user.tag.urgent.coefficient=10.0
+urgency.uda.priority.H.coefficient=3.0
+urgency.uda.priority.M.coefficient=1.0
+urgency.uda.priority.L.coefficient=-2.0
+urgency.due.coefficient=26.25
+urgency.inherit=1
+

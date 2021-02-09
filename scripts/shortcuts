@@ -10,9 +10,9 @@ ranger_shortcuts="$HOME/.config/ranger/shortcuts.conf"
 # qute_shortcuts="$HOME/.config/qutebrowser/shortcuts.py"
 
 # Ensuring that output locations are properly sourced
-cat $ZDOTDIR/.zshrc | grep "source ". $zsh_shortcuts ."" >/dev/null &&
+cat $ZDOTDIR/.zshrc | grep "source $zsh_shortcuts" >/dev/null &&
 	echo Zshrc already ready. ||
-	(echo "source ". $zsh_shortcuts ."" >> $ZDOTDIR/.zshrc &&
+	(echo "source $zsh_shortcuts" >> $ZDOTDIR/.zshrc &&
 	echo Zshrc now prepared for shortcuts.)
 
 cat ~/.config/ranger/rc.conf | grep "source ~/.config/ranger/shortcuts.conf" >/dev/null &&

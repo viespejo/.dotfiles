@@ -176,6 +176,8 @@ export SPACESHIP_PROMPT_ORDER=(
 #####################################################################
 alias gk='gitk --all --date-order&'
 alias ls='ls --color=auto'
+alias cat='bat --style=plain'
+alias exa='exa --long --header --git'
 alias vim='nvim'
 alias v='nvim'
 # alias vn='$HOME/.dotfiles/scripts/nvim-nightly.sh'
@@ -193,6 +195,6 @@ eval $(dircolors)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # For directory and config shortcuts:
-source $ZDOTDIR/.zshortcuts
+source /home/its32ve1/.dotfiles/zsh/.zshortcuts
 # local config
 [ -f ~/.dotfiles-local/zsh/zshrc_local ] && source ~/.dotfiles-local/zsh/zshrc_local
