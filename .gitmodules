@@ -19,3 +19,57 @@
 [submodule "vim-submodules/fzf.vim"]
 	path = vim-submodules/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
+[submodule "vim-submodules/neomru.vim"]
+	path = vim-submodules/neomru.vim
+	url = https://github.com/Shougo/neomru.vim
+[submodule "vim-submodules/vim-surround"]
+	path = vim-submodules/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "vim-submodules/nvim-treesitter"]
+	path = vim-submodules/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "vim-submodules/playground"]
+	path = vim-submodules/playground
+	url = https://github.com/nvim-treesitter/playground
+[submodule "vim-submodules/nvim-colorizer.lua"]
+	path = vim-submodules/nvim-colorizer.lua
+	url = https://github.com/norcalli/nvim-colorizer.lua
+	ignore = dirty
+[submodule "vim-submodules/gruvbox-material"]
+	path = vim-submodules/gruvbox-material
+	url = https://github.com/sainnhe/gruvbox-material
+[submodule "vim-submodules/vem-tabline"]
+	path = vim-submodules/vem-tabline
+	url = https://github.com/pacha/vem-tabline
+	ignore = dirty
+[submodule "vim-submodules/vim-polyglot"]
+	path = vim-submodules/vim-polyglot
+	url = https://github.com/sheerun/vim-polyglot
+[submodule "vim-submodules/undotree"]
+	path = vim-submodules/undotree
+	url = https://github.com/mbbill/undotree
+	ignore = dirty
+[submodule "vim-submodules/vim-fugitive"]
+	path = vim-submodules/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim-submodules/lightline.vim"]
+	path = vim-submodules/lightline.vim
+	url = https://github.com/itchyny/lightline.vim
+[submodule "vim-submodules/ale"]
+	path = vim-submodules/ale
+	url = https://github.com/dense-analysis/ale
+[submodule "vim-submodules/lightline-ale"]
+	path = vim-submodules/lightline-ale
+	url = https://github.com/maximbaz/lightline-ale
+[submodule "vim-submodules/nvim-lspconfig"]
+	path = vim-submodules/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "vim-submodules/fzf-lsp.nvim"]
+	path = vim-submodules/fzf-lsp.nvim
+	url = https://github.com/gfanto/fzf-lsp.nvim
+[submodule "vim-submodules/emmet-vim"]
+	path = vim-submodules/emmet-vim
+	url = https://github.com/mattn/emmet-vim
+[submodule "vim-submodules/vim-vsnip"]
+	path = vim-submodules/vim-vsnip
+	url = https://github.com/hrsh7th/vim-vsnip
