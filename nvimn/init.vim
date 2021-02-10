@@ -116,6 +116,8 @@ set tags=./tags;/
 set noshowmode
 " always show the signcolumn, otherwise it would shift the text each time
 set signcolumn=yes
+" default vertical split for diff mode
+set diffopt+=vertical
 
 "}}}
 

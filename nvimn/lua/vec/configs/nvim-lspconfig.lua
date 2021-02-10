@@ -1,7 +1,7 @@
 -- vim: set sw=2 ts=2 sts=2 foldmethod=marker:
 
 -- global vec_lsp_omnifunc
-vec_lsp_omnifunc = require'vec.lsp'.omnifunc
+-- vec_lsp_omnifunc = require'vec.lsp'.omnifunc
 
 -- custom on_attach function {{{
 local on_attach = function(client, bufnr)
@@ -49,7 +49,7 @@ local on_attach = function(client, bufnr)
     end
   end
   -- Use LSP as the handler for omnifunc.
-  buf_set_option("omnifunc", "v:lua.vec_lsp_omnifunc")
+  buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
   buf_set_keymap('i', '<c-space>', '<c-x><c-o>', opts)
   -- For plugins with an `on_attach` callback, call them here. For example:
   -- require('completion').on_attach(client)
