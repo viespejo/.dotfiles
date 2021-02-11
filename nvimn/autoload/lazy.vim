@@ -8,16 +8,18 @@ let s:TYPE = {
   \'list':    type([])
 \}
 
-function! lazy#setCmd(cmd, package) abort
+function! lazy#setCmdMap(cmd, package) abort
   for cmd in s:to_list(a:cmd)
     if cmd =~? '^<Plug>.\+'
       let map = cmd
       if empty(mapcheck(cmd)) && empty(mapcheck(cmd, 'i'))
+        " for [mode, map_prefix, key_prefix] in
+        "       \ [['i', '<C-O>', ''], ['n', '', ''], ['v', '', 'gv'], ['o', '', '']]
         for [mode, map_prefix, key_prefix] in
-              \ [['i', '<C-O>', ''], ['n', '', ''], ['v', '', 'gv'], ['o', '', '']]
+              \ [['n', '', '']]
           exec printf(
-                \ '%snoremap <silent> %s %s:<C-U>packadd %s<bar>call <SID>do_map(%s, %s, "%s")<CR>',
-                \ mode, map, map_prefix, map, a:package, mode != 'i', key_prefix)
+                \ '%snoremap <silent> %s %s:<C-U>packadd %s<bar>call <SID>do_map("%s", %s, "%s")<CR>',
+                \ mode, map, map_prefix, a:package, map, mode != 'i', key_prefix)
         endfor
       endif
     elseif cmd =~# '^[A-Z]'
