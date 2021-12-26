@@ -73,3 +73,24 @@
 [submodule "vim-submodules/vim-vsnip"]
 	path = vim-submodules/vim-vsnip
 	url = https://github.com/hrsh7th/vim-vsnip
+[submodule "vim-submodules/rnvimr"]
+	path = vim-submodules/rnvimr
+	url = https://github.com/kevinhwang91/rnvimr
+[submodule "vim-submodules/nvim-ts-rainbow"]
+	path = vim-submodules/nvim-ts-rainbow
+	url = https://github.com/p00f/nvim-ts-rainbow
+[submodule "vim-submodules/nvim-ts-context-commentstring"]
+	path = vim-submodules/nvim-ts-context-commentstring
+	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+[submodule "vim-submodules/nvim-dap"]
+	path = vim-submodules/nvim-dap
+	url = https://github.com/mfussenegger/nvim-dap
+[submodule "vim-submodules/nvim-dap-ui"]
+	path = vim-submodules/nvim-dap-ui
+	url = https://github.com/rcarriga/nvim-dap-ui
+[submodule "vim-submodules/nvim-autopairs"]
+	path = vim-submodules/nvim-autopairs
+	url = https://github.com/windwp/nvim-autopairs
+[submodule "vim-submodules/nvim-treesitter-textobjects"]
+	path = vim-submodules/nvim-treesitter-textobjects
+	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects

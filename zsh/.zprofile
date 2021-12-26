@@ -7,10 +7,10 @@
 
 export TERM=xterm-256color
 export TERMINAL=alacritty
-export EDITOR=nvimn
-export VISUAL=nvimn
+export EDITOR=nvim
+export VISUAL=nvim
 export BROWSER=google-chrome-stable
-export MANPAGER="nvimn +'set ft=man' -"
+export MANPAGER='nvim +Man!'
 export MANWIDTH=80
 # export GOPATH=$HOME/code/go
 

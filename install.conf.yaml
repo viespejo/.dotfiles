@@ -1,5 +1,5 @@
 - shell:
-    - [git submodule update --init --recursive, Installing submodules]
+    # - [git submodule update --init --recursive, Installing submodules]
     - [./fzf/install --all --no-update-rc --no-fish, Installing FZF]
     - [rsync -va bin/ ~/bin, Sync "~/bin" folder]
     - [rsync -va config/ ~/.config, Sync "~/.config" folder]
@@ -13,7 +13,7 @@
         path: zsh/.zshenv
     ~/.config/nvim/init.vim:
         relink: true
-        path: nvim/nvimrc
+        path: nvim/init.vim
     ~/.Xresources:
         relink: true
         path: Xresources

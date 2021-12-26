@@ -14,7 +14,6 @@ let $MYNVIMDIR = '~/.dotfiles/nvimn'
 " }}}
 
 " FUNCTIONS {{{
-
 function! ToggleOption(option_name) abort
   execute 'setlocal' a:option_name.'!'
   execute 'setlocal' a:option_name.'?'
@@ -87,7 +86,7 @@ set clipboard=unnamedplus
 set listchars=tab:→.,trail:·,eol:¬,extends:…,precedes:…
 set list
 " tab and indent
-set tabstop=4 shiftwidth=4 softtabstop=4
+set tabstop=2 shiftwidth=2 softtabstop=2
 set expandtab " use space in indents
 set breakindent
 set showbreak=↳\ 
@@ -98,7 +97,8 @@ set ignorecase smartcase
 " column highlighted
 set colorcolumn=80
 " number
-set number relativenumber
+" set number relativenumber
+set number
 " true terminal color
 set termguicolors
 " milliseconds to wait for a mapped sequence to complete
@@ -140,8 +140,8 @@ tnoremap <leader><esc> <c-\><c-n>
 tnoremap <silent> <leader>w <c-\><c-n><c-w>
 nnoremap <silent> <leader>w <c-w>
 " pre/next Buffers
-nnoremap <silent> <a-h> :bp<cr>
-nnoremap <silent> <a-l> :bn<cr>
+nnoremap <silent> <m-p> :bp<cr>
+nnoremap <silent> <m-n> :bn<cr>
 nnoremap <silent> <leader>3 :b#<cr>
 " turn highlighted matches off but it does not change hlsearch option
 nnoremap <silent> <leader>/ :nohlsearch<cr>
@@ -175,7 +175,12 @@ nnoremap <silent> <leader>lG :llast<cr>
 " i_ctrlx_ctrlf
 inoremap <c-f> <c-x><c-f>
 " selecting text you just pasted
-nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]'
+nnoremap <expr> gp '`[' . strpart(getregtype(), 0, 1) . '`]h'
+" resize windows
+nnoremap <silent> <m-j> :resize -1<cr>
+nnoremap <silent> <m-k> :resize +1<cr>
+nnoremap <silent> <m-h> :vertical resize -1<cr>
+nnoremap <silent> <m-l> :vertical resize +1<cr>
 
 "}}}
 
@@ -195,13 +200,17 @@ augroup FastTerminalLeader
   au TermLeave * let &timeoutlen = g:vec_timeoutlen
 augroup END
 
+" javascript
+" ----------------------------------------------------------------------------
+au BufNewFile,BufRead *.pjs setf javascript
+
 " }}}
 
 " PLUGINS {{{
 " ...see package in ~/.dotfiles/nvimn/pack
 
 " add vim-oscyank on-demand
-call lazy#setCmd(["OSCYank","OSCYankReg"],"vim-oscyank")
+call lazy#setCmdMap(["OSCYank","OSCYankReg"],"vim-oscyank")
 
 " vim-fugitive
 " ...see custom after vimscript in ~/.dotfiles/nvimn/after/plugin/fugitive.vim
@@ -209,7 +218,7 @@ call lazy#setCmd(["OSCYank","OSCYankReg"],"vim-oscyank")
 " undotree {{{
 
 " add undotree on-demand
-call lazy#setCmd("UndotreeToggle","undotree")
+call lazy#setCmdMap("UndotreeToggle","undotree")
 
 " If undotree is opened, it is likely one wants to interact with it.
 let g:undotree_SetFocusWhenToggle = 1
@@ -223,7 +232,12 @@ nnoremap <silent> <leader>u :UndotreeToggle<cr>
 let $FZF_DEFAULT_COMMAND = $FZF_DEFAULT_COMMAND." --type f"
 " - down / up / left / right
 let g:fzf_layout = { 'up': '60%' }
-
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = $XDG_DATA_HOME."/fzf-history"
 " commands and mappings for fzf
 " ...see custom after vimscript in ~/.dotfiles/nvimn/after/plugin/fzf.vim
 
@@ -275,7 +289,8 @@ let g:lightline = {
 "}}}
 
 " highlighter nvim-colorizer.lua
-lua require'colorizer'.setup()
+" ...see ~/.dotfiles/nvimn/lua/vec/configs/nvim-colorizer.lua
+lua require'vec.configs.nvim-colorized'
 
 " nvim-treesitter
 " ...see ~/.dotfiles/nvimn/lua/vec/configs/nvim-treesitter.lua
@@ -284,11 +299,16 @@ lua require'vec.configs.nvim-treesitter'
 " nvim-lspconfig {{{
 
 " set v:null if you don't want lsp for any server
-" let g:lsp_vimls = v:null
-let g:lsp_vimls = 1
+let g:lsp_vimls = v:null
+" let g:lsp_vimls = 1
 let g:lsp_tsserver = 1
-" set v:null if you don't want lsp for any server
-let g:lsp_auto_document_highlight = v:null
+let g:lsp_gopls = 1
+let g:lsp_cssls = 1
+let g:lsp_cssmodules_ls = 1
+let g:lsp_intelephense = 1
+" set v:null if you don't want lsp auto_document_highlight
+" let g:lsp_auto_document_highlight = v:null
+let g:lsp_auto_document_highlight = 1
 " ...see ~/.dotfiles/nvimn/lua/vec/configs/nvim-lspconfig.lua
 lua require'vec.configs.nvim-lspconfig'
 
@@ -319,7 +339,7 @@ lua require'vec.configs.nvim-lspconfig'
 " ...see custom after vimscript in ~/.dotfiles/nvimn/after/plugin/vem_tabline.vim
 
 " vim-polyglot
-"let g:polyglot_disabled = ['csv']
+let g:polyglot_disabled = ['csv']
 
 " ale {{{
 let g:ale_disable_lsp = 1
@@ -328,20 +348,27 @@ let g:ale_linters_explicit = 1
 let g:ale_linters = {
   \'javascript': ['eslint'],
   \'php': ['php', 'phpcs'],
-  \'go': ['gometalinter'],
+  \'go': ['golangci-lint'],
   \'css': ['stylelint'],
+  \'scss': ['stylelint'],
   \'json': ['jsonlint']
 \}
 
 let g:ale_javascript_eslint_executable='npx eslint'
+let g:ale_javascript_prettier_executable='npx prettier'
+let g:ale_javascript_prettier_options='--parser typescript'
 let g:ale_css_stylelint_executable='npx stylelint'
+let g:ale_scss_stylelint_executable='npx stylelint'
 let g:ale_json_jsonlint_executable='npx jsonlint'
-let g:ale_go_gometalinter_options = '--fast'
-
+" let g:ale_go_golangci_lint_options = '--fast'
 let g:ale_echo_msg_format = '[ALE: %linter%] %s [%severity%]'
 
 let g:ale_fixers = {
-  \'php': ['php_cs_fixer']
+  \'php': ['php_cs_fixer'],
+  \'javascript': ['prettier'],
+  \'css': ['stylelint'],
+  \'scss': ['stylelint'],
+  \'go': ['goimports']
 \}
 
 let g:ale_fix_on_save = 1
@@ -364,7 +391,87 @@ let g:vsnip_snippet_dir = expand($MYNVIMDIR."/snippets/.vsnip")
 
 " emmet {{{
 
-let g:user_emmet_leader_key = '<leader>e'
+" binding Ctrl-, to '6#9' in alacritty because <c-,> is no mappable in vim
+let g:user_emmet_leader_key = '6#9'
+
+" }}}
+
+" " vimspector {{{
+
+" " add vimspector on-demand
+" call lazy#setCmdMap(["<Plug>VimspectorContinue"],"vimspector")
+" " packadd! vimspector
+" " let g:vimspector_enable_mappings = 'HUMAN'
+" nmap <leader>dc <Plug>VimspectorContinue
+" nmap <leader>ds <Plug>VimspectorStop
+" nmap <leader>dr <Plug>VimspectorRestart
+" nmap <leader>dp <Plug>VimspectorPause
+" nmap <leader>dbb <Plug>VimspectorToggleBreakpoint
+" nmap <leader>dbc <Plug>VimspectorToggleConditionalBreakpoint
+" nmap <leader>dbf <Plug>VimspectorAddFunctionBreakpoint
+" nmap <leader>dg <Plug>VimspectorRunToCursor
+" nmap <leader>dn <Plug>VimspectorStepOver
+" nmap <leader>di <Plug>VimspectorStepInto
+" nmap <leader>do <Plug>VimspectorStepOut
+" nnoremap <silent> <leader>dq :VimspectorReset<cr>
+" nmap <Leader>de <Plug>VimspectorBalloonEval
+" xmap <Leader>de <Plug>VimspectorBalloonEval
+
+" " }}}
+
+" nvim-dap {{{
+
+function! s:init_dap() abort
+  if exists('g:loaded_dap')
+    " echom "DAP was already added previously!"
+    echom "Disconnecting..."
+    lua << EOF
+    local dap = require('dap')
+    dap.close()
+    dap.disconnect()
+EOF
+    return
+  endif
+  packadd! nvim-dap
+  packadd! nvim-dap-ui
+  nnoremap <silent> <leader>dc :lua require'dap'.continue()<CR>
+  nnoremap <silent> <leader>ds :lua require'dap'.close()<CR>
+  nnoremap <silent> <leader>dk :lua require'dap'.up()<CR>
+  nnoremap <silent> <leader>dj :lua require'dap'.down()<CR>
+  nnoremap <silent> <leader>dn :lua require'dap'.step_over()<CR>
+  nnoremap <silent> <leader>di :lua require'dap'.step_into()<CR>
+  nnoremap <silent> <leader>do :lua require'dap'.step_out()<CR>
+  nnoremap <silent> <leader>dg :lua require'dap'.run_to_cursor()<CR>
+  nnoremap <silent> <leader>db :lua require'dap'.toggle_breakpoint()<CR>
+  nnoremap <silent> <leader>dB :lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>
+  nnoremap <silent> <leader>dr :lua require'dapui'.toggle('tray')<CR>
+  nnoremap <silent> <leader>d/ :lua require'dapui'.toggle('sidebar')<CR>
+  nnoremap <silent> <leader>de :lua require'dapui'.eval()<CR>
+  vnoremap <silent> <leader>de <Cmd>lua require("dapui").eval()<CR>
+  nnoremap <silent> <leader>dv :lua require'dapui'.float_element('scopes', {enter = true})<CR>
+  " ...see ~/.dotfiles/nvimn/lua/vec/configs/nvim-dap.lua
+  lua require'vec.configs.nvim-dap'
+  " ...see ~/.dotfiles/nvimn/lua/vec/configs/nvim-dap-ui.lua
+  lua require'vec.configs.nvim-dap-ui'
+  let g:loaded_dap = 1
+  echom "DAP added!"
+endfunction
+
+nnoremap <silent> <leader>dd :call <SID>init_dap()<cr>
+
+" }}}
+
+" rnvimr {{{
+
+nnoremap <silent> <leader>r :RnvimrToggle<CR>
+tnoremap <silent> <leader>r :RnvimrToggle<CR>
+tnoremap <silent> <M-i> <C-\><C-n>:RnvimrResize<CR>
+
+" }}}
+
+" nvim-autopairs {{{
+
+lua require('nvim-autopairs').setup{}
 
 " }}}
 

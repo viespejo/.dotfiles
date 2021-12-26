@@ -27,14 +27,14 @@ functio! s:_show_header_lines(project)
   return !empty(expand('%'))
 endfunction
 
-command! -bang -narg=1 Fzo call fzf#run(fzf#wrap({
+command! -bang -narg=1 Fzo call fzf#run(fzf#wrap('ofiles',{
   \ 'source': s:_recent_files(<args>),
   \ 'options' : extend(
     \ fzf#vim#with_preview('right', 'ctrl-/')['options'],
     \ ['-m', '--header-lines', s:_show_header_lines(<args>), '--prompt', 'Buffers+MRUFiles> '])
   \ }, <bang>0))
 
-command! -bang Fzd call fzf#run(fzf#wrap({
+command! -bang Fzd call fzf#run(fzf#wrap('dfiles',{
   \ 'source': map(neomru#_gather_directory_candidates(),'fnamemodify(v:val, ":~:.")'),
   \ 'sink': 'lcd',
   \ 'options': ['--prompt', 'MRUDir> ']

@@ -7,11 +7,11 @@ foreground-alt = #555
 alert = #bd2c40
 
 [bar/top]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:}
 width = 100%
 height = 20
 
-border-bottom = 2
+border-bottom-size = 2
 border-bottom-color = #333333
 
 background = ${colors.background}
@@ -39,7 +39,7 @@ tray-padding = 5
 tray-maxsize = 16
 
 [bar/bottom]
-monitor = ${env:MONITOR:eDP-1}
+monitor = ${env:MONITOR:}
 bottom = true
 width = 100%
 height = 20
@@ -72,6 +72,37 @@ scroll-up = i3wm-wsnext
 scroll-down = i3wm-wsprev
 
 enable-ipc = true
+
+[bar/simple-bottom]
+monitor = ${env:MONITOR:}
+bottom = true
+width = 100%
+height = 20
+
+border-top = 2
+border-top-color = #333333
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+; background = #444
+line-size = 2
+
+spacing = 2
+padding-right = 4
+module-margin = 3
+
+font-0 = Cantarell:style=Bold:size=10;2
+font-1 = DejaVuSansMono Nerd Font:style=Bold:size=16;2
+font-2 = FontAwesome5Free:style=Solid:size=10;3
+font-3 = DejaVuSansMono Nerd Font:style=Bold:size=9;2
+font-4 = Cantarell:style=Bold:size=10;0
+
+fixed-center = false
+modules-left = i3
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 [module/xwindow]
 type = internal/xwindow
@@ -188,20 +219,26 @@ animation-charging-framerate = 750
 [module/i3]
 type = internal/i3
 
+; Only show workspaces defined on the same output as the bar.
+; Useful if you want to show monitor specific workspaces
+; on different bars.
+; Default: false
+pin-workspaces = true
+
 index-sort = true
 ; fuzzy-match = true
 
-ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
 ; ws-icon-3 = 4;
-ws-icon-3 = 4;
+ws-icon-3 = 4;
 ws-icon-4 = 5;
-ws-icon-5 = 6;
+ws-icon-5 = 6;
 ; ws-icon-6 = 7;
-ws-icon-6 = 7;
+ws-icon-6 = 7;
 ws-icon-7 = 8;
-ws-icon-8 = 9;
+ws-icon-8 = 9;
 ws-icon-9 = 10;
 ; ws-icon-9 = 10;
 ws-icon-default = 
@@ -233,7 +270,7 @@ label-unfocused-padding = 3
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-visible = %{T1}%index%%{T-} %icon%
+label-visible = %{T5}%index%%{T-} %icon%
 label-visible-font = 2
 label-visible-underline = ${colors.foreground-alt}
 label-visible-padding = 3
@@ -243,7 +280,7 @@ label-visible-padding = 3
 ;   %icon%
 ;   %index%
 ; Default: %icon%  %name%
-label-urgent = %{T1}%index%%{T-} %icon%
+label-urgent = %{T5}%index%%{T-} %icon%
 label-urgent-font = 2
 label-urgent-foreground = ${bar/top.background}
 label-urgent-background = ${colors.alert}
@@ -283,7 +320,7 @@ ramp-coreload-7-foreground = #ff5555
 [module/date]
 type = internal/date
 format-prefix = "%{T2}%{T-}"
-date = %%{F#99}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
+date = %%{F#fff}%Y-%m-%d%%{F-}  %%{F#fff}%H:%M%%{F-}
 label-padding = 1
 date-alt = %%{F#fff}%A, %d %B %Y  %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
 
@@ -360,11 +397,11 @@ animation-packetloss-framerate = 500
 type = internal/network
 interface = net1
 interval = 3.0
-label-connected =    %{F#99}%local_ip%%{F-}
-label-disconnected-foreground = #66
+label-connected =    %{F#FFF}%local_ip%%{F-}
+label-disconnected-foreground = #666
 
 [module/volume]
-type = internal/volume
+type = internal/alsa
 
 format-volume = <label-volume> <bar-volume>
 label-volume = VOL

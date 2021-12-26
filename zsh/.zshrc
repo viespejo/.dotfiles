@@ -1,8 +1,8 @@
 # vim: foldmethod=marker
 
-export EDITOR=nvimn
-export VISUAL=nvimn
-export MANPAGER="nvimn +'set ft=man' -"
+export EDITOR=nvim
+export VISUAL=nvim
+export MANPAGER='nvim +Man!'
 
 # Check if zplug is installed
 if [[ ! -d ~/.dotfiles/zplug ]]; then

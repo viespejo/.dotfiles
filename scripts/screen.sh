@@ -3,7 +3,7 @@
 #Feed this script either:
 #	"l" for laptop screen only,
 #	"w" for work screen layout,
-#	or "h" for house screen layout.
+#	or "d" for dual screen layout.
 
 d() {
     # if [[ $(xrandr -q | grep VGA1\ con) ]]
@@ -12,18 +12,20 @@ d() {
 	# fi
     param $1
 }
-home() { xrandr --output EDP1 --auto --output VGA1 --auto --right-of EDP1 ;}
+dual() {
+    [ -f ~/.screenlayout/dp12v_dp11.sh ] && source ~/.screenlayout/dp12v_dp11.sh
+}
 laptop() {
     [ -f ~/.screenlayout/laptop.sh ] && source ~/.screenlayout/laptop.sh
 }
 work() {
-    [ -f ~/.screenlayout/work.sh ] && source ~/.screenlayout/work.sh
+    [ -f ~/.screenlayout/dp11.sh ] && source ~/.screenlayout/dp11.sh
 }
 #mirror() { xrandr --addmode VGA1 $lapres && xrandr --output LVDS1 --mode $lapres --output VGA1 --mode $lapres ;}
 
 param() {
 case $1 in
-	h) dual ;;
+	d) dual ;;
 	w) work ;;
 	l) laptop ;;
 	*) echo -e "Invalid parameter. Add one of the following:\n\"d\" for dualscreen laptop and VGA.\n\"l\" for laptop only\n\"v\" for VGA only.\n\"h\" for HDMI only.";

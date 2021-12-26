@@ -10,7 +10,14 @@ while pgrep -x polybar >/dev/null; do sleep 1; done
 # Launch bar1 and bar2
 #polybar example &
 
-for i in $(polybar -m | awk -F: '{print $1}'); do MONITOR=$i polybar top -c ~/.config/polybar/space & MONITOR=$i polybar bottom -c ~/.config/polybar/space & done
+# only primary monitor
+for i in $(polybar -m | grep 'primary' | awk -F: '{print $1}'); do
+    MONITOR=$i polybar top -c ~/.config/polybar/space & MONITOR=$i polybar bottom -c ~/.config/polybar/space &
+done
+# not primary monitors
+for i in $(polybar -m | grep -v 'primary' | awk -F: '{print $1}'); do
+    MONITOR=$i polybar simple-bottom -c ~/.config/polybar/space &
+done
 feh --bg-fill ~/.config/wallpapers/arch_grey.jpg
 . ~/.config/i3/tmpscreen.sh
 

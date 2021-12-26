@@ -3,6 +3,13 @@
 -- global vec_lsp_omnifunc
 -- vec_lsp_omnifunc = require'vec.lsp'.omnifunc
 
+-- disable diagnostics globally
+vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+
+-- for using in setup in some servers
+local capabilitiesSnippetSupport = vim.lsp.protocol.make_client_capabilities()
+capabilitiesSnippetSupport.textDocument.completion.completionItem.snippetSupport = true
+
 -- custom on_attach function {{{
 local on_attach = function(client, bufnr)
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -34,7 +41,7 @@ local on_attach = function(client, bufnr)
   end
 
   if client.resolved_capabilities.document_highlight then
-    if vim.g.lsp_auto_document_highlight ~= nil then
+    if vim.g.lsp_auto_document_highlight ~= vim.NIL then
       vim.api.nvim_exec(string.format([[
       augroup lsp_document_highlight_%s
       autocmd!
@@ -59,11 +66,11 @@ end
 local nvim_lsp = require('lspconfig')
 
 -- vimls {{{
-if vim.g.lsp_vimls ~= nil then
+if vim.g.lsp_vimls ~= vim.NIL then
   nvim_lsp.vimls.setup{
     init_options = {
       diagnostic = {
-        enable = true
+        enable = false
       },
       indexes = {
         count = 3,
@@ -86,9 +93,44 @@ end
 -- }}}
 
 -- tsserver {{{
-if vim.g.lsp_tsserver ~= nil then
+if vim.g.lsp_tsserver ~= vim.NIL then
   nvim_lsp.tsserver.setup{ 
     on_attach = on_attach
+  }
+end
+-- }}}
+
+-- gopls {{{
+if vim.g.lsp_gopls ~= vim.NIL then
+  nvim_lsp.gopls.setup{ 
+    on_attach = on_attach
+  }
+end
+-- }}}
+
+-- cssls {{{
+--Enable (broadcasting) snippet capability for completion
+
+if vim.g.lsp_cssls ~= vim.NIL then
+  nvim_lsp.cssls.setup{ 
+    capabilities = capabilitiesSnippetSupport,
+    on_attach = on_attach
+  }
+end
+-- }}}
+
+-- cssmodules_ls {{{
+if vim.g.lsp_cssmodules_ls ~= vim.NIL then
+  nvim_lsp.cssmodules_ls.setup{ 
+    on_attach = on_attach
+  }
+end
+-- }}}
+
+-- php intelephense {{{
+if vim.g.lsp_intelephense ~= vim.NIL then
+  nvim_lsp.intelephense.setup{ 
+    on_attach = on_attach,
   }
 end
 -- }}}

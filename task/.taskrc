@@ -18,7 +18,7 @@ verbose=blank,header,footnote,label,new-id,affected,edit,special,unwait,recur
 indent.report=1
 
 # Editor
-editor=nvimn
+editor=nvim
 
 # Datetime settings
 weekstart=Monday

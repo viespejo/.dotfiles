@@ -21,6 +21,7 @@ exec --no-startup-id feh --bg-fill ~/.config/wallpapers/arch_grey.jpg
 set $video --no-startup-id bash ~/.dotfiles/scripts/video.sh
 set $stoprec --no-startup-id killall ffmpeg & killall screenkey & polybar-msg hook is-recording 1
 set $flash --no-startup-id bash ~/.dotfiles/scripts/flash_win.sh
+set $zoom --no-startup-id bash ~/.dotfiles/scripts/zoom.sh
 
 ###---Starting External Scripts---###
 #Music player daemon:
@@ -127,11 +128,14 @@ set $audio --no-startup-id bash ~/.dotfiles/scripts/audio_pulse.sh
 ###---Dropdown/Scratchpad Windows---###
 #First I have a tmux window used for background scripts.
 #I'll later bind this to mod+u.
-for_window [instance="dropdown"] floating enable
-for_window [instance="dropdown"] resize set 950 800
-for_window [instance="dropdown"] move position center
-for_window [instance="dropdown"] move scratchpad
 exec --no-startup-id $term --class dropdown,dropdown --title Dropdown -e tmux new -s Dropdown
+
+for_window [instance="dropdown"] floating enable
+#for_window [instance="dropdown"] fullscreen enable
+#for_window [instance="dropdown"] resize set 950 800
+#for_window [instance="dropdown"] resize set 80 ppt 80 ppt
+#for_window [instance="dropdown"] move position center
+for_window [instance="dropdown"] move scratchpad
 
 #Then I have a window running R I use for basic arithmetic
 #I'll later bind this to mod+a.
@@ -150,7 +154,7 @@ bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+Ctrl+space		sticky toggle
 bindsym $mod+space		focus mode_toggle
 
-bindsym $mod+Escape		workspace prev
+bindsym $mod+Escape		workspace prev_on_output
 bindsym $mod+Shift+Escape 	exec i3-msg exit
 
 bindsym $mod+BackSpace		exec $flash
@@ -179,17 +183,17 @@ bindsym $mod+t			split toggle
 bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
 
 bindsym $mod+y			exec $term -e calcurse
-bindsym $mod+Shift+y		resize shrink width 1 px or 1 ppt
+bindsym $mod+Shift+y		resize shrink width 5 px or 5 ppt
 
-bindsym $mod+u			[instance="dropdown"] scratchpad show; move position center
-bindsym Ctrl+semicolon 	[instance="dropdown"] scratchpad show; move position center
-bindsym $mod+Shift+u		resize shrink height 1 px or 1 ppt
+bindsym $mod+u			[instance="dropdown"] scratchpad show,resize set 80 ppt 80 ppt,move position center
+bindsym Ctrl+semicolon			[instance="dropdown"] scratchpad show,resize set 80 ppt 80 ppt,move position center
+bindsym $mod+Shift+u		resize shrink height 5 px or 5 ppt
 
 bindsym $mod+i 			exec $term -e htop
-bindsym $mod+Shift+i		resize grow height 1 px or 1 ppt
+bindsym $mod+Shift+i		resize grow height 5 px or 5 ppt
 
 #bindsym $mod+o			exec --no-startup-id $beg
-bindsym $mod+Shift+o		resize grow width 1 px or 1 ppt
+bindsym $mod+Shift+o		resize grow width 5 px or 5 ppt
 
 bindsym $mod+p			exec $pause
 #bindsym $mod+Shift+p		exec mypaint
@@ -207,7 +211,7 @@ bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 bindsym $mod+f			fullscreen toggle
 #bindsym $mod+Shift+f
 
-bindsym $mod+g			workspace prev
+bindsym $mod+g			workspace prev_on_output
 bindsym $mod+Shift+g		exec --no-startup-id gimp; workspace $ws5
 
 bindsym $mod+h			focus left
@@ -249,16 +253,16 @@ bindsym $mod+Home		workspace $ws1
 bindsym $mod+Shift+Home		move container to workspace $ws1
 bindsym $mod+End		workspace $ws10
 bindsym $mod+Shift+End		move container to workspace $ws10
-bindsym $mod+Prior		workspace prev
-bindsym $mod+Shift+Prior	move container to workspace prev
-bindsym $mod+Next		workspace next
-bindsym $mod+Shift+Next		move container to workspace next
+bindsym $mod+Prior		workspace prev_on_output
+bindsym $mod+Shift+Prior	move container to workspace prev_on_output
+bindsym $mod+Next		workspace next_on_output
+bindsym $mod+Shift+Next		move container to workspace next_on_output
 bindsym $mod+Tab		workspace back_and_forth
-bindsym $mod+XF86Back		workspace prev
+bindsym $mod+XF86Back		workspace prev_on_output
 #bindsym $mod+Shift+XF86Back
-bindsym $mod+XF86Forward	workspace next
+bindsym $mod+XF86Forward	workspace next_on_output
 #bindsym $mod+Shift+XF86Forward
-bindsym $mod+semicolon		workspace next
+bindsym $mod+semicolon		workspace next_on_output
 bindsym $mod+apostrophe		split horizontal ;; exec $term
 bindsym $mod+slash		split vertical ;; exec $term
 bindsym $mod+Shift+slash	kill
@@ -310,6 +314,12 @@ bindsym $mod+Shift+8	move container to workspace $ws8
 bindsym $mod+Shift+9	move container to workspace $ws9
 bindsym $mod+Shift+0	move container to workspace $ws10
 
+bindsym $mod+Shift+n	move container to workspace next
+bindsym $mod+Shift+p	move container to workspace prev
+
+bindsym $mod+Shift+Ctrl+h	move workspace to output left
+bindsym $mod+Shift+Ctrl+l	move workspace to output right
+
 #for_window [class="Blender"] move to workspace $ws6
 #for_window [class="Thunderbird"] move to workspace $ws9
 #for_window [class="marble"] move to workspace $ws7
@@ -325,8 +335,8 @@ for_window [window_role="gimp-dock"] floating disable
 #for_window [class="st"] exec --no-startup-id transset-df -a --dec .25
 for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 
-#workspace $ws6 gaps inner 0
-#workspace $ws6 gaps outer 0
+#workspace $ws1 gaps inner 0
+#workspace $ws2 gaps outer 0
 #workspace $ws5 gaps inner 0
 #workspace $ws5 gaps outer 0
 #workspace $ws8 gaps inner 0
@@ -348,6 +358,10 @@ for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 #bindsym F12
 bindsym --whole-window $mod+button2 kill
 bindsym --whole-window $mod+button3 floating toggle
+#zoom magnification
+bindsym --whole-window Mod1+button3 exec $zoom
+bindsym --whole-window Mod1+button1 exec --no-startup-id xzoom -mag 2 -geometry 440x360
+for_window [title="xzoom x2"] floating enable
 
 bindsym $mod+F1		exec --no-startup-id mupdf ~/.config/i3/i3_guide.md.pdf
 bindsym $mod+F2		exec --no-startup-id bash ~/.dotfiles/scripts/shortcuts notify
@@ -359,8 +373,8 @@ bindsym $mod+F7		exec transset-df -a --dec .15
 bindsym $mod+F8		exec transset-df -a --inc .15
 bindsym $mod+F9		exec --no-startup-id mount -a
 bindsym $mod+F10	exec --no-startup-id ~/.dotfiles/scripts/screen.sh l ;; exec --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+F11	exec --no-startup-id ~/.dotfiles/scripts/screen.sh w ;; exec --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+F12	exec --no-startup-id ~/.dotfiles/scripts/screen.sh h ;; exec --no-startup-id ~/.config/polybar/launch.sh
+bindsym $mod+F11	exec --no-startup-id ~/.dotfiles/scripts/screen.sh d ;; exec --no-startup-id ~/.config/polybar/launch.sh
+bindsym $mod+F12	exec --no-startup-id ~/.dotfiles/scripts/screen.sh w ;; exec --no-startup-id ~/.config/polybar/launch.sh
 
 
 ###---Arrow Keys---###
@@ -396,8 +410,9 @@ bindsym $mod+Shift+bracketright exec $bigfor
 #With shift, it takes one only of the given window.
 bindsym Print 			exec --no-startup-id scrot -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
 bindsym Shift+Print 		exec --no-startup-id scrot -u -e 'mv $f ~/Pictures' && notify-send 'screenshot' 'taken in ~/Pictures'
-bindsym --release Ctrl+Shift+Print	exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && rm $f' && notify-send 'screenshot' 'taken in clipboard'
-bindsym --release Ctrl+Shift+Alt+Print	exec --no-startup-id flameshot gui
+#bindsym --release Ctrl+Shift+Print	exec --no-startup-id scrot -s -e 'xclip -selection clipboard -t "image/png" < $f && rm $f' && notify-send 'screenshot' 'taken in clipboard'
+#bindsym --release Ctrl+Shift+Alt+Print	exec --no-startup-id flameshot gui
+bindsym --release Ctrl+Shift+Print	exec --no-startup-id flameshot gui
 
 #For recording audio/video or stop recording. Also screenkey for visual typing.
 bindsym $mod+Print		exec --no-startup-id screenkey
@@ -406,7 +421,6 @@ bindsym $mod+Insert		exec $screencast
 bindsym $mod+Pause		exec $video
 bindsym $mod+Delete		exec $stoprec
 bindsym XF86Launch1		exec $stoprec
-
 
 
 ###---Extra XF86 Keys---###

@@ -1,6 +1,6 @@
 cfz	~/.dotfiles/zsh/.zshrc
-cfv	~/.dotfiles/nvim/nvimrc
-cfvn ~/.dotfiles/nvimn/nvimrc
+cfv	~/.dotfiles/nvim/init.vim
+cfvn ~/.dotfiles/nvimn/init.vim
 cfr	~/.dotfiles/config/ranger/rc.conf
 cfi	~/.dotfiles/config/i3/config
 cfq	~/.config/qutebrowser/keys.conf.base
