@@ -10,7 +10,7 @@ export TERMINAL=alacritty
 export EDITOR=nvim
 export VISUAL=nvim
 export BROWSER=google-chrome-stable
-export MANPAGER='nvim +Man!'
+export MANPAGER='less'
 export MANWIDTH=80
 # export GOPATH=$HOME/code/go
 

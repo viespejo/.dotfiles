@@ -2,7 +2,7 @@
 
 export EDITOR=nvim
 export VISUAL=nvim
-export MANPAGER='nvim +Man!'
+export MANPAGER='less'
 
 # Check if zplug is installed
 if [[ ! -d ~/.dotfiles/zplug ]]; then
@@ -183,6 +183,7 @@ alias v='nvim'
 # alias vn='$HOME/.dotfiles/scripts/nvim-nightly.sh'
 alias vn='nvimn'
 alias t='task'
+alias rm='rm -I --preserve-root'
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
