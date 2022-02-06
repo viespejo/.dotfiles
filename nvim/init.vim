@@ -1,1 +1,0 @@
-../nvimn/init.vim
