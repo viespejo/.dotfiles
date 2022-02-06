@@ -1498,10 +1498,7 @@ xkb_symbols "pc+us+es:2+inet(evdev)+altwin(swap_alt_win)+group(shifts_toggle)+ct
         type= "CTRL+ALT",
         symbols[Group1]= [     KP_Multiply,     KP_Multiply,     KP_Multiply,     KP_Multiply,   XF86ClearGrab ]
     };
-    key <LALT> {
-        type= "ONE_LEVEL",
-        symbols[Group1]= [         Super_L ]
-    };
+    key <LALT> {[         Super_L ]};
     key <SPCE> {         [           space ] };
     key <CAPS> {         [       Control_L ] };
     key <FK01> {
@@ -1588,7 +1585,12 @@ xkb_symbols "pc+us+es:2+inet(evdev)+altwin(swap_alt_win)+group(shifts_toggle)+ct
     key <HKTG> {         [ Hiragana_Katakana ] };
     key <MUHE> {         [        Muhenkan ] };
     key <KPEN> {         [        KP_Enter ] };
-    key <RCTL> {         [       Control_R ] };
+    key <RCTL> {
+        type= "ONE_LEVEL",
+        symbols[Group1]= [         Alt_R ],
+        symbols[Group2]= [ ISO_Level3_Shift ]
+      // [           Alt_R,          Meta_R ] 
+      };
     key <KPDV> {
         type= "CTRL+ALT",
         symbols[Group1]= [       KP_Divide,       KP_Divide,       KP_Divide,       KP_Divide,      XF86Ungrab ]
@@ -1597,11 +1599,7 @@ xkb_symbols "pc+us+es:2+inet(evdev)+altwin(swap_alt_win)+group(shifts_toggle)+ct
         type= "PC_ALT_LEVEL2",
         symbols[Group1]= [           Print,         Sys_Req ]
     };
-    key <RALT> {
-        type= "ONE_LEVEL",
-        symbols[Group1]= [         Super_R ],
-        symbols[Group2]= [ ISO_Level3_Shift ]
-    };
+    key <RALT> {[         Super_R ]};
     key <LNFD> {         [        Linefeed ] };
     key <HOME> {         [            Home ] };
     key   <UP> {         [              Up ] };
@@ -1628,7 +1626,8 @@ xkb_symbols "pc+us+es:2+inet(evdev)+altwin(swap_alt_win)+group(shifts_toggle)+ct
     key <HNGL> {         [          Hangul ] };
     key <HJCV> {         [    Hangul_Hanja ] };
     key <LWIN> {         [           Alt_L,          Meta_L ] };
-    key <RWIN> {         [           Alt_R,          Meta_R ] };
+
+    key <RWIN> {         [       Control_R ] };
     key <COMP> {         [            Menu ] };
     key <STOP> {         [          Cancel ] };
     key <AGAI> {         [            Redo ] };
@@ -1739,10 +1738,10 @@ xkb_symbols "pc+us+es:2+inet(evdev)+altwin(swap_alt_win)+group(shifts_toggle)+ct
     modifier_map Control { <CAPS> };
     modifier_map Mod2 { <NMLK> };
     modifier_map Mod5 { <LVL3> };
-    modifier_map Control { <RCTL> };
+    modifier_map Control { <RWIN> };
     modifier_map Mod4 { <RALT> };
     modifier_map Mod1 { <LWIN> };
-    modifier_map Mod1 { <RWIN> };
+    modifier_map Mod1 { <RCTL> };
     modifier_map Mod5 { <MDSW> };
     modifier_map Mod1 { <META> };
     modifier_map Mod4 { <SUPR> };
