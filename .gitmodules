@@ -94,3 +94,6 @@
 [submodule "vim-submodules/nvim-treesitter-textobjects"]
 	path = vim-submodules/nvim-treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+[submodule "nvim"]
+	path = nvim
+	url = git@github.com:viespejo/nvim.git
