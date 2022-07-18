@@ -11,9 +11,9 @@
     ~/.zshenv:
         relink: true
         path: zsh/.zshenv
-    ~/.config/nvim/init.vim:
+    ~/.config/nvim:
         relink: true
-        path: nvim/init.vim
+        path: nvim
     ~/.Xresources:
         relink: true
         path: Xresources
