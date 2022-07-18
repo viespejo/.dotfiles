@@ -359,9 +359,9 @@ for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 bindsym --whole-window $mod+button2 kill
 bindsym --whole-window $mod+button3 floating toggle
 #zoom magnification
-bindsym --whole-window Mod1+button3 exec $zoom
-bindsym --whole-window Mod1+button1 exec --no-startup-id xzoom -mag 2 -geometry 440x360
-for_window [title="xzoom x2"] floating enable
+#bindsym --whole-window Mod1+button3 exec $zoom
+#bindsym --whole-window Mod1+button1 exec --no-startup-id xzoom -mag 2 -geometry 440x360
+#for_window [title="xzoom x2"] floating enable
 
 bindsym $mod+F1		exec --no-startup-id mupdf ~/.config/i3/i3_guide.md.pdf
 bindsym $mod+F2		exec --no-startup-id bash ~/.dotfiles/scripts/shortcuts notify
