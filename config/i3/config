@@ -22,7 +22,8 @@ set $video --no-startup-id bash ~/.dotfiles/scripts/video.sh
 set $stoprec --no-startup-id killall ffmpeg & killall screenkey & polybar-msg hook is-recording 1
 set $flash --no-startup-id bash ~/.dotfiles/scripts/flash_win.sh
 set $zoom --no-startup-id bash ~/.dotfiles/scripts/zoom.sh
-
+set $backlightless --no-startup-id light -U 5
+set $backlightgreater --no-startup-id light -A 5
 ###---Starting External Scripts---###
 #Music player daemon:
 #exec --no-startup-id mpd
@@ -30,8 +31,12 @@ set $zoom --no-startup-id bash ~/.dotfiles/scripts/zoom.sh
 #exec --no-startup-id transmission-daemon
 #udisks2 helper
 exec --no-startup-id udiskie -t -f nemo
+#Bluetooth applet:
+exec --no-startup-id blueman-applet
 #Wifi applet:
 exec --no-startup-id nm-applet
+#Solaar
+exec --no-startup-id solaar 
 #Mount other drives:
 exec --no-startup-id sudo mount -a
 #Composite manager:
@@ -41,12 +46,12 @@ exec --no-startup-id bash ~/.dotfiles/scripts/shortcuts
 #Try to load VGA screen if available:
 #exec --no-startup-id ~/.dotfiles/scripts/screen.sh d
 #Launch Polybar where appropriate:
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/custom/launch.sh
 #Start the offlineimap daemon;
-#exec --no-startup-id killall python ~/.config/Scripts/offlineimap-daemon.py
-#exec --no-startup-id python ~/.config/Scripts/offlineimap-daemon.py
+#exec --no-startup-id killall python ~/.config/scripts/offlineimap-daemon.py
+#exec --no-startup-id python ~/.config/scripts/offlineimap-daemon.py
 #Remaps the caps lock button to escape and uses the US international keyboard with dead keys
-#exec_always --no-startup-id setxkbmap -option caps:escape
+#exec_always --no-startup-id xkbcomp ~/.dotfiles/XkeymapEliteBook
 #exec_always --no-startup-id setxkbmap -layout us -variant altgr-intl -option caps:escape
 #Remap Menu button to Super:
 #exec_always --no-startup-id xmodmap -e 'keycode 135 = Super_R'
@@ -65,8 +70,11 @@ set $trupause dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org
 set $play dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Play
 set $next dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
 set $prev dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-set $lilfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek
-set $bigfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek(
+set $lilfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:"5000000"
+set $bigfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:"10000000"
+set $lilbak dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:"-5000000"
+set $bigbak dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:"-10000000"
+set $stop dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop;
 
 ##For mpc:
 #set $music urxvt -e ncmpcpp
@@ -110,8 +118,8 @@ set $bigfor dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/m
 #set $bigdec --no-startup-id amixer sset Master 5%-
 #set $mute --no-startup-id amixer sset Master toggle
 #set $truemute --no-startup-id amixer sset Master mute
-#set $screencast  --no-startup-id bash ~/.config/Scripts/screencast_alsa.sh
-#set $audio --no-startup-id bash ~/.config/Scripts/audio_alsa.sh
+#set $screencast  --no-startup-id bash ~/.config/scripts/screencast_alsa.sh
+#set $audio --no-startup-id bash ~/.config/scripts/audio_alsa.sh
 
 #For PULSEAUDIO/PAMIXER
 set $inc --no-startup-id pamixer --allow-boost -i 5
@@ -127,7 +135,6 @@ set $audio --no-startup-id bash ~/.dotfiles/scripts/audio_pulse.sh
 
 ###---Dropdown/Scratchpad Windows---###
 #First I have a tmux window used for background scripts.
-#I'll later bind this to mod+u.
 exec --no-startup-id $term --class dropdown,dropdown --title Dropdown -e tmux new -s Dropdown
 
 for_window [instance="dropdown"] floating enable
@@ -185,7 +192,7 @@ bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
 bindsym $mod+y			exec $term -e calcurse
 bindsym $mod+Shift+y		resize shrink width 5 px or 5 ppt
 
-bindsym $mod+u			[instance="dropdown"] scratchpad show,resize set 80 ppt 80 ppt,move position center
+bindsym $mod+u			exec --no-startup-id xkbcomp ~/.dotfiles/XkeymapEliteBook :0
 bindsym Ctrl+semicolon			[instance="dropdown"] scratchpad show,resize set 80 ppt 80 ppt,move position center
 bindsym $mod+Shift+u		resize shrink height 5 px or 5 ppt
 
@@ -289,6 +296,16 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
 
 # switch to workspace
 bindsym $mod+1		workspace $ws1
@@ -301,6 +318,16 @@ bindsym $mod+7		workspace $ws7
 bindsym $mod+8		workspace $ws8
 bindsym $mod+9		workspace $ws9
 bindsym $mod+0		workspace $ws10
+bindsym $mod+Ctrl+1 workspace $ws11
+bindsym $mod+Ctrl+2 workspace $ws12
+bindsym $mod+Ctrl+3 workspace $ws13
+bindsym $mod+Ctrl+4 workspace $ws14
+bindsym $mod+Ctrl+5 workspace $ws15
+bindsym $mod+Ctrl+6 workspace $ws16
+bindsym $mod+Ctrl+7 workspace $ws17
+bindsym $mod+Ctrl+8 workspace $ws18
+bindsym $mod+Ctrl+9 workspace $ws19
+bindsym $mod+Ctrl+0 workspace $ws20
 
 # move focused container to workspace
 bindsym $mod+Shift+1	move container to workspace $ws1
@@ -313,12 +340,24 @@ bindsym $mod+Shift+7	move container to workspace $ws7
 bindsym $mod+Shift+8	move container to workspace $ws8
 bindsym $mod+Shift+9	move container to workspace $ws9
 bindsym $mod+Shift+0	move container to workspace $ws10
+bindsym $mod+Shift+Ctrl+1	move container to workspace $ws11
+bindsym $mod+Shift+Ctrl+2	move container to workspace $ws12
+bindsym $mod+Shift+Ctrl+3	move container to workspace $ws13
+bindsym $mod+Shift+Ctrl+4	move container to workspace $ws14
+bindsym $mod+Shift+Ctrl+5	move container to workspace $ws15
+bindsym $mod+Shift+Ctrl+6	move container to workspace $ws16
+bindsym $mod+Shift+Ctrl+7	move container to workspace $ws17
+bindsym $mod+Shift+Ctrl+8	move container to workspace $ws18
+bindsym $mod+Shift+Ctrl+9	move container to workspace $ws19
+bindsym $mod+Shift+Ctrl+0	move container to workspace $ws20
 
 bindsym $mod+Shift+n	move container to workspace next
 bindsym $mod+Shift+p	move container to workspace prev
 
 bindsym $mod+Shift+Ctrl+h	move workspace to output left
 bindsym $mod+Shift+Ctrl+l	move workspace to output right
+bindsym $mod+Shift+Ctrl+k	move workspace to output up
+bindsym $mod+Shift+Ctrl+j	move workspace to output down
 
 #for_window [class="Blender"] move to workspace $ws6
 #for_window [class="Thunderbird"] move to workspace $ws9
@@ -372,9 +411,9 @@ bindsym $mod+F5		exec --no-startup-id systemctl restart NetworkManager
 bindsym $mod+F7		exec transset-df -a --dec .15
 bindsym $mod+F8		exec transset-df -a --inc .15
 bindsym $mod+F9		exec --no-startup-id mount -a
-bindsym $mod+F10	exec --no-startup-id ~/.dotfiles/scripts/screen.sh l ;; exec --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+F11	exec --no-startup-id ~/.dotfiles/scripts/screen.sh d ;; exec --no-startup-id ~/.config/polybar/launch.sh
-bindsym $mod+F12	exec --no-startup-id ~/.dotfiles/scripts/screen.sh w ;; exec --no-startup-id ~/.config/polybar/launch.sh
+bindsym $mod+F10	exec --no-startup-id ~/.dotfiles/scripts/screen.sh l ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
+bindsym $mod+F11	exec --no-startup-id ~/.dotfiles/scripts/screen.sh d ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
+bindsym $mod+F12	exec --no-startup-id ~/.dotfiles/scripts/screen.sh w ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
 
 
 ###---Arrow Keys---###
@@ -396,14 +435,14 @@ bindsym $mod+Shift+plus		exec $biginc
 bindsym $mod+minus 		exec $dec
 bindsym $mod+Shift+minus	exec $bigdec
 bindsym $mod+less 		exec $prev
-bindsym $mod+Shift+less		exec $beg
+bindsym $mod+Shift+less		exec $lilbak
 bindsym $mod+greater		exec $next
-bindsym $mod+Shift+greater	exec $next
+bindsym $mod+Shift+greater	exec $lilfor
 
 #For advancing forward/backward in an mpd song
-bindsym $mod+bracketleft 	exec $lilbak
+bindsym $mod+bracketleft 	exec $backlightless
 bindsym $mod+Shift+bracketleft 	exec $bigbak
-bindsym $mod+bracketright 	exec $lilfor
+bindsym $mod+bracketright 	exec $backlightgreater
 bindsym $mod+Shift+bracketright exec $bigfor
 
 #Print screen takes a screenshot.
@@ -488,12 +527,12 @@ bindsym XF86Search		exec $BROWSER https://duckduckgo.com
 #bindsym XF86Finance		exec
 #bindsym XF86Game		exec
 bindsym XF86Shop		exec $BROWSER https://ebay.com
-bindsym XF86MonBrightnessDown	exec $term
-bindsym XF86MonBrightnessUp	exec light -A 5
+bindsym XF86_MonBrightnessDown	exec light -U 5
+bindsym XF86_MonBrightnessUp	exec light -A 5
 bindsym XF86AudioMedia		exec $music; workspace $ws7
 bindsym XF86Display		exec --no-startup-id arandr
 #bindsym XF86KbdLightOnOff	exec
-bindsym XF86KbdBrightnessDown	exec $term
+bindsym XF86KbdBrightnessDown	exec light -U 5
 bindsym XF86KbdBrightnessUp	exec light -A 5
 #bindsym XF86Reply		exec
 #bindsym XF86MailForward	exec

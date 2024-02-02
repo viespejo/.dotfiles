@@ -13,13 +13,15 @@ d() {
     param $1
 }
 dual() {
-    [ -f ~/.screenlayout/dp12wqhd_laptop.sh ] && source ~/.screenlayout/dp12wqhd_laptop.sh
+    [ -f ~/.screenlayout/hdmi1wqhd_laptop.sh ] && source ~/.screenlayout/hdmi1wqhd_laptop.sh
+    # [ -f ~/.screenlayout/dvi1wqhd_laptop.sh ] && source ~/.screenlayout/dvi1wqhd_laptop.sh
 }
 laptop() {
     [ -f ~/.screenlayout/laptop.sh ] && source ~/.screenlayout/laptop.sh
 }
 work() {
-    [ -f ~/.screenlayout/dp12wqhd.sh ] && source ~/.screenlayout/dp12wqhd.sh
+    [ -f ~/.screenlayout/hdmi1wqhd.sh ] && source ~/.screenlayout/hdmi1wqhd.sh
+    # [ -f ~/.screenlayout/dvi1wqhd.sh ] && source ~/.screenlayout/dvi1wqhd.sh
 }
 #mirror() { xrandr --addmode VGA1 $lapres && xrandr --output LVDS1 --mode $lapres --output VGA1 --mode $lapres ;}
 

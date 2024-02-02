@@ -8,5 +8,5 @@ cfQ	~/.config/qutebrowser/qutebrowser.conf
 cff	~/.dotfiles/scripts/folders
 cfc	~/.dotfiles/scripts/configs
 cfT	~/.dotfiles/tmux.conf
-cfp	~/.dotfiles/config/polybar/space
+cfp	~/.dotfiles/config/polybar/custom/config.ini
 cfd	~/.dotfiles/Xresources.d/rxvt-unicode

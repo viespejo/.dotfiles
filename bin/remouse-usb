@@ -1,0 +1,3 @@
+#!/bin/bash
+# execute remouse python script with --evdev and rsa-key file
+remouse --key ~/.ssh/id_rsa --evdev

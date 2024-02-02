@@ -1,0 +1,15 @@
+#!/bin/bash
+
+progName="reMarkable"
+progPath="/home/its32ve1/.wine/drive_c/Program Files (x86)/reMarkable/"
+progBin="$progName.exe"
+
+if [ ! -f "$progPath$progBin" ]; then
+    echo "Error: $progPath$progBin not found"
+    exit 1
+fi
+
+# Start reMarkable
+cd "$progPath"
+wine "$progBin" &
+exit 0

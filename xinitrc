@@ -5,7 +5,7 @@ xset -b
 #xss-lock -- ~/.config/i3/lock.sh &
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
-userkeymap=$HOME/.Xkeymap
+userkeymap=$HOME/.dotfiles/XkeymapEliteBook
 # enable touchpad tapping
 xinput set-prop 12 "libinput Tapping Enabled" 1
 # merge in defaults and keymaps

@@ -29,12 +29,16 @@
     icon_path = /usr/share/icons/Papirus/32x32/apps/:/usr/share/icons/Papirus/32x32/status/:/usr/share/icons/Papirus/32x32/devices
     frame_width = 0
     frame_color = "#ffffff"
-
-[shortcuts]
     close = ctrl+space
     close_all = ctrl+shift+space
     context = ctrl+shift+period
     history = ctrl+grave
+
+#[shortcuts]
+#    close = ctrl+space
+#    close_all = ctrl+shift+space
+#    context = ctrl+shift+period
+#    history = ctrl+grave
 
 [urgency_low]
     background = "#ffffff"

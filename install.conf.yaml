@@ -1,5 +1,5 @@
 - shell:
-    # - [git submodule update --init --recursive, Installing submodules]
+    #- [git submodule update --init --recursive, Installing submodules]
     - [./fzf/install --all --no-update-rc --no-fish, Installing FZF]
     - [rsync -va bin/ ~/bin, Sync "~/bin" folder]
     - [rsync -va config/ ~/.config, Sync "~/.config" folder]
@@ -32,5 +32,8 @@
     ~/.taskrc:
         relink: true
         path: task/.taskrc
+    ~/.my.cnf:
+        relink: true
+        path: mysql/my.cnf
 
 - clean: ['~']

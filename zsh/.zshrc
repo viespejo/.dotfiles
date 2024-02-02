@@ -73,22 +73,13 @@ bindkey '^r' history-incremental-search-backward
 bindkey -M vicmd '^G' what-cursor-position
 
 
-if zplug check zsh-users/zsh-history-substring-search; then
-# history substring
-    # history-substring
-    bindkey '^[[A' history-substring-search-up
-    bindkey '^[[B' history-substring-search-down
-
-    bindkey '^P' history-substring-search-up
-    bindkey '^N' history-substring-search-down
-fi
 
 # autosuggestions
 bindkey '^ ' autosuggest-accept
 
 # FZF {{{
 export FZF_DEFAULT_COMMAND='fd --hidden --no-ignore --follow --exclude .git --exclude node_modules --exclude .wine --exclude .vimundo'
-export FZF_DEFAULT_OPTS='-m --reverse --inline-info'
+export FZF_DEFAULT_OPTS='--ansi -m --reverse --inline-info'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f"
 export FZF_CTRL_T_OPTS="--query=$1 --height 100% --bind='?:toggle-preview' --preview 'bat --style=numbers --color=always --line-range :500 {}'"
 export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
@@ -115,6 +106,21 @@ function in() {
 
 # }}}
 
+# History Substring search {{{
+if zplug check zsh-users/zsh-history-substring-search; then
+# history substring
+    # history-substring
+    bindkey '^[[A' history-substring-search-up
+    bindkey '^[[B' history-substring-search-down
+
+    bindkey '^P' history-substring-search-up
+    bindkey '^N' history-substring-search-down
+
+    HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=green,fg=black,bold'
+    HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
+    HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
+fi
+#}}}
 # bindkey shift tab
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
@@ -184,6 +190,7 @@ alias v='nvim'
 alias vn='nvimn'
 alias t='task'
 alias rm='rm -I --preserve-root'
+
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 # [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -12,11 +12,9 @@ export VISUAL=nvim
 export BROWSER=google-chrome-stable
 export MANPAGER='less'
 export MANWIDTH=80
-# export GOPATH=$HOME/code/go
 
 typeset -aU path
 path=(
-    # $GOPATH/bin
     $HOME/bin
     $path
 )

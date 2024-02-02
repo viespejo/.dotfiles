@@ -26,7 +26,7 @@ module-margin = 3
 ; font-0 = NotoSans-Regular:size=8;2
 font-0 = Cantarell:style=Bold:size=10;2
 ; font-1 = MaterialIcons:size=12;15
-font-1 = FontAwesome5Free:style=Solid:size=10;3
+font-1 = FontAwesome6Free:style=Solid:size=10;3
 font-2 = DejaVuSansMono Nerd Font:size=10;2
 
 ; modules-left = powermenu mpd
@@ -58,9 +58,9 @@ padding-right = 4
 module-margin = 3
 
 font-0 = Cantarell:style=Bold:size=10;2
-font-1 = DejaVuSansMono Nerd Font:style=Bold:size=16;2
-font-2 = FontAwesome5Free:style=Solid:size=10;3
-font-3 = DejaVuSansMono Nerd Font:style=Bold:size=9;2
+font-1 = DejaVuSansMono Nerd Font Mono:style=Bold:size=16;2
+font-2 = FontAwesome6Free:style=Solid:size=10;3
+font-3 = DejaVuSansMono Nerd Font Mono:style=Bold:size=9;2
 font-4 = Cantarell:style=Bold:size=10;0
 
 fixed-center = false
@@ -229,7 +229,7 @@ index-sort = true
 ; fuzzy-match = true
 
 ws-icon-0 = 1;
-ws-icon-1 = 2;
+ws-icon-1 = 2;
 ws-icon-2 = 3;
 ; ws-icon-3 = 4;
 ws-icon-3 = 4;
@@ -237,8 +237,8 @@ ws-icon-4 = 5;
 ws-icon-5 = 6;
 ; ws-icon-6 = 7;
 ws-icon-6 = 7;
-ws-icon-7 = 8;
-ws-icon-8 = 9;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
 ws-icon-9 = 10;
 ; ws-icon-9 = 10;
 ws-icon-default = 
@@ -402,29 +402,42 @@ label-disconnected-foreground = #666
 
 [module/volume]
 type = internal/alsa
+format-volume = <bar-volume>
+label-volume = " "
+label-volume-foreground = ${colors.backgroundt}
+label-volume-padding-right = ${paddings.inner}
+label-volume-padding-left = ${paddings.outer}
+label-volume-font = 1
+format-muted-prefix = " "
+format-muted-foreground = ${colors.red}
+format-muted-background = ${colors.red}
+label-muted = █
+label-padding = 
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-padding = 0
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
-
-format-muted-prefix = "%{T2}%{T-}"
-format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
-label-muted-padding = 2
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${xrdb:color10}
-bar-volume-foreground-1 = ${xrdb:color10}
-bar-volume-foreground-2 = ${xrdb:color10}
-bar-volume-foreground-3 = ${xrdb:color10}
-bar-volume-foreground-4 = ${xrdb:color10}
-bar-volume-foreground-5 = ${xrdb:color11}
-bar-volume-foreground-6 = ${xrdb:color1}
-bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-fill = ─
-bar-volume-empty = ─
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-width = 30
+bar-volume-foreground-0 = ${colors.green}
+bar-volume-foreground-1 = ${colors.green}
+bar-volume-foreground-2 = ${colors.green}
+bar-volume-foreground-3 = ${colors.green}
+bar-volume-foreground-4 = ${colors.green}
+bar-volume-foreground-5 = ${colors.green}
+bar-volume-foreground-6 = ${colors.green}
+bar-volume-foreground-7 = ${colors.green}
+bar-volume-foreground-8 = ${colors.green}
+bar-volume-foreground-9 = ${colors.red}
+bar-volume-foreground-10 = ${colors.red}
+bar-volume-gradient = true
+bar-volume-indicator = █
+bar-volume-indicator-font = 1
+bar-volume-fill = █
+bar-volume-fill-font = 1
+bar-volume-empty = █
+bar-volume-empty-font = 1
+bar-volume-empty-foreground = ${colors.background}
 
 [module/powermenu]
 type = custom/menu
