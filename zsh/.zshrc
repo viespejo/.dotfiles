@@ -4,6 +4,9 @@ export EDITOR=nvim
 export VISUAL=nvim
 export MANPAGER='less'
 
+# STARSHIP PROMPT
+eval "$(starship init zsh)"
+
 # Check if zplug is installed
 if [[ ! -d ~/.dotfiles/zplug ]]; then
   git clone https://github.com/zplug/zplug ~/.dotfiles/zplug
@@ -37,7 +40,7 @@ zplug "plugins/common-aliases", from:oh-my-zsh
 # zplug "mafredri/zsh-async", from:github, defer:0
 #
 # Theme!
-zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
+# zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
 # zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
 #
 zplug "skywind3000/z.lua"
@@ -77,12 +80,12 @@ bindkey -M vicmd '^G' what-cursor-position
 # autosuggestions
 bindkey '^ ' autosuggest-accept
 
-# FZF {{{
-export FZF_DEFAULT_COMMAND='fd --hidden --no-ignore --follow --exclude .git --exclude node_modules --exclude .wine --exclude .vimundo'
+# FZF 
+export FZF_DEFAULT_COMMAND='fd --hidden --no-ignore --exclude .git --exclude node_modules --exclude .wine --exclude .vimundo'
 export FZF_DEFAULT_OPTS='--ansi -m --reverse --inline-info'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f . $HOME"
 export FZF_CTRL_T_OPTS="--query=$1 --height 100% --bind='?:toggle-preview' --preview 'bat --style=numbers --color=always --line-range :500 {}'"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d . $HOME"
 export FZF_ALT_C_OPTS="--height 100% --bind='?:toggle-preview' --preview 'tree -C -I \'node_modules|.git\' {} | head -200'"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
@@ -104,9 +107,7 @@ function in() {
     yay -Slq | fzf -q "$1" -m --preview 'yay -Si {1}'| xargs -ro yay -S
 }
 
-# }}}
-
-# History Substring search {{{
+# History Substring search
 if zplug check zsh-users/zsh-history-substring-search; then
 # history substring
     # history-substring
@@ -120,43 +121,44 @@ if zplug check zsh-users/zsh-history-substring-search; then
     HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
     HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
 fi
-#}}}
+
 # bindkey shift tab
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
 fi
 
-# spaceship custom
-eval spaceship_vi_mode_enable
-# SPACESHIP_PROMPT_ADD_NEWLINE=false
-# export SPACESHIP_GIT_SYMBOL=''
-# export SPACESHIP_GIT_BRANCH_PREFIX='git:'
-export SPACESHIP_GIT_STATUS_PREFIX='['
-export SPACESHIP_GIT_STATUS_SUFFIX=']'
-export SPACESHIP_GIT_STATUS_UNTRACKED='?'
-export SPACESHIP_GIT_STATUS_ADDED='A'
-export SPACESHIP_GIT_STATUS_MODIFIED='M'
-export SPACESHIP_GIT_STATUS_COLOR='magenta'
-export SPACESHIP_GIT_STATUS_RENAMED='R'
-export SPACESHIP_GIT_STATUS_DELETED='D'
-export SPACESHIP_GIT_STATUS_STASHED=''
-export SPACESHIP_GIT_STATUS_UNMERGED=''
-export SPACESHIP_GIT_STATUS_AHEAD='<ahead>'
-export SPACESHIP_GIT_STATUS_BEHIND='<behind>'
-export SPACESHIP_GIT_STATUS_DIVERGED=''
-export SPACESHIP_EXIT_CODE_SHOW=true
-export SPACESHIP_EXIT_CODE_SYMBOL=''
-export SPACESHIP_PROMPT_ORDER=(
-  user          # Username section
-  dir           # Current directory section
-  host          # Hostname section
-  git           # Git section (git_branch + git_status)
-  exec_time     # Execution time
-  line_sep      # Line break
-  vi_mode       # Vi-mode indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
+# # spaceship custom
+# eval spaceship_vi_mode_enable
+# # SPACESHIP_PROMPT_ADD_NEWLINE=false
+# # export SPACESHIP_GIT_SYMBOL=''
+# # export SPACESHIP_GIT_BRANCH_PREFIX='git:'
+# export SPACESHIP_GIT_STATUS_PREFIX='['
+# export SPACESHIP_GIT_STATUS_SUFFIX=']'
+# export SPACESHIP_GIT_STATUS_UNTRACKED='?'
+# export SPACESHIP_GIT_STATUS_ADDED='A'
+# export SPACESHIP_GIT_STATUS_MODIFIED='M'
+# export SPACESHIP_GIT_STATUS_COLOR='magenta'
+# export SPACESHIP_GIT_STATUS_RENAMED='R'
+# export SPACESHIP_GIT_STATUS_DELETED='D'
+# export SPACESHIP_GIT_STATUS_STASHED=''
+# export SPACESHIP_GIT_STATUS_UNMERGED=''
+# export SPACESHIP_GIT_STATUS_AHEAD='<ahead>'
+# export SPACESHIP_GIT_STATUS_BEHIND='<behind>'
+# export SPACESHIP_GIT_STATUS_DIVERGED=''
+# export SPACESHIP_EXIT_CODE_SHOW=true
+# export SPACESHIP_EXIT_CODE_SYMBOL=''
+# export SPACESHIP_PROMPT_ORDER=(
+#   user          # Username section
+#   dir           # Current directory section
+#   host          # Hostname section
+#   git           # Git section (git_branch + git_status)
+#   exec_time     # Execution time
+#   line_sep      # Line break
+#   vi_mode       # Vi-mode indicator
+#   exit_code     # Exit code section
+#   char          # Prompt character
+# )
+
 # current vim mode in Pure theme
 # VIM_PROMPT="❯"
 # PROMPT='%(?.%F{magenta}.%F{red})${VIM_PROMPT}%f '
