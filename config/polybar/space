@@ -27,7 +27,7 @@ module-margin = 3
 font-0 = Cantarell:style=Bold:size=10;2
 ; font-1 = MaterialIcons:size=12;15
 font-1 = FontAwesome6Free:style=Solid:size=10;3
-font-2 = DejaVuSansMono Nerd Font:size=10;2
+font-2 = JetBrainsMono Nerd Font:size=10;2
 
 ; modules-left = powermenu mpd
 modules-left = powermenu xwindow
@@ -58,9 +58,9 @@ padding-right = 4
 module-margin = 3
 
 font-0 = Cantarell:style=Bold:size=10;2
-font-1 = DejaVuSansMono Nerd Font Mono:style=Bold:size=16;2
+font-1 = JetBrainsMono Nerd Font Mono:style=Bold:size=16;2
 font-2 = FontAwesome6Free:style=Solid:size=10;3
-font-3 = DejaVuSansMono Nerd Font Mono:style=Bold:size=9;2
+font-3 = JetBrainsMono Nerd Font Mono:style=Bold:size=9;2
 font-4 = Cantarell:style=Bold:size=10;0
 
 fixed-center = false
@@ -93,9 +93,9 @@ padding-right = 4
 module-margin = 3
 
 font-0 = Cantarell:style=Bold:size=10;2
-font-1 = DejaVuSansMono Nerd Font:style=Bold:size=16;2
+font-1 = JetBrainsMono Nerd Font:style=Bold:size=16;2
 font-2 = FontAwesome5Free:style=Solid:size=10;3
-font-3 = DejaVuSansMono Nerd Font:style=Bold:size=9;2
+font-3 = JetBrainsMono Nerd Font:style=Bold:size=9;2
 font-4 = Cantarell:style=Bold:size=10;0
 
 fixed-center = false
