@@ -1,0 +1,65 @@
+(defcfg
+  input  (device-file "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  output (uinput-sink "KMonad: X220" "sleep 0.2s; xset r rate 300 60; sleep 0.2s; setxkbmap -layout us,es -option compose:menu")
+  cmp-seq compose
+  fallthrough true
+  allow-cmd true
+)
+
+(defsrc
+  tab        q     w     e     r     t     y     u     i     o        p      [      ]     ret        pgup
+  caps       a     s     d     f     g     h     j     k     l        ;      '      \                pgdn
+  lsft lsgt  z     x     c     v     b     n     m     ,     .        /      rsft                    end
+  lctl       lmet  lalt  spc                           ralt  KeyMenu  rctl  left         up down    rght
+)
+
+(defalias
+  num  (layer-toggle numbers)
+  symbols (layer-toggle symbols)
+  cesc (tap-next esc (layer-toggle moving))
+
+  nlayout (cmd-button "xkb-switch --next") ;; Next layout
+
+  met_a (tap-hold-next-release 500 a lmet)
+  alt_s (tap-hold-next-release 500 s lalt)
+  ctl_d (tap-hold-next-release 500 d lctl)
+  sft_f (tap-hold-next-release 500 f lsft)
+  sft_j (tap-hold-next-release 500 j rsft)
+  ctl_k (tap-hold-next-release 500 k rctl)
+  alt_l (tap-hold-next-release 500 l ralt)
+  met_; (tap-hold-next-release 500 ; rmet)
+)
+
+;; sticky keys don't work combined with tap-hold-next-release
+;; (defalias
+;;   sl (sticky-key 300 lsft)
+;;   sr (sticky-key 300 rsft)
+;; )
+
+(deflayer qwerty
+  tab        q     w     e     r     t     y     u     i     o        p      [      ]     ret         pgup
+  @cesc      @met_a @alt_s @ctl_d @sft_f g h     @sft_j @ctl_k @alt_l @met_; '      \                 pgdn
+  lsft @nlayout    z     x     c     v     b     n     m     ,     .        /    rsft              end
+  XX        XX   @num  spc                         @symbols     KeyMenu  XX     left      up down        rght
+)
+
+(deflayer moving
+  _        _    _    _    _    _    _   pgdn pgup _    _   _   _   _     _
+  _        _    _    _    _    _   left down up   rght _   _   _         _
+  _   _    _    _    _    _    _    _    _   home end  _   _             _
+  _        _    _    _                        _    _   _   _     _ _     _
+)
+
+(deflayer numbers
+ XX XX XX XX XX XX  / 7 8 9 - XX XX XX XX
+ XX XX XX \( \) XX  * 4 5 6 + XX XX XX
+ XX XX XX XX XX XX XX 0 1 2 3 .  XX XX
+ XX XX XX XX XX XX XX XX XX XX XX
+)
+
+(deflayer symbols
+  XX        [     XX     €    ]    XX    XX    XX    XX    XX   XX   XX   XX   XX  XX
+  XX        \(    {      }    \)    XX    XX    XX    XX    XX   XX   XX   XX       XX
+  XX  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX   XX   XX            XX
+  XX        XX    XX    XX                      XX    XX    XX   XX     XX XX       XX
+)

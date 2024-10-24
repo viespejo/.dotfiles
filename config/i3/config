@@ -10,13 +10,16 @@ gaps inner 15
 gaps outer 15
 font pango:DejaVuSansMono Nerd Font 9
 set $mod Mod4
-set $term i3-sensible-terminal
+set $term kitty
+set $filemanager yazi
 
 floating_modifier $mod
 
 #Add wallpaper:
 exec --no-startup-id feh --bg-fill ~/.config/wallpapers/arch_grey.jpg
 #exec_always --no-startup-id wal -c -i ~/.config/wallpapers/wall.jpg
+
+exec_always ibus-daemon -rxR
 
 set $video --no-startup-id bash ~/.dotfiles/scripts/video.sh
 set $stoprec --no-startup-id killall ffmpeg & killall screenkey & polybar-msg hook is-recording 1
@@ -52,7 +55,9 @@ exec_always --no-startup-id ~/.config/polybar/custom/launch.sh
 #exec --no-startup-id python ~/.config/scripts/offlineimap-daemon.py
 #Remaps the caps lock button to escape and uses the US international keyboard with dead keys
 #exec_always --no-startup-id xkbcomp ~/.dotfiles/XkeymapEliteBook
-#exec_always --no-startup-id setxkbmap -layout us -variant altgr-intl -option caps:escape
+# exec_always --no-startup-id setxkbmap -layout us,es
+# exec_always --no-startup-id xkbcomp ~/.dotfiles/XkeymapForKmonadUSES $DISPLAY
+
 #Remap Menu button to Super:
 #exec_always --no-startup-id xmodmap -e 'keycode 135 = Super_R'
 #bindsym Menu	exec --no-startup-id xmodmap -e 'keycode 135 = Super_R' 
@@ -60,7 +65,6 @@ exec_always --no-startup-id ~/.config/polybar/custom/launch.sh
 exec --no-startup-id unclutter
 #Disables touchpad; you might like like this one! (I only use the ThinkPad trackpoint).
 #exec --no-startup-id exec synclient TouchpadOff=1
-
 
 ###---Audio and Music Definitions---###
 ##For spotify
@@ -118,8 +122,8 @@ set $stop dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpr
 #set $bigdec --no-startup-id amixer sset Master 5%-
 #set $mute --no-startup-id amixer sset Master toggle
 #set $truemute --no-startup-id amixer sset Master mute
-#set $screencast  --no-startup-id bash ~/.config/scripts/screencast_alsa.sh
-#set $audio --no-startup-id bash ~/.config/scripts/audio_alsa.sh
+#set $screencast  --no-startup-id bash ~/.dotfiles/scripts/screencast_alsa.sh
+#set $audio --no-startup-id bash ~/.dotfiles/scripts/audio_alsa.sh
 
 #For PULSEAUDIO/PAMIXER
 set $inc --no-startup-id pamixer --allow-boost -i 5
@@ -135,7 +139,7 @@ set $audio --no-startup-id bash ~/.dotfiles/scripts/audio_pulse.sh
 
 ###---Dropdown/Scratchpad Windows---###
 #First I have a tmux window used for background scripts.
-exec --no-startup-id $term --class dropdown,dropdown --title Dropdown -e tmux new -s Dropdown
+exec --no-startup-id $term --class dropdown,dropdown --title Dropdown tmux new -s Dropdown
 
 for_window [instance="dropdown"] floating enable
 #for_window [instance="dropdown"] fullscreen enable
@@ -150,53 +154,53 @@ for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 800 300
 for_window [instance="math"] move position center
 for_window [instance="math"] move scratchpad
-exec --no-startup-id $term --class math -e R -q
+exec --no-startup-id $term --class math R -q
 
 
 ###---Basic Bindings---###
 bindsym $mod+Return 		exec $term
-bindsym $mod+Shift+Return 	exec $term -e tmux
+bindsym $mod+Shift+Return 	exec $term tmux
 
 bindsym $mod+Shift+space 	floating toggle
 bindsym $mod+Ctrl+space		sticky toggle
 bindsym $mod+space		focus mode_toggle
 
-bindsym $mod+Escape		workspace prev_on_output
-bindsym $mod+Shift+Escape 	exec i3-msg exit
+
+#bindsym $mod+Escape		workspace prev_on_output
+#bindsym $mod+Shift+Escape 	exec i3-msg exit
 
 bindsym $mod+BackSpace		exec $flash
-bindsym $mod+Shift+BackSpace	exec reboot
+#bindsym $mod+Shift+BackSpace	exec reboot
 
 bindsym $mod+grave		exec $flash
 #bindsym $mod+asciitilde
 #STOP/HIDE EVERYTHING:
-bindsym $mod+Shift+Delete	exec $truemute ; exec $truepause ; workspace lmao ; exec $term -e htop ; exec $term -e zsh -ic ranger
+bindsym $mod+Shift+Delete	exec $truemute ; exec $truepause ; workspace lmao ; exec $term btop ; exec $term $filemanager
 
 
 ###---Letter Key Bindings---###
 bindsym $mod+q			kill
 bindsym $mod+Shift+q		kill
 
-#bindsym $mod+w			exec --no-startup-id $term -e w3m http://lukesmith.xyz
 bindsym $mod+w		exec --no-startup-id $BROWSER
 
-#bindsym $mod+e			exec $term -e neomutt
+#bindsym $mod+e			exec $term neomutt
 #bindsym $mod+Shift+e
 
-bindsym $mod+r 			exec $term -e zsh -ic ranger
+bindsym $mod+r 			exec $term $filemanager
 bindsym $mod+Shift+r		restart
 
 bindsym $mod+t			split toggle
 bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
 
-bindsym $mod+y			exec $term -e calcurse
+bindsym $mod+y			exec $term calcurse
 bindsym $mod+Shift+y		resize shrink width 5 px or 5 ppt
 
-bindsym $mod+u			exec --no-startup-id xkbcomp ~/.dotfiles/XkeymapEliteBook :0
+#bindsym $mod+u			exec --no-startup-id xkbcomp ~/.dotfiles/XkeymapEliteBook :0
 bindsym Ctrl+semicolon			[instance="dropdown"] scratchpad show,resize set 80 ppt 80 ppt,move position center
 bindsym $mod+Shift+u		resize shrink height 5 px or 5 ppt
 
-bindsym $mod+i 			exec $term -e htop
+bindsym $mod+i 			exec $term btop
 bindsym $mod+Shift+i		resize grow height 5 px or 5 ppt
 
 #bindsym $mod+o			exec --no-startup-id $beg
@@ -207,7 +211,7 @@ bindsym $mod+p			exec $pause
 
 bindsym $mod+a			[instance="math"] scratchpad show; move position center
 bindsym $mod+Shift+a		exec pavucontrol
-#bindsym $mod+Shift+a		exec $term -e ncpamixer
+#bindsym $mod+Shift+a		exec $term ncpamixer
 
 bindsym $mod+s			gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
@@ -239,17 +243,17 @@ bindsym $mod+Shift+z		gaps outer current minus 5
 bindsym $mod+x			exec --no-startup-id ~/.config/i3/lock.sh
 bindsym $mod+Shift+x		exec ~/.dotfiles/scripts/prompt "Do you want to shutdown?" "shutdown -h now"
 
-#bindsym $mod+c			exec $term -e weechat
+#bindsym $mod+c			exec $term weechat
 #bindsym $mod+Shift+c
 
-bindsym $mod+v			exec $term -e vis
+bindsym $mod+v			exec $term vis
 bindsym $mod+Shift+v		exec projectM-pulseaudio
 
 #bindsym $mod+b			exec $prev
 bindsym $mod+Shift+b		exec --no-startup-id inkscape; workspace $ws5
 
-#bindsym $mod+n			exec $term -e newsboat
-#bindsym $mod+Shift+n		exec $term -e newsboat
+#bindsym $mod+n			exec $term newsboat
+#bindsym $mod+Shift+n		exec $term newsboat
 
 bindsym $mod+m 			exec $music; workspace $ws7
 bindsym $mod+Shift+m		exec $mute
@@ -318,6 +322,7 @@ bindsym $mod+7		workspace $ws7
 bindsym $mod+8		workspace $ws8
 bindsym $mod+9		workspace $ws9
 bindsym $mod+0		workspace $ws10
+
 bindsym $mod+Ctrl+1 workspace $ws11
 bindsym $mod+Ctrl+2 workspace $ws12
 bindsym $mod+Ctrl+3 workspace $ws13
@@ -405,15 +410,16 @@ bindsym --whole-window $mod+button3 floating toggle
 bindsym $mod+F1		exec --no-startup-id mupdf ~/.config/i3/i3_guide.md.pdf
 bindsym $mod+F2		exec --no-startup-id bash ~/.dotfiles/scripts/shortcuts notify
 bindsym $mod+F3		exec --no-startup-id arandr
-bindsym $mod+F4		exec --no-startup-id systemctl hibernate
-bindsym $mod+F5		exec --no-startup-id systemctl restart NetworkManager
+bindsym $mod+Shift+F4		exec --no-startup-id systemctl hibernate
+bindsym $mod+Shift+F5		exec --no-startup-id systemctl restart NetworkManager
 #bindsym $mod+F6		exec --no-startup-id urxvt -e transmission-remote-cli
-bindsym $mod+F7		exec transset-df -a --dec .15
-bindsym $mod+F8		exec transset-df -a --inc .15
-bindsym $mod+F9		exec --no-startup-id mount -a
-bindsym $mod+F10	exec --no-startup-id ~/.dotfiles/scripts/screen.sh l ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
-bindsym $mod+F11	exec --no-startup-id ~/.dotfiles/scripts/screen.sh d ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
-bindsym $mod+F12	exec --no-startup-id ~/.dotfiles/scripts/screen.sh w ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
+# bindsym $mod+F7		exec transset-df -a --dec .15
+# bindsym $mod+F8		exec transset-df -a --inc .15
+# bindsym $mod+F9		exec --no-startup-id mount -a
+bindsym $mod+F6	exec --no-startup-id feh --zoom fill ~/code/glove80-zmk-config/keymap.png
+bindsym $mod+F7	exec --no-startup-id ~/.dotfiles/scripts/screen.sh l ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
+bindsym $mod+F8	exec --no-startup-id ~/.dotfiles/scripts/screen.sh d ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
+bindsym $mod+F9	exec --no-startup-id ~/.dotfiles/scripts/screen.sh w ;; exec --no-startup-id ~/.config/polybar/custom/launch.sh
 
 
 ###---Arrow Keys---###
@@ -430,10 +436,10 @@ bindsym $mod+Shift+Right 	move right
 ###---Media Keys---###
 
 #Volume keys
-bindsym $mod+plus		exec $inc
-bindsym $mod+Shift+plus		exec $biginc
-bindsym $mod+minus 		exec $dec
-bindsym $mod+Shift+minus	exec $bigdec
+#bindsym $mod+plus		exec $inc
+#bindsym $mod+Shift+plus		exec $biginc
+#bindsym $mod+minus 		exec $dec
+#bindsym $mod+Shift+minus	exec $bigdec
 bindsym $mod+less 		exec $prev
 bindsym $mod+Shift+less		exec $lilbak
 bindsym $mod+greater		exec $next
@@ -473,10 +479,10 @@ bindsym XF86PowerOff		exec sudo shutdown -h now
 #bindsym XF86Paste		exec
 #bindsym XF86Cut		exec
 #bindsym XF86MenuKB		exec
-bindsym XF86Calculator		exec $term -e R -q
+bindsym XF86Calculator		exec $term R -q
 bindsym XF86Sleep		exec sudo zzz
 #bindsym XF86WakeUp		exec
-bindsym XF86Explorer		exec $term -e zsh -ic ranger
+bindsym XF86Explorer		exec $term $filemanager
 #bindsym XF86Send		exec
 #bindsym XF86Xfer		exec
 bindsym XF86WWW			exec --no-startup-id $BROWSER
@@ -485,7 +491,7 @@ bindsym XF86ScreenSaver		exec exec --no-startup-id ~/.config/i3/lock.sh
 #bindsym XF86RotateWindows	exec
 #bindsym XF86TaskPane		exec
 #bindsym XF86Favorites		exec
-bindsym XF86MyComputer		exec $term -e zsh -ic ranger
+bindsym XF86MyComputer		exec $term $filemanager
 #bindsym XF86Back		exec
 #bindsym XF86Forward		exec
 bindsym XF86Eject		exec sudo umount -R /mnt
@@ -520,8 +526,8 @@ bindsym XF86TouchpadOff		exec --no-startup-id exec synclient TouchpadOff=1
 bindsym XF86Suspend		exec --no-startup-id ~/.config/i3/lock.sh
 bindsym XF86Close		kill
 bindsym XF86WebCam		exec mpv /dev/video0
-bindsym XF86Mail		exec $term -e neomutt
-bindsym XF86Messenger		exec $term -e weechat
+bindsym XF86Mail		exec $term neomutt
+bindsym XF86Messenger		exec $term weechat
 bindsym XF86Search		exec $BROWSER https://duckduckgo.com
 #bindsym XF86Go			exec
 #bindsym XF86Finance		exec
@@ -537,7 +543,7 @@ bindsym XF86KbdBrightnessUp	exec light -A 5
 #bindsym XF86Reply		exec
 #bindsym XF86MailForward	exec
 #bindsym XF86Save		exec
-bindsym XF86Documents		exec $term -e zsh -ic ranger ~/Documents
+bindsym XF86Documents		exec $term $filemanager ~/Documents
 #bindsym XF86Battery		exec
 #bindsym XF86Bluetooth		exec
 bindsym XF86WLAN		exec --no-startup-id sudo systemctl restart NetworkManager

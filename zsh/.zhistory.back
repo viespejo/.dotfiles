@@ -1,0 +1,400 @@
+: 1658196388:0;yay -Qs alacritty
+: 1658196395:0;alacritty
+: 1658196496:0;vi zsh/zshrc_local
+: 1658196558:0;zsh
+: 1658196614:0;fc-list | grep "candar"
+: 1658196639:0;fc-list | grep "Iosev"
+: 1658196736:0;fc-list | grep "Iosev" | vi
+: 1658196856:0;vi config/alacritty/alacritty.yml
+: 1658196999:0;nvim
+: 1658197082:0;fc-list | grep "Aweso"
+: 1658197511:0;vim config/alacritty/alacritty.yml
+: 1658197718:0;vim zsh/.zprofile
+: 1658197746:0;echo $BROWSER
+: 1658197768:0;vim zsh/.zshrc
+: 1658198736:0;systemctl status systemd-sysctl.service
+: 1658198849:0;vim /etc/sysctl.d/90-sysrq.conf
+: 1658198956:0;sudo -E vim /etc/sysctl.d/90-sysrq.conf
+: 1658198964:0;sudo -E nvim /etc/sysctl.d/90-sysrq.conf
+: 1658198995:0;cat /proc/sys/kernel/sysrq
+: 1658199724:0;yay -S tree
+: 1658199732:0;tree -L 1
+: 1658200155:0;vim ~/.dotfiles-local/zsh/zshrc_local\
+
+: 1658200300:0;cat install.conf.yaml
+: 1658200364:0;cd ~/.local/share/remmina
+: 1658200371:0;ls remmina
+: 1658200697:0;rm -rf ./*
+: 1658200749:0;wget http://192.168.1.38:5000/*.remmina
+: 1658200754:0;wget http://192.168.1.38:5000
+: 1658200767:0;rm index.html
+: 1658201038:0;tar -xvzf /tmp/remmina
+: 1658201095:0;cml
+: 1658201152:0;rm *
+: 1658201163:0;rsync -va remmina ~/.local/share/remmina
+: 1658201172:0;ls ~/.local/share/remmina
+: 1658201195:0;rsync -va ~/.local/share/remmina ./
+: 1658201207:0;cd remmina
+: 1658201211:0;mv remmina/* ./
+: 1658201219:0;rm -rf remmina
+: 1658201241:0;git add remmina/*
+: 1658201351:0;git config user.email "viespejo@gmail.com"
+: 1658201361:0;git config user.name "Vicente Espejo"
+: 1658201364:0;gc -m 'update remmina connections'
+: 1658201371:0;git push
+: 1658201391:0;gdg
+: 1658201393:0;gdd
+: 1658201404:0;alias G diff
+: 1658201415:0;gdw
+: 1658201443:0;tree
+: 1658201699:0;cd bin
+: 1658201882:0;tmux
+: 1658201897:0;tmux ls
+: 1658201993:0;vim init.lua
+: 1658202140:0;node --version
+: 1658202154:0;vim init.lus
+: 1658202304:0;cd vim-submodules
+: 1658202387:0;cd nvim
+: 1658203127:0;vim ~/.fzf.zsh
+: 1658203187:0;gco master
+: 1658203196:0;git pull
+: 1658203221:0;glgg
+: 1658203257:0;gd
+: 1658203260:0;man fd
+: 1658203265:0;fd -version
+: 1658203274:0;fd
+: 1658203446:0;pacman -Qs fzf
+: 1658203463:0;cd ~/.fzf
+: 1658203473:0;cd fzf
+: 1658203494:0;install-info
+: 1658203539:0;fzf
+: 1658203559:0;bash
+: 1658203600:0;find * -type f | fzf > selected
+: 1658203663:0;env | fzf
+: 1658203726:0;$FZF_CTRL_T_COMMAND
+: 1658203972:0;yay -S fd
+: 1658205286:0;pacmd list-sinks
+: 1658206887:0;fc-list | grep "Iosev" | vim
+: 1658207811:0;halt
+: 1658207817:0;sudo halt
+: 1658229775:0;cat launch.sh
+: 1658230042:0;polybar -m
+: 1658230424:0;vim config
+: 1658230445:0;vim mpris.sh
+: 1658231873:0;cd /tmp
+: 1658231876:0;git clone --depth=1 https://github.com/adi1090x/polybar-themes.git
+: 1658231882:0;cd polybar-themes
+: 1658231890:0;./setup.sh
+: 1658231954:0;cfT
+: 1658232236:0;cd polybar
+: 1658232274:0;./launch.sh --grayblocks
+: 1658232455:0;kill 22164 
+: 1658232511:0;./launch.sh --hack
+: 1658232653:0;kill polybar
+: 1658232749:0;reboot\
+s\
+R\
+
+: 1658232788:0;cd ~/.config/polybar
+: 1658232803:0;cd hack/
+: 1658232955:0;vim hack/launch.sh
+: 1658233332:0;fc-list | grep "Terminus"
+: 1658234703:0;cd polybar.old
+: 1658234767:0;chmod +x launch.sh
+: 1658234799:0;mv polybar.old/custom ./polybar/
+: 1658234807:0;cd polybar/custom
+: 1658235177:0;vim launch.sh
+: 1658235453:0;killall polybar
+: 1658235457:0;./launch.sh
+: 1658235530:0;vim screen.sh
+: 1658235561:0;cd .
+: 1658235848:0;cp -r ~/.config/polybar/custom ./
+: 1658235877:0;cd ../../scripts
+: 1658235885:0;vim configs
+: 1658235941:0;cm 
+: 1658236015:0;config/polybar/launch.sh
+: 1658234846:1211;vim config.ini
+: 1658236064:0;cd config/polybar
+: 1658236065:0;vim 
+: 1658236206:0;ycm
+: 1658236633:0;./screen.sh w
+: 1658236670:0;date
+: 1658236674:0;time
+: 1658247543:0;cd config/
+: 1658247545:0;ls polybar
+: 1658247558:0;polybar -q top -c space
+: 1658247579:0;polybar -q top -c polybar/space
+: 1658247987:0;polybar -q top -c config.ini
+: 1658249277:0;fc-list | grep "Cantarell"
+: 1658250061:0;z /home/its32ve1/.config/polybar
+: 1658250064:0;cd custom
+: 1658253418:0;ls /sys/class/backlight
+: 1658253749:0;ls /sys/class/backlight/amdgpu_bl0
+: 1658254085:0;cat /sys/class/backlight/amdgpu_bl0/max_brightness
+: 1658254281:0;neofetch
+: 1658254580:0;su root
+: 1658254694:0;sudo vim /etc/udev/rules.d/backlight.rules
+: 1658255145:0;sudo usermod -a -G video its32ve1
+: 1658255473:0;sudo -E nvim /etc/udev/rules.d/backlight.rules
+: 1658255546:0;journalctl -f
+: 1658255621:0;sudo udevadm control --reload-rules && sudo udevadm trigger
+: 1658255737:0;ls -la /sys/class/backlight/amdgpu_bl0
+: 1658255746:0;sudo ls -la /sys/class/backlight/amdgpu_bl0
+: 1658255748:0;sudo ls -la /sys/class/backlight/amdgpu_bl0/
+: 1658255880:0;pacman -S light
+: 1658255886:0;sudo pacman -S light
+: 1658255895:0;light
+: 1658255907:0;light 50
+: 1658255913:0;man light
+: 1658255918:0;light --help
+: 1658255939:0;light -L
+: 1658256001:0;light -G
+: 1658256015:0;light -A
+: 1658256025:0;light -A 10
+: 1658256027:0;light -A 10.0
+: 1658256032:0;light -U 10.0
+: 1658256038:0;sudo light -U 10.0
+: 1658256060:0;sudo echo 5 > /sys/class/backlight/amdgpu_bl0/brightness
+: 1658256108:0;sudo rm /etc/udev/rules.d/backlight.rules
+: 1658256113:0;sudo light -U 50.0
+: 1658256120:0;sudo light 100
+: 1658256124:0;sudo light 100.0
+: 1658256135:0;sudo light -S 100.0
+: 1658256435:0;echo 5 > /sys/class/backlight/amdgpu_bl0/brightness
+: 1658256450:0;light -S 100.0
+: 1658256479:0;cat /sys/class/backlight/amdgpu_bl0/actual_brightness
+: 1658256489:0;light -S 150
+: 1658256512:0;echo 255 > /sys/class/backlight/amdgpu_bl0/brightness
+: 1658256518:0;echo 355 > /sys/class/backlight/amdgpu_bl0/brightness
+: 1658256624:0;light -S 50
+: 1658256629:0;light -S 100
+: 1658256887:0;ls -1 /sys/class/power_supply/
+: 1658257414:0;fc-list | grep "DejaVu"
+: 1658332540:0;yay -S blueman blueman-applet pulseaudio-bluetooth
+: 1658332583:0;sudo systemctl status bluetooth.service 
+: 1658332771:0;yay -S bluez bluez-utils
+: 1658332784:0;sudo systemctl enable bluetooth.service 
+: 1658332793:0;sudo systemctl start bluetooth.service 
+: 1658332859:0;bluetoothctl 
+: 1658332954:0;sudo bluetoothctl scan on
+: 1658332965:0;bluetoothctl scan off
+: 1658333134:0;blueman-applet
+: 1658333457:0;git clone git@github.com:viespejo/VARBS.git
+: 1658333468:0;cd VARBS
+: 1658333470:0;vim .
+: 1658336152:0;ip link -a
+: 1658336155:0;ip link a
+: 1658336163:0;ip links
+: 1658336166:0;ip link
+: 1658341817:0;vim install.conf.yaml
+: 1658342049:0;du
+: 1658342088:0;sudo du -hx -d1 . | sort -rh | head -10
+: 1658342242:0;sudo pacman -Scc
+: 1658342258:0;sudo du -hx -d1 /var/cache | sort -rh | head -10
+: 1658342275:0;sudo du -hx -d1 /var | sort -rh | head -10
+: 1658342292:0;sudo du -hx -d1 / | sort -rh | head -10
+: 1658342301:0;sudo du -hx -d1 /usr | sort -rh | head -10
+: 1658342330:0;sudo du -hx -d1 /usr/share/fonts | sort -rh | head -10
+: 1658342340:0;sudo du -hx -d1 /usr/share/fonts/TTF | sort -rh | head -10
+: 1658342355:0;sudo du -hx -d1 /usr/share/fonts/TTF/* | sort -rh | head -10
+: 1658342370:0;sudo du -hx -d1 /usr/ | sort -rh | head -10
+: 1658342375:0;sudo du -hx -d1 /usr/share | sort -rh | head -10
+: 1658342392:0;sudo du -hx -d1 /home | sort -rh | head -10
+: 1658342399:0;sudo du -hx -d1 ~ | sort -rh | head -10
+: 1658342409:0;sudo du -hx -d1 ~/.cache | sort -rh | head -10
+: 1658342461:0;rm -rf ~/.cache/yay/*
+: 1658342464:0;df
+: 1658343626:0;free -h
+: 1658353689:0;sudo systemctl start NetworkManager
+: 1658353792:0;which i3-gnome-pomodoro
+: 1658353809:0;cat /usr/bin/i3-gnome-pomodoro
+: 1658354815:0;xkill
+: 1658358571:0;uf37e
+: 1658362727:0;df -h
+: 1658362783:0;sudo fdisk -l
+: 1658364165:0;cmn
+: 1658364167:0;cd config/polybar/custom
+: 1658364619:0;polybar top -c config.ini
+: 1658364625:0;polybar bottom -c config.ini
+: 1658364638:0;polybar simple-bottom -c config.ini
+: 1658366210:0;gst
+: 1658584446:0;yay -S onboard
+: 1658587204:0;cd config
+: 1658587226:0;cd zsh
+: 1658587247:0;vim xinitrc
+: 1658587776:0;jj
+: 1658588107:0;systemctl status bluetooth.service
+: 1658588159:0;bluetoothctl
+: 1658588834:0;sudo pacman -S usbutils
+: 1658588841:0;lsusb | grep bluetooth -i
+: 1658588944:0;sudo lsusb
+: 1658595793:0;sudo -E nvim /etc/udev/rules.d/91-keyboard-mouse-wakeup.ruleS
+: 1658599496:0;groups
+: 1658599507:0;bat /etc/group
+: 1658599572:0;groupadd plugdev
+: 1658599576:0;sudo groupadd plugdev
+: 1658599710:0;yay -S solaar
+: 1658599743:0;yay -S solaar-git 
+: 1658599770:0;yay -Sy solaar-git 
+: 1658600113:0;sudo -E nvim /etc/udev/rules.d/91-keyboard-mouse-wakeup.rules
+: 1658600340:0;
+: 1658600342:0;k
+: 1658601078:0;ls -la /etc/udisks2/udisks2.conf
+: 1658601169:0;sudo ls -la /etc/systemd/system/bluetooth.target.wants/bluetooth.service
+: 1658601182:0;sudo vim /etc/systemd/system/bluetooth.target.wants/bluetooth.service
+: 1658601230:0;sudo -E vim /etc/systemd/system/bluetooth.target.wants/bluetooth.service
+: 1658601235:0;sudo -E nvim /etc/systemd/system/bluetooth.target.wants/bluetooth.service
+: 1658601270:0;vim ~/.config/solaar/config.yaml
+: 1658601485:0;solaar help
+: 1658602082:0;bluetoothctl scan on
+: 1658602205:0;echo enabled |sudo tee /sys/bus/usb/devices/*/power/wakeup
+: 1658602487:0;cfp
+: 1658603273:0;h
+: 1658603283:0;cd .cache/yay
+: 1658603318:0;cd solaar-git
+: 1658603322:0;cd branches
+: 1658603334:0;cd refs
+: 1658603337:0;cd heads
+: 1658603347:0;cd objects
+: 1658603352:0;cd pack
+: 1658603355:0;cd ..
+: 1658603611:0;ls -la /etc/udev/rules.d
+: 1658603824:0;sudo -E nvim /etc/udev/rules.d/99-logitech-unifying-receiver.rules
+: 1658604014:0;systemctl suspend
+: 1658604341:0;echo $DISPLAY
+: 1658604369:0;cat xkbmap-reset.sh
+: 1658604707:0;bat /lib/udev/rules.d/42-logitech-unify-permissions.rules
+: 1658604929:0;sudo chmod +x configure_keyboard.sh
+: 1658604930:0;ls -la
+: 1658605007:0;LS
+: 1658605065:0;bat /etc/udev/rules.d/90-local.rules
+: 1658605079:0;bat usbsound.sh
+: 1658605119:0;bat prompt
+: 1658605146:0;bat remaps
+: 1658605363:0;bat shortcuts
+: 1658605533:0;:q
+: 1658605732:0;chmod +r ../XkeymapEliteBook
+: 1658606113:0;chmod +wrx /tmp/notify
+: 1658606131:0;chmod go+wrx /tmp/notify
+: 1658606163:0;ls -la /tmp/notify
+: 1658606195:0;sudo chown its32ve1:root /tmp/notify
+: 1658606218:0;bat ./configure_keyboard.sh
+: 1658606233:0;la /tmp/notify
+: 1658606356:0;sudo ./configure_keyboard.sh
+: 1658606716:0;udevadm control --reload-rules
+: 1658607477:0;sudo chmod +x xkbcomp.sh
+: 1658607655:0;rm xkbcomp.sh
+: 1658607679:0;rm XkeymapEliteBook.xkm
+: 1658607681:0;la
+: 1658607995:0;xkbcomp ~/.dotfiles/XkeymapEliteBook
+: 1658608023:0;kkkkkkjkjk]
+: 1658608066:0;cd script
+: 1658608111:0;vim configure_keyboard.sh
+: 1658608171:0;xkbcomp ~/.dotfiles/XkeymapEliteBook :0
+: 1658608611:0;idfidf/
+: 1658608624:0;idf
+: 1658608631:0;cd scripts
+: 1658608650:0;./configure_keyboard.sh
+: 1658609059:0;sudo chmod +x test.sh
+: 1658609140:0;./test.sh
+: 1658609157:0;sudo chown root /tmp/notify
+: 1658609158:0;sudo ./test.sh
+: 1658609166:0;suspend
+: 1658609238:0;touch /tmp/notify
+: 1658609246:0;sudo -E nvim /etc/udev/rules.d/92-logitech-bolt-reconnect.rules
+: 1658609258:0;tail -f /tmp/notify
+: 1658609540:0;udevadm
+: 1658609827:0;udevadm monitor
+: 1658610496:0;uname -a
+: 1658610618:0;sudo journalctl -b -k -g s2idle
+: 1658610643:0;sudo journalctl -b -k -g S3
+: 1658611415:0;sudo ls -la /etc/modprobe.d
+: 1658611505:0;ls -la /lib/systemd/system-sleep
+: 1658611508:0;sudo ls -la /lib/systemd/system-sleep
+: 1658611522:0;sudo ls -la /lib/systemd/
+: 1658611550:0;cat /lib/systemd/system/sleep.target
+: 1658612077:0;vim /etc/bluetooth/main.conf
+: 1658612131:0;sudo -E nvim /etc/bluetooth/main.conf
+: 1658612319:0;shutdown now
+: 1658619254:0;yay -Syyu
+: 1658619435:0;yay -Sy archlinux-keyring
+: 1658619574:0;sudo pacman -Rs $ (pacman -Qtdq)
+: 1658619583:0;sudo pacman -Rs $(pacman -Qtdq)
+: 1658619617:0;yay -Syu
+: 1658619649:0;yay -Rs $(yay -Qtdq)
+: 1658620221:0;sudo -E nvim /etc/systemd/system/bluetooth-disable-before-sleep.service
+: 1658620461:0;rm /etc/udev/rules.d/92-logitech-bolt-reconnect.rules
+: 1658620475:0;vim /etc/udev/rules.d/92-logitech-bolt-reconnect.rules
+: 1658620497:0;sudo rm /etc/udev/rules.d/92-logitech-bolt-reconnect.rules
+: 1658620585:0;echo enabled |sudo tee /sys/bus/usb/devices/3-2/power/wakeup
+: 1658620932:0;lsusb
+: 1658620985:0;grep . /sys/bus/usb/devices/*/product
+: 1658621031:0;ls
+: 1658621140:0;sudo systemctl stop bluetooth-disable-before-sleep.service
+: 1658621267:0;sudo systemctl status bluetooth-disable-before-sleep.service
+: 1658622213:0;lspci
+: 1658622459:0;sudo systemctl start bluetooth-disable-before-sleep.service
+: 1658623019:0;sudo -E nvim /etc/udev/rules.d/42-logitech-unify-permissions.rules
+: 1658623092:0;id
+: 1658623348:0;KKKKkkkk
+: 1658623508:0;xkbcomp ~/.dotfiles/XkeymapEliteBook $DISPLAY
+: 1658623728:0;sudo rm /etc/udev/rules.d/42-logitech-unify-permissions.rules
+: 1658623778:0;sudo cp /lib/udev/rules.d/42-logitech-unify-permissions.rules ~/
+: 1658623823:0;sudo rm /lib/udev/rules.d/42-logitech-unify-permissions.rules
+: 1658624603:0;sudo cp ~/42-logitech-unify-permissions.rules /lib/udev/rules.d
+: 1658624976:0;sudo /bin/sh -c "echo EHC1 > /proc/acpi/wakeup; echo EHC2 > /proc/acpi/wakeup; echo XHC > /proc/acpi/wakeup"
+: 1658625029:0;cat /proc/acpi/wakeup
+: 1658625288:0;sudo grep wakeup /lib/udev/*
+: 1658625304:0;sudo grep -R wakeup /lib/udev/r
+: 1658625308:0;sudo grep -R wakeup /lib/udev/*
+: 1658625324:0;sudo grep -R wakeup /lib/udev/rules.d/*
+: 1658625332:0;sudo grep -R enabled /lib/udev/rules.d/*
+: 1658625548:0;lsusb -tv
+: 1658625795:0;echo enabled |sudo tee /sys/bus/usb/devices/3-3/power/wakeup
+: 1658625881:0;sudo systemctl disable bluetooth-disable-before-sleep.service
+: 1658625931:0;bluetoothctl power off
+: 1658625939:0;bluetoothctl power on
+: 1658626187:0;echo disabled |sudo tee /sys/bus/usb/devices/*/power/wakeup
+: 1658626364:0;ls -la /dev/hidraw*
+: 1658626420:0;sudo systemctl enable bluetooth-disable-before-sleep.service
+: 1658626555:0;ls /etc/udev/rules.d/
+: 1658626572:0;sudo -E nvim /etc/udev/rules.d/90-local.rules
+: 1658627218:0;yay -R solaar-git
+: 1658627242:0;yay -S solaar-git
+: 1658627378:0;ls -la /lib/udev/rules.d
+: 1658627494:0;sudo usermod -a -G plugdev its32ve1
+: 1658627509:0;sudo gpasswd -d its32ve1 plugdev
+: 1658627644:0;sudo grep -R hidapi /lib/udev/rules.d/*
+: 1658627684:0;sudo -E nvim /lib/udev/rules.d/70-uaccess.rules
+: 1658627796:0;grep . /sys/bus/usb/devices/*/power/wakeup
+: 1658629876:0;sudo -E nvim /lib/udev/rules.d/42-logitech-unify-permissions.rules
+: 1658630001:0;sudo udevadm control --reload-rules
+: 1658630061:0;sudo setfacl -m u:${USER}:rw /dev/uinput
+: 1658631438:0;reboot
+: 1658631539:0;cm
+: 1658631543:0;./install
+: 1658631778:0;cfi
+: 1658631861:0;udev
+: 1658631895:0;cat /dev/uinput
+: 1658631902:0;tail -f /dev/uinput
+: 1658631906:0;sudo tail -f /dev/uinput
+: 1658631919:0;ls -la /dev/uinput
+: 1658632060:0;showkey --scancodes
+: 1658632244:0;xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+: 1658632461:0;sudo systemctl suspend
+: 1658632709:0;xev
+: 1658633393:0;solaar show
+: 1658634116:0;bat ~/.config/solaar/rules.yaml
+: 1658634126:0;vim ~/.config/solaar/config.yaml 
+: 1658634165:0;solaar -ddd
+: 1658634297:0;exit
+: 1658634300:0;bat ~/.config/solaar/rules.yaml
+: 1658679816:0;lshw
+: 1658680056:0;lsusb
+: 1658680260:0;mpv /dev/video0
+: 1658769398:0;cm
+: 1658769401:0;cd zsh
+: 1658769402:0;ls
+: 1658769403:0;la
+: 1658769827:0;gst
+: 1658770031:0;mv .zhistory .zhistory.back

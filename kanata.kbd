@@ -1,0 +1,80 @@
+(defcfg
+  linux-dev /dev/input/by-id/usb-Logitech_USB_Receiver-event-kbd:/dev/input/by-path/platform-i8042-serio-0-event-kbd
+  linux-x11-repeat-delay-rate 230,60
+  process-unmapped-keys yes
+  log-layer-changes no
+)
+
+(defsrc
+  tab         q     w     e     r     t     y     u     i     o     p
+  caps        a     s     d     f     g     h     j     k     l     ;     '     \
+  lsft  lsgt  z     x     c     v     b     n     m     ,     .     /     rsft
+  lctl  lmet  lalt  spc                           ralt rctl
+)
+
+#|
+(deflayer empty
+  XX          XX    XX    XX    XX    XX    XX    XX    XX    XX    XX
+  XX          XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX
+  XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX    XX
+  XX    XX    XX    XX                            XX    XX
+)
+|#
+
+(defvar
+  tap-time   200
+  hold-time  200
+  one-shot-time 2000
+)
+
+(defalias
+  ;; num (one-shot-release $one-shot-time (layer-while-held numbers))
+  sym (one-shot-release $one-shot-time (layer-while-held symbols))
+  nav (one-shot-release $one-shot-time (layer-while-held navigation))
+
+  ;; ssft (one-shot-release $one-shot-time sft) ;;  sticky shift
+  ;; sctl (one-shot-release $one-shot-time ctl) ;;  sticky control
+  ;; salt (one-shot-release $one-shot-time alt) ;;  sticky alt
+  ;; smet (one-shot-release $one-shot-time met) ;;  sticky meta
+
+  tmux C-a
+
+  ¿ (multi lsgt /)
+  € (multi lsgt e)
+  c (multi lsgt ')
+  dc (multi lsgt 2)
+
+  prnt C-S-prnt
+
+  ;; lctl (tap-dance 300 (lctl @smet))
+  ;; rctl (tap-dance 300 (rctl @smet))
+  altr (tap-dance 300 (alt lrld))
+)
+
+(deflayer base
+  _           _     _     _     _     _     _     _     _     _     _
+  lctl        _     _     _     _     _     _     _     _     _     _     _     rctl
+  _     @altr _     _     _     _     _     _     _     _     _     _     _
+  @nav  lmet  @sym  _                             @sym  rmet
+)
+
+(deflayer symbols
+  XX          S-1   S-2   S-3   S-4   S-5   S-6   S-7   S-8   XX    `
+  XX          -     S-=   =     S--   XX    S-[   S-9   S-0   S-]   @c    @dc   XX
+  XX    XX    S-`   @¿    @€    XX    XX    XX    [     ]     S-\   \     XX
+  XX    XX    @sym  _                             @sym  XX
+)
+
+(deflayer navigation
+  XX          tab   XX    XX    XX    XX    prnt  @prnt pgdn  pgup  del
+  _           XX    XX    XX    XX    XX    left  down  up    rght  bspc  XX    _
+  _     XX    XX    XX    brdn  bru   vold  volu  mute  home  end   ret   XX
+  XX    XX    XX    XX                            XX    XX
+)
+
+;; (deflayer numbers
+;;   XX         1      2    3     4     5     6     7     8     9     0
+;;   XX         @smet @salt @sctl @ssft f11   f12   @ssft @sctl @salt @smet  XX    XX
+;;   XX    XX   f1    f2    f3    f4    f5    f6    f7    f8    f9    f10    XX
+;;   XX    XX   @num   _                            @num  XX
+;; )

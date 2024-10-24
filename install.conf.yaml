@@ -20,9 +20,12 @@
     ~/.Xkeymap:
         relink: true
         path: Xkeymap
-    ~/.tmux.conf:
+    ~/.XCompose:
         relink: true
-        path: tmux.conf
+        path: XCompose
+    # ~/.tmux.conf:
+    #     relink: true
+    #     path: omerxx-tmux.conf
     ~/.gtkrc-2.0:
         relink: true
         path: gtkrc-2.0

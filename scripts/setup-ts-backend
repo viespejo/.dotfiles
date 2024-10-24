@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# clone clean-nodejs-typescript template in the current directory with the given name
+# usage: setup-ts-typescript <project-name>
+
+BASE_DIR=~/code
+TEMPLATE_DIR=clean-nodejs-typescript
+
+# get project name from first argument
+project=$1
+
+if [[ ! "$project" =~ ^[a-zA-Z0-9-]+$ ]]; then
+  echo "Invalid project name, only alphanumeric characters and dashes are allowed"
+  exit 1
+fi
+
+if [ -d "./$project" ]; then
+  echo "Directory $project already exists"
+  exit 1
+fi
+
+# copy template
+cp -R "$BASE_DIR/$TEMPLATE_DIR" "./$project" || {
+  echo "Failed to copy template"
+  exit 1
+}
+
+# initialize git and install dependencies
+cd $project && git init && npm install
+
+# notify user of success
+project_absolute_path=$(realpath ".")
+echo Successfully bootstrapped clean-nodejs-typescript template in $project_absolute_path

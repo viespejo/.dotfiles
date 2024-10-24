@@ -1,0 +1,161 @@
+(defcfg
+  input  (device-file "$KBD_DEV")
+  output (uinput-sink "KMonad: X220" "sleep 0.2s; xset r rate 300 60; sleep 0.2s; xkbcomp /home/its32ve1/.dotfiles/XkeymapForKmonadUSES $DISPLAY")
+  fallthrough true
+  allow-cmd false
+)
+
+;; Here we define the keys that we will physically press
+;; to give shape to our keyboard layout
+
+(defsrc
+  tab       q    w    e    r    t    y    u    i    o    p
+  caps      a    s    d    f    g    h    j    k    l    ;    '
+  lsft lsgt z    x    c    v    b    n    m    ,    .    /    rsft
+  lctl lmet lalt spc                           ralt
+)
+
+#|
+(deflayer empty
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX        XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX                            XX
+)
+|#
+
+(defalias
+  num (tap-next (around-next (layer-toggle numbers)) (layer-toggle numbers))
+  syr (tap-next (around-next (layer-toggle symbolsRight)) (layer-toggle symbolsRight))
+  syl (tap-next (around-next (layer-toggle symbolsLeft)) (layer-toggle symbolsLeft))
+  t_e (tap-next esc (layer-toggle moving))
+
+  def (layer-switch default)
+  mou (layer-switch mouse)
+
+  mux C-a
+  a_a (tap-hold-next-release 500 a (around lalt (layer-toggle altRight)))
+  c_s (tap-hold-next-release 500 s (around lctl (layer-toggle ctrlRight)))
+  s_d (tap-hold-next-release 500 d (around lsft (layer-toggle shiftRight)))
+  m_f (tap-hold-next-release 500 f (around lmet (layer-toggle metaRight)))
+  m_j (tap-hold-next-release 500 j (around rmet (layer-toggle metaLeft)))
+  s_k (tap-hold-next-release 500 k (around rsft (layer-toggle shiftLeft)))
+  c_l (tap-hold-next-release 500 l (around rctl (layer-toggle ctrlLeft)))
+  a_; (tap-hold-next-release 500 ; (around ralt (layer-toggle altLeft)))
+
+  s_l (around lsft (layer-toggle shiftRight))
+  s_r (around rsft (layer-toggle shiftLeft))
+)
+
+(deflayer default
+  tab       q    w    e    r    t    y    u    i    o    p
+  @t_e      @a_a @c_s @s_d @m_f g    h    @m_j @s_k @c_l @a_; '
+  @s_l lsgt z    x    c    v    b    n    m    ,    .    /    @s_r
+  @mux @mou @syr spc                           @num
+)
+
+(deflayer shiftRight
+  XX        XX   XX   XX   XX   XX   y    u    i    o    p
+  XX        lalt lctl XX   lmet XX   h    j    k    l    ;    '
+  XX   XX   XX   XX   XX   XX   XX   n    m    ,    .    /    rsft
+  XX   XX   @syr XX                            XX
+)
+
+(deflayer shiftLeft
+  XX        q    w    e    r    t    XX   XX   XX   XX   XX
+  XX        a    s    d    f    g    XX   rmet XX   rctl ralt XX
+  lsft XX   z    x    c    v    b    XX   XX   XX   XX   XX   XX
+  XX   XX   @syr XX                            @num
+)
+
+(deflayer ctrlRight
+  XX        q    w    e    r    t    y    u    i    o    p
+  XX        lalt XX   lsft lmet g    h    j    k    l    ;    '
+  XX   XX   z    x    c    v    b    n    m    ,    .    /    XX
+  XX   XX   @syr spc                           XX
+)
+
+(deflayer ctrlLeft
+  XX        q    w    e    r    t    XX   XX   XX   XX   XX
+  XX        a    s    d    f    g    XX   rmet rsft XX   ralt XX
+  XX   XX   z    x    c    v    b    XX   XX   XX   XX   XX   XX
+  XX   XX   @syr spc                           @num
+)
+
+(deflayer altRight
+  XX        XX   XX   XX   XX   XX   y    u    i    o    p
+  XX        XX   lctl lsft lmet XX   h    j    k    l    ;    '
+  XX   XX   XX   XX   XX   XX   XX   n    m    ,    .    /    XX
+  XX   XX   @syr spc                           XX
+)
+
+(deflayer altLeft
+  XX        q    w    e    r    t    XX   XX   XX   XX   XX
+  XX        a    s    d    f    g    XX   rmet rsft rctl XX   XX
+  XX   XX   z    x    c    v    b    XX   XX   XX   XX   XX   XX
+  XX   XX    @syr spc                           @num
+)
+
+(deflayer metaRight
+  tab       q    w    e    r    t   y    u    i    o    p
+  g         lalt lctl lsft XX   g   h    j    k    l    ;    '
+  XX   XX   z    x    c    v    b   n    m    ,    .    /    XX
+  XX   XX   @syr spc                           XX
+)
+
+(deflayer metaLeft
+  tab       q    w    e    r    t    XX   XX   XX   XX   XX
+  g         a    s    d    f    g    XX   rsft rctl ralt XX   XX
+  XX   XX   z    x    c    v    b    XX   XX   XX   XX   XX   XX
+  XX   XX   @syr spc                           @num
+)
+
+(deflayer moving
+  XX        XX   XX   XX   XX   XX   XX   XX   pgdn pgup XX
+  XX        XX   XX   XX   XX   XX   left down up   rght rmet XX
+  XX   XX   XX   XX   XX   XX   XX   XX   XX   home end  XX   XX
+  XX   XX   XX   XX                            XX
+)
+
+(deflayer numbers
+  XX        1    2    3    4    5    XX   XX   XX   XX   XX
+  XX        5    6    7    8    =    XX   lmet lsft lctl lalt XX
+  XX   XX   0    -    +    9   XX   XX   XX   XX   XX   XX   XX
+  XX   XX   XX   XX                            XX
+)
+
+(defalias 
+  ;; lsgt is iso_level3_shift in xmodmap
+  ¿_ (around lsgt /) ;; ¿ is level 3 shift of / (see xmodmap)
+  €_ (around lsgt e) ;; € is level 3 shift of e (see xmodmap)
+  c_ (around lsgt ')
+  dc_ (around lsgt 2)
+)
+
+(deflayer symbolsLeft
+  XX        !    @    #    $    %    _    _    _    _    _
+  XX        `    ~    @c_  @dc_ XX   XX   rmet rsft rctl ralt XX
+  XX   XX   @¿_  @€_  XX   XX   XX   _    _    _    _    _    XX
+  XX   XX   @syr XX                            XX
+)
+
+(deflayer symbolsRight
+  XX        _    _    _    _    _    ^    &    *    \_   XX
+  XX        lalt lctl lsft lmet XX   [    \(   \)   ]    @c_  @dc_
+  XX   XX   _    _    _    _    _    |    {    }    XX   \\   XX
+  XX   XX   XX   XX                            @syl
+)
+
+(defalias
+  cp (around lctl c)
+  pas (around lctl v)
+  cut (around lctl x)
+  pr_ (tap-next p prnt)
+)
+
+(deflayer mouse
+  tab       XX   XX   XX   XX   XX   XX   XX   XX   XX   prnt
+  ;         lalt lctl lsft lmet XX   XX   XX   XX   XX   XX   XX
+  XX XX   XX @cut @cp  @pas XX   XX   XX   XX   XX   XX   XX
+  XX @def lmet spc                           XX
+)

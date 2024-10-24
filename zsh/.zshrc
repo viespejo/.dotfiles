@@ -1,11 +1,13 @@
 # vim: foldmethod=marker
-
-export EDITOR=nvim
-export VISUAL=nvim
+export EDITOR=vim
+export VISUAL=vim
 export MANPAGER='less'
 
 # STARSHIP PROMPT
 eval "$(starship init zsh)"
+
+# zoxide
+eval "$(zoxide init zsh)"
 
 # Check if zplug is installed
 if [[ ! -d ~/.dotfiles/zplug ]]; then
@@ -20,10 +22,8 @@ source ~/.dotfiles/zplug/init.zsh
 source $ZDOTDIR/history.zsh
 
 # plugins
-#zplug "lukechilds/zsh-nvm"
-
+zplug "jeffreytse/zsh-vi-mode"
 zplug "zsh-users/zsh-syntax-highlighting", defer:3
-zplug "zsh-users/zsh-history-substring-search"
 zplug 'zsh-users/zsh-autosuggestions', defer:3
 
 zplug "lib/completion", from:oh-my-zsh, defer:2
@@ -32,18 +32,9 @@ zplug 'zsh-users/zsh-completions', defer:3
 zplug "plugins/git", from:oh-my-zsh
 zplug "djui/alias-tips"
 zplug "plugins/common-aliases", from:oh-my-zsh
-
 #zplug "tmuxinator/tmuxinator", use:"completion/tmuxinator.zsh"
 #zplug "b4b4r07/enhancd", use:init.sh
-
-# Async for zsh, used by pure
-# zplug "mafredri/zsh-async", from:github, defer:0
-#
-# Theme!
-# zplug "denysdovhan/spaceship-prompt", use:spaceship.zsh, from:github, as:theme
-# zplug "sindresorhus/pure", use:pure.zsh, from:github, as:theme
-#
-zplug "skywind3000/z.lua"
+#zplug "skywind3000/z.lua"
 
 
 # Install packages that have not been installed yet
@@ -59,23 +50,6 @@ fi
 # Then, source plugins and add commands to $PATH
 # zplug load --verbose
 zplug load
-
-
-# # shift tab completion
-# zmodload zsh/complist
-# bindkey -M menuselect '^[[Z' reverse-menu-complete
-
-
-# vi mode
-KEYTIMEOUT=1
-bindkey -v
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-bindkey -M vicmd '^G' what-cursor-position
-
-
 
 # autosuggestions
 bindkey '^ ' autosuggest-accept
@@ -100,84 +74,30 @@ _fzf_compgen_path() {
 _fzf_compgen_dir() {
   fd --type d --hidden --follow --exclude node_modules --exclude .wine --exclude .vimundo --exclude ".git" . "$1"
 }
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Define an init function and append to zvm_after_init_commands
+function my_init() {
+  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+}
+
+zvm_after_init_commands+=(my_init)
 
 # Install packages using yay (change to pacman/AUR helper of your choice)
 function in() {
     yay -Slq | fzf -q "$1" -m --preview 'yay -Si {1}'| xargs -ro yay -S
 }
 
-# History Substring search
-if zplug check zsh-users/zsh-history-substring-search; then
-# history substring
-    # history-substring
-    bindkey '^[[A' history-substring-search-up
-    bindkey '^[[B' history-substring-search-down
-
-    bindkey '^P' history-substring-search-up
-    bindkey '^N' history-substring-search-down
-
-    HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=green,fg=black,bold'
-    HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
-    HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
-fi
 
 # bindkey shift tab
 if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
 fi
 
-# # spaceship custom
-# eval spaceship_vi_mode_enable
-# # SPACESHIP_PROMPT_ADD_NEWLINE=false
-# # export SPACESHIP_GIT_SYMBOL=''
-# # export SPACESHIP_GIT_BRANCH_PREFIX='git:'
-# export SPACESHIP_GIT_STATUS_PREFIX='['
-# export SPACESHIP_GIT_STATUS_SUFFIX=']'
-# export SPACESHIP_GIT_STATUS_UNTRACKED='?'
-# export SPACESHIP_GIT_STATUS_ADDED='A'
-# export SPACESHIP_GIT_STATUS_MODIFIED='M'
-# export SPACESHIP_GIT_STATUS_COLOR='magenta'
-# export SPACESHIP_GIT_STATUS_RENAMED='R'
-# export SPACESHIP_GIT_STATUS_DELETED='D'
-# export SPACESHIP_GIT_STATUS_STASHED=''
-# export SPACESHIP_GIT_STATUS_UNMERGED=''
-# export SPACESHIP_GIT_STATUS_AHEAD='<ahead>'
-# export SPACESHIP_GIT_STATUS_BEHIND='<behind>'
-# export SPACESHIP_GIT_STATUS_DIVERGED=''
-# export SPACESHIP_EXIT_CODE_SHOW=true
-# export SPACESHIP_EXIT_CODE_SYMBOL=''
-# export SPACESHIP_PROMPT_ORDER=(
-#   user          # Username section
-#   dir           # Current directory section
-#   host          # Hostname section
-#   git           # Git section (git_branch + git_status)
-#   exec_time     # Execution time
-#   line_sep      # Line break
-#   vi_mode       # Vi-mode indicator
-#   exit_code     # Exit code section
-#   char          # Prompt character
-# )
 
-# current vim mode in Pure theme
-# VIM_PROMPT="❯"
-# PROMPT='%(?.%F{magenta}.%F{red})${VIM_PROMPT}%f '
+# atuin shell history
+. "$HOME/.atuin/bin/env"
 
-# prompt_pure_update_vim_prompt() {
-#     zle || {
-#         print "error: pure_update_vim_prompt must be called when zle is active"
-#         return 1
-#     }
-#     VIM_PROMPT=${${KEYMAP/vicmd/❮}/(main|viins)/❯}
-#     zle .reset-prompt
-# }
-
-# function zle-line-init zle-keymap-select {
-#     prompt_pure_update_vim_prompt
-# }
-
-# zle -N zle-line-init
-# zle -N zle-keymap-select
+eval "$(atuin init zsh --disable-up-arrow)"
 
 #####################################################################
 # alias
@@ -186,12 +106,15 @@ alias gk='gitk --all --date-order&'
 alias ls='ls --color=auto'
 alias cat='bat --style=plain'
 alias exa='exa --long --header --git'
-alias vim='nvim'
 alias v='nvim'
 # alias vn='$HOME/.dotfiles/scripts/nvim-nightly.sh'
 alias vn='nvimn'
 alias t='task'
 alias rm='rm -I --preserve-root'
+alias setup:ts='$HOME/.dotfiles/scripts/setup-ts-backend'
+#####################################################################
+# end alias
+#####################################################################
 
 # export NVM_DIR="$HOME/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
