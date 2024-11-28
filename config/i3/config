@@ -1,4 +1,4 @@
-# vim: filetype=i3
+# vim: filetype=i3config
 
 #This is Vicente's i3-gaps configuration file.
 
@@ -6,14 +6,21 @@
 #Needed for i3-gaps
 hide_edge_borders both
 for_window [class="^.*"] border pixel 4
-gaps inner 15
-gaps outer 15
+gaps inner 6
+gaps outer 3
 font pango:DejaVuSansMono Nerd Font 9
 set $mod Mod4
 set $term kitty
 set $filemanager yazi
 
 floating_modifier $mod
+
+# use these keys for focus, movement, and resize directions when reaching for
+# the arrows is not convenient
+set $up k
+set $down j
+set $left h
+set $right l
 
 #Add wallpaper:
 exec --no-startup-id feh --bg-fill ~/.config/wallpapers/arch_grey.jpg
@@ -32,6 +39,8 @@ set $backlightgreater --no-startup-id light -A 5
 #exec --no-startup-id mpd
 #Torrent daemon:
 #exec --no-startup-id transmission-daemon
+# polkit agent
+exec --no-startup-id lxpolkit &
 #udisks2 helper
 exec --no-startup-id udiskie -t -f nemo
 #Bluetooth applet:
@@ -80,59 +89,7 @@ set $lilbak dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/m
 set $bigbak dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Seek int64:"-10000000"
 set $stop dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Stop;
 
-##For mpc:
-#set $music urxvt -e ncmpcpp
-#set $pause --no-startup-id mpc toggle
-#set $trupause --no-startup-id mpc pause
-#set $next --no-startup-id mpc next
-#set $prev --no-startup-id mpc prev
-#set $lilfor --no-startup-id mpc seek +10
-#set $bigfor --no-startup-id mpc seek +120
-#set $lilbak --no-startup-id mpc seek -10
-#set $bigbak --no-startup-id mpc seek -120
-#set $beg --no-startup-id mpc seek 0%
-
-##For moc:
-#set $music urxvt -e mocp
-#set $pause --no-startup-id mocp -G
-#set $truepause --no-startup-id mocp -P
-#set $next --no-startup-id mocp -f
-#set $prev --no-startup-id mocp -r
-#set $lilfor --no-startup-id mocp -k 10
-#set $bigfor --no-startup-id mocp -k 120
-#set $lilbak --no-startup-id mocp -k -10
-#set $bigbak --no-startup-id mocp -k -120
-#set $beg --no-startup-id mocp -j 0%
-
-##For cmus:
-#set $music urxvt -e cmus
-#set $pause --no-startup-id cmus-remote -u
-#set $next --no-startup-id cmus-remote -n
-#set $prev --no-startup-id cmus-remote -r
-#set $lilfor --no-startup-id cmus-remote -k +10
-#set $bigfor --no-startup-id cmus-remote -k +120
-#set $lilbak --no-startup-id cmus-remote -k -10
-#set $bigbak --no-startup-id cmus-remote -k -120
-#set $beg --no-startup-id cmus-remote -k 00:00:00
-
-#FOR ALSA/AMIXER
-#set $inc --no-startup-id amixer sset Master 2%+
-#set $biginc --no-startup-id amixer sset Master 5%+
-#set $dec --no-startup-id amixer sset Master 2%-
-#set $bigdec --no-startup-id amixer sset Master 5%-
-#set $mute --no-startup-id amixer sset Master toggle
-#set $truemute --no-startup-id amixer sset Master mute
-#set $screencast  --no-startup-id bash ~/.dotfiles/scripts/screencast_alsa.sh
-#set $audio --no-startup-id bash ~/.dotfiles/scripts/audio_alsa.sh
-
-#For PULSEAUDIO/PAMIXER
-set $inc --no-startup-id pamixer --allow-boost -i 5
-set $biginc --no-startup-id pamixer --allow-boost -i 15
-set $dec --no-startup-id pamixer --allow-boost -d 5
-set $bigdec --no-startup-id pamixer --allow-boost -d 15
-set $mute --no-startup-id pamixer --allow-boost -t
-set $micmute --no-startup-id pamixer --allow-boost -t
-set $truemute --no-startup-id pamixer -m
+# #For PULSEAUDIO/PAMIXER
 set $screencast  --no-startup-id bash ~/.dotfiles/scripts/screencast_pulse.sh
 set $audio --no-startup-id bash ~/.dotfiles/scripts/audio_pulse.sh
 
@@ -172,6 +129,7 @@ bindsym $mod+space		focus mode_toggle
 bindsym $mod+BackSpace		exec $flash
 #bindsym $mod+Shift+BackSpace	exec reboot
 
+bindsym $mod+a focus parent
 bindsym $mod+grave		exec $flash
 #bindsym $mod+asciitilde
 #STOP/HIDE EVERYTHING:
@@ -179,45 +137,51 @@ bindsym $mod+Shift+Delete	exec $truemute ; exec $truepause ; workspace lmao ; ex
 
 
 ###---Letter Key Bindings---###
-bindsym $mod+q			kill
+# bindsym $mod+q			kill
 bindsym $mod+Shift+q		kill
 
-bindsym $mod+w		exec --no-startup-id $BROWSER
+# bindsym $mod+w		exec --no-startup-id $BROWSER
+bindsym $mod+w layout tabbed
 
+bindsym $mod+e layout toggle split
 #bindsym $mod+e			exec $term neomutt
 #bindsym $mod+Shift+e
 
-bindsym $mod+r 			exec $term $filemanager
+bindsym $mod+o 			exec $term $filemanager
+
 bindsym $mod+Shift+r		restart
 
-bindsym $mod+t			split toggle
-bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+bindsym Ctrl+semicolon			[instance="dropdown"] scratchpad show,resize set 80 ppt 80 ppt,move position center
 
-bindsym $mod+y			exec $term calcurse
-bindsym $mod+Shift+y		resize shrink width 5 px or 5 ppt
+bindsym $mod+t			split toggle
+# bindsym $mod+Shift+t		gaps inner current set 15; gaps outer current set 15
+
+# bindsym $mod+y			exec $term calcurse
+# bindsym $mod+Shift+y		resize shrink width 5 px or 5 ppt
 
 #bindsym $mod+u			exec --no-startup-id xkbcomp ~/.dotfiles/XkeymapEliteBook :0
-bindsym Ctrl+semicolon			[instance="dropdown"] scratchpad show,resize set 80 ppt 80 ppt,move position center
-bindsym $mod+Shift+u		resize shrink height 5 px or 5 ppt
+# bindsym $mod+Shift+u		resize shrink height 5 px or 5 ppt
 
 bindsym $mod+i 			exec $term btop
-bindsym $mod+Shift+i		resize grow height 5 px or 5 ppt
+# bindsym $mod+Shift+i		resize grow height 5 px or 5 ppt
 
 #bindsym $mod+o			exec --no-startup-id $beg
-bindsym $mod+Shift+o		resize grow width 5 px or 5 ppt
+# bindsym $mod+Shift+o		resize grow width 5 px or 5 ppt
 
 bindsym $mod+p			exec $pause
 #bindsym $mod+Shift+p		exec mypaint
 
-bindsym $mod+a			[instance="math"] scratchpad show; move position center
+# bindsym $mod+a			[instance="math"] scratchpad show; move position center
 bindsym $mod+Shift+a		exec pavucontrol
 #bindsym $mod+Shift+a		exec $term ncpamixer
 
-bindsym $mod+s			gaps inner current plus 5
-bindsym $mod+Shift+s		gaps inner current minus 5
+# bindsym $mod+s			gaps inner current plus 5
+# bindsym $mod+Shift+s		gaps inner current minus 5
+
+bindsym $mod+s layout stacking
 
 bindsym $mod+d			exec rofi -show run
-bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
+# bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+f			fullscreen toggle
 #bindsym $mod+Shift+f
@@ -225,38 +189,42 @@ bindsym $mod+f			fullscreen toggle
 bindsym $mod+g			workspace prev_on_output
 bindsym $mod+Shift+g		exec --no-startup-id gimp; workspace $ws5
 
-bindsym $mod+h			focus left
-bindsym $mod+Shift+h		move left 30
+bindsym $mod+$left			focus left
+bindsym $mod+Shift+$left		move left 30
 
-bindsym $mod+j			focus down
-bindsym $mod+Shift+j		move down 30
+bindsym $mod+$down			focus down
+bindsym $mod+Shift+$down		move down 30
 
-bindsym $mod+k			focus up
-bindsym $mod+Shift+k		move up 30
+bindsym $mod+$up			focus up
+bindsym $mod+Shift+$up		move up 30
 
-bindsym $mod+l			focus right
-bindsym $mod+Shift+l		move right 30
+bindsym $mod+$right			focus right
+bindsym $mod+Shift+$right		move right 30
 
-bindsym $mod+z			gaps outer current plus 5
-bindsym $mod+Shift+z		gaps outer current minus 5
+# bindsym $mod+z			gaps outer current plus 5
+# bindsym $mod+Shift+z		gaps outer current minus 5
 
 bindsym $mod+x			exec --no-startup-id ~/.config/i3/lock.sh
-bindsym $mod+Shift+x		exec ~/.dotfiles/scripts/prompt "Do you want to shutdown?" "shutdown -h now"
+# bindsym $mod+Shift+x		exec ~/.dotfiles/scripts/prompt "Do you want to shutdown?" "shutdown -h now"
 
+bindsym $mod+c			[instance="math"] scratchpad show; move position center
 #bindsym $mod+c			exec $term weechat
 #bindsym $mod+Shift+c
 
-bindsym $mod+v			exec $term vis
-bindsym $mod+Shift+v		exec projectM-pulseaudio
+# bindsym $mod+v			exec $term vis
+# bindsym $mod+Shift+v		exec projectM-pulseaudio
+
+bindsym $mod+v			split vertical
+bindsym $mod+b			split horizontal
 
 #bindsym $mod+b			exec $prev
-bindsym $mod+Shift+b		exec --no-startup-id inkscape; workspace $ws5
+# bindsym $mod+Shift+b		exec --no-startup-id inkscape; workspace $ws5
 
 #bindsym $mod+n			exec $term newsboat
 #bindsym $mod+Shift+n		exec $term newsboat
 
 bindsym $mod+m 			exec $music; workspace $ws7
-bindsym $mod+Shift+m		exec $mute
+# bindsym $mod+Shift+m		exec $mute
 
 
 ###---Workspace Bindings---###
@@ -359,25 +327,25 @@ bindsym $mod+Shift+Ctrl+0	move container to workspace $ws20
 bindsym $mod+Shift+n	move container to workspace next
 bindsym $mod+Shift+p	move container to workspace prev
 
-bindsym $mod+Shift+Ctrl+h	move workspace to output left
-bindsym $mod+Shift+Ctrl+l	move workspace to output right
-bindsym $mod+Shift+Ctrl+k	move workspace to output up
-bindsym $mod+Shift+Ctrl+j	move workspace to output down
+bindsym $mod+Shift+Ctrl+$left	move workspace to output left
+bindsym $mod+Shift+Ctrl+$right	move workspace to output right
+bindsym $mod+Shift+Ctrl+$up	move workspace to output up
+bindsym $mod+Shift+Ctrl+$down	move workspace to output down
 
 #for_window [class="Blender"] move to workspace $ws6
 #for_window [class="Thunderbird"] move to workspace $ws9
 #for_window [class="marble"] move to workspace $ws7
 #for_window [class="Google-chrome"] move to workspace $ws2
-for_window [class="Spotify"] move to workspace $ws7
+# for_window [class="Spotify"] move to workspace $ws7
 #for_window [title="GIMP Startup"] move workspace $ws5
-for_window [class="Gimp"] move workspace $ws5
+# for_window [class="Gimp"] move workspace $ws5
 for_window [window_role="gimp-toolbox"] floating disable
 for_window [window_role="gimp-dock"] floating disable
 #for_window [class="Inkscape"] move workspace $ws5
 #for_window [window_role="tr-main"] move to workspace $ws8
 #for_window [title="projectM"] exec --no-startup-id transset-df -a --dec .25
 #for_window [class="st"] exec --no-startup-id transset-df -a --dec .25
-for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
+# for_window [window_role="GtkFileChooserDialog"] resize shrink height 10 px
 
 #workspace $ws1 gaps inner 0
 #workspace $ws2 gaps outer 0
@@ -463,87 +431,130 @@ bindsym --release Ctrl+Shift+Print	exec --no-startup-id flameshot gui
 bindsym $mod+Print		exec --no-startup-id screenkey
 bindsym $mod+Scroll_Lock	exec $audio
 bindsym $mod+Insert		exec $screencast
-bindsym $mod+Pause		exec $video
+bindsym $mod+Shift+Insert		exec $video
 bindsym $mod+Delete		exec $stoprec
 bindsym XF86Launch1		exec $stoprec
 
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
 
-###---Extra XF86 Keys---###
-#These are the extra media keys that some keyboards have.
-bindsym XF86AudioMute		exec $mute
-bindsym XF86AudioLowerVolume	exec $dec
-bindsym XF86AudioRaiseVolume	exec $inc
-bindsym XF86PowerOff		exec sudo shutdown -h now
-#bindsym XF86Copy		exec
-#bindsym XF86Open		exec
-#bindsym XF86Paste		exec
-#bindsym XF86Cut		exec
-#bindsym XF86MenuKB		exec
-bindsym XF86Calculator		exec $term R -q
-bindsym XF86Sleep		exec sudo zzz
-#bindsym XF86WakeUp		exec
-bindsym XF86Explorer		exec $term $filemanager
-#bindsym XF86Send		exec
-#bindsym XF86Xfer		exec
-bindsym XF86WWW			exec --no-startup-id $BROWSER
-#bindsym XF86DOS		exec
-bindsym XF86ScreenSaver		exec exec --no-startup-id ~/.config/i3/lock.sh
-#bindsym XF86RotateWindows	exec
-#bindsym XF86TaskPane		exec
-#bindsym XF86Favorites		exec
-bindsym XF86MyComputer		exec $term $filemanager
-#bindsym XF86Back		exec
-#bindsym XF86Forward		exec
-bindsym XF86Eject		exec sudo umount -R /mnt
-bindsym XF86AudioNext		exec $next
-bindsym XF86AudioPlay		exec $pause
-bindsym XF86AudioPrev		exec $prev
-bindsym XF86AudioStop		exec $pause
-bindsym XF86AudioRecord		exec $audio
-bindsym XF86AudioRewind		exec $lilbak
-bindsym XF86AudioForward	exec $lilfor
-#bindsym XF86Phone		exec
-#bindsym XF86Tools		exec
-bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
-bindsym XF86Reload		restart
-#bindsym XF86ScrollUp		exec
-#bindsym XF86ScrollDown		exec
-#bindsym XF86New		exec
-#bindsym XF86LaunchA		exec
-#bindsym XF86LaunchB		exec
-#bindsym XF86Launch2		exec
-#bindsym XF86Launch3		exec
-#bindsym XF86Launch4		exec
-#bindsym XF86Launch5		exec
-#bindsym XF86Launch6		exec
-#bindsym XF86Launch7		exec
-#bindsym XF86Launch8		exec
-#bindsym XF86Launch9		exec
-bindsym XF86AudioMicMute	exec $micmute
-#bindsym XF86TouchpadToggle	exec
-bindsym XF86TouchpadOn		exec --no-startup-id exec synclient TouchpadOff=0
-bindsym XF86TouchpadOff		exec --no-startup-id exec synclient TouchpadOff=1
-bindsym XF86Suspend		exec --no-startup-id ~/.config/i3/lock.sh
-bindsym XF86Close		kill
-bindsym XF86WebCam		exec mpv /dev/video0
-bindsym XF86Mail		exec $term neomutt
-bindsym XF86Messenger		exec $term weechat
-bindsym XF86Search		exec $BROWSER https://duckduckgo.com
-#bindsym XF86Go			exec
-#bindsym XF86Finance		exec
-#bindsym XF86Game		exec
-bindsym XF86Shop		exec $BROWSER https://ebay.com
-bindsym XF86_MonBrightnessDown	exec light -U 5
-bindsym XF86_MonBrightnessUp	exec light -A 5
-bindsym XF86AudioMedia		exec $music; workspace $ws7
-bindsym XF86Display		exec --no-startup-id arandr
-#bindsym XF86KbdLightOnOff	exec
-bindsym XF86KbdBrightnessDown	exec light -U 5
-bindsym XF86KbdBrightnessUp	exec light -A 5
-#bindsym XF86Reply		exec
-#bindsym XF86MailForward	exec
-#bindsym XF86Save		exec
-bindsym XF86Documents		exec $term $filemanager ~/Documents
-#bindsym XF86Battery		exec
-#bindsym XF86Bluetooth		exec
-bindsym XF86WLAN		exec --no-startup-id sudo systemctl restart NetworkManager
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym $left       resize shrink width 10 px or 10 ppt
+        bindsym $up       resize grow height 10 px or 10 ppt
+        bindsym $down         resize shrink height 10 px or 10 ppt
+        bindsym $right      resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left        resize shrink width 10 px or 10 ppt
+        bindsym Up        resize grow height 10 px or 10 ppt
+        bindsym Down          resize shrink height 10 px or 10 ppt
+        bindsym Right       resize grow width 10 px or 10 ppt
+
+        bindsym Shift+$left       resize shrink width 1 px or 1 ppt
+        bindsym Shift+$up       resize grow height 1 px or 1 ppt
+        bindsym Shift+$down         resize shrink height 1 px or  ppt
+        bindsym Shift+$right      resize grow width 1 px or 1 ppt
+
+        # back to normal: Enter or Escape or Mod1+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# ###---Extra XF86 Keys---###
+# #These are the extra media keys that some keyboards have.
+
+# Use pactl to adjust volume in PulseAudio.
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+# bindsym XF86PowerOff		exec sudo shutdown -h now
+# #bindsym XF86Copy		exec
+# #bindsym XF86Open		exec
+# #bindsym XF86Paste		exec
+# #bindsym XF86Cut		exec
+# #bindsym XF86MenuKB		exec
+# bindsym XF86Calculator		exec $term R -q
+# bindsym XF86Sleep		exec sudo zzz
+# #bindsym XF86WakeUp		exec
+# bindsym XF86Explorer		exec $term $filemanager
+# #bindsym XF86Send		exec
+# #bindsym XF86Xfer		exec
+# bindsym XF86WWW			exec --no-startup-id $BROWSER
+# #bindsym XF86DOS		exec
+# bindsym XF86ScreenSaver		exec exec --no-startup-id ~/.config/i3/lock.sh
+# #bindsym XF86RotateWindows	exec
+# #bindsym XF86TaskPane		exec
+# #bindsym XF86Favorites		exec
+# bindsym XF86MyComputer		exec $term $filemanager
+# #bindsym XF86Back		exec
+# #bindsym XF86Forward		exec
+# bindsym XF86Eject		exec sudo umount -R /mnt
+# bindsym XF86AudioNext		exec $next
+# bindsym XF86AudioPlay		exec $pause
+# bindsym XF86AudioPrev		exec $prev
+# bindsym XF86AudioStop		exec $pause
+# bindsym XF86AudioRecord		exec $audio
+# bindsym XF86AudioRewind		exec $lilbak
+# bindsym XF86AudioForward	exec $lilfor
+# #bindsym XF86Phone		exec
+# #bindsym XF86Tools		exec
+# bindsym XF86HomePage		exec $BROWSER https://lukesmith.xyz
+# bindsym XF86Reload		restart
+# #bindsym XF86ScrollUp		exec
+# #bindsym XF86ScrollDown		exec
+# #bindsym XF86New		exec
+# #bindsym XF86LaunchA		exec
+# #bindsym XF86LaunchB		exec
+# #bindsym XF86Launch2		exec
+# #bindsym XF86Launch3		exec
+# #bindsym XF86Launch4		exec
+# #bindsym XF86Launch5		exec
+# #bindsym XF86Launch6		exec
+# #bindsym XF86Launch7		exec
+# #bindsym XF86Launch8		exec
+# #bindsym XF86Launch9		exec
+# bindsym XF86AudioMicMute	exec $micmute
+# #bindsym XF86TouchpadToggle	exec
+# bindsym XF86TouchpadOn		exec --no-startup-id exec synclient TouchpadOff=0
+# bindsym XF86TouchpadOff		exec --no-startup-id exec synclient TouchpadOff=1
+# bindsym XF86Suspend		exec --no-startup-id ~/.config/i3/lock.sh
+# bindsym XF86Close		kill
+# bindsym XF86WebCam		exec mpv /dev/video0
+# bindsym XF86Mail		exec $term neomutt
+# bindsym XF86Messenger		exec $term weechat
+# bindsym XF86Search		exec $BROWSER https://duckduckgo.com
+# #bindsym XF86Go			exec
+# #bindsym XF86Finance		exec
+# #bindsym XF86Game		exec
+# bindsym XF86Shop		exec $BROWSER https://ebay.com
+# bindsym XF86_MonBrightnessDown	exec light -U 5
+# bindsym XF86_MonBrightnessUp	exec light -A 5
+# bindsym XF86AudioMedia		exec $music; workspace $ws7
+# bindsym XF86Display		exec --no-startup-id arandr
+# #bindsym XF86KbdLightOnOff	exec
+# bindsym XF86KbdBrightnessDown	exec light -U 5
+# bindsym XF86KbdBrightnessUp	exec light -A 5
+# #bindsym XF86Reply		exec
+# #bindsym XF86MailForward	exec
+# #bindsym XF86Save		exec
+# bindsym XF86Documents		exec $term $filemanager ~/Documents
+# #bindsym XF86Battery		exec
+# #bindsym XF86Bluetooth		exec
+# bindsym XF86WLAN		exec --no-startup-id sudo systemctl restart NetworkManager

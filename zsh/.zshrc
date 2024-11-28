@@ -128,6 +128,7 @@ eval $(dircolors)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # For directory and config shortcuts:
-source /home/its32ve1/.dotfiles/zsh/.zshortcuts
+source ~/.dotfiles/zsh/.zshortcuts
 # local config
 [ -f ~/.dotfiles-local/zsh/zshrc_local ] && source ~/.dotfiles-local/zsh/zshrc_local
+source /home/its32ve1/.dotfiles/zsh/.zshortcuts
