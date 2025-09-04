@@ -1,6 +1,6 @@
 # vim: foldmethod=marker
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR=nvim
+export VISUAL=nvim
 export MANPAGER='less'
 
 # STARSHIP PROMPT
@@ -106,9 +106,9 @@ alias gk='gitk --all --date-order&'
 alias ls='ls --color=auto'
 alias cat='bat --style=plain'
 alias exa='exa --long --header --git'
-alias v='nvim'
+# alias v='nvim'
 # alias vn='$HOME/.dotfiles/scripts/nvim-nightly.sh'
-alias vn='nvimn'
+# alias vn='nvimn'
 alias t='task'
 alias rm='rm -I --preserve-root'
 alias setup:ts='$HOME/.dotfiles/scripts/setup-ts-backend'

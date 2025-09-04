@@ -1,0 +1,14 @@
+gui:
+  nerdFontsVersion: "3" # nerd fonts version to use ("2" or "3"); empty means don't show nerd font icons
+  theme:
+    selectedRangeBgColor:
+      - '#1f212e'
+    selectedLineBgColor:
+      - '#1f212e'
+git:
+  paging:
+    colorArg: always
+    useConfig: true
+
+os:
+  openLink: "google-chrome-stable --user-data-dir='/home/its32ve1/.config/google-chrome' {{link}}"

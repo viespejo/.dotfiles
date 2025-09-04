@@ -1,0 +1,60 @@
+lastupdatecheck: 1733221386
+recentrepos:
+    - /home/its32ve1/code/rnd/stt
+    - /home/its32ve1/code/employeex/bonus
+    - /home/its32ve1/code/employeex/webapp
+    - /home/its32ve1/code/employeex/auth
+    - /home/its32ve1/code/nvim/codecompanion.nvim
+    - /home/its32ve1/.test-nvim/local/share/nvim/lazy/rest.nvim
+    - /home/its32ve1/code/employeex/performance-review-backend
+    - /home/its32ve1/.test-nvim/config/nvim
+    - /home/its32ve1/code/rnd/rnd-apis
+    - /home/its32ve1/code/clean-nodejs-typescript
+    - /home/its32ve1/code/knowledge-assist/frontend
+    - /home/its32ve1/code/knowledge-assist/api
+    - /home/its32ve1/code/aqa/sync
+    - /home/its32ve1/code/aqa/backend
+    - /home/its32ve1/code/aqa/frontend
+    - /home/its32ve1/code/typescript/tauth
+    - /home/its32ve1/code/aac/aac-client
+    - /home/its32ve1/code/aac/aac-server
+    - /home/its32ve1/code/astro-resume
+    - /home/its32ve1/code/typescript/entity-api
+    - /home/its32ve1/code/typescript/texpress
+    - /home/its32ve1/code/employeex/api
+    - /home/its32ve1/code/employeex/cloudfunc
+    - /home/its32ve1/code/t-insights/insightsai
+    - /home/its32ve1/code/glove80-zmk-config
+    - /home/its32ve1/.dotfiles
+    - /home/its32ve1/code/employeex/performance-review-frontend
+    - /home/its32ve1/mirroros
+    - /home/its32ve1/code/alis
+    - /home/its32ve1/code/ai-dev/ada/ada-frontend
+    - /home/its32ve1/code/ai-dev/ada/ada-backend
+    - /home/its32ve1/code/knowledge-assist/serverless
+    - /home/its32ve1/code/typescript/workshop
+    - /home/its32ve1/code/typescript/blueprint-backend
+    - /home/its32ve1/code/typescript/poc-backend
+    - /home/its32ve1/code/knowledge-assist/infrastructure
+    - /home/its32ve1/code/typescript/totaltypescript
+    - /home/its32ve1/code/typescript/effective-typescript
+    - /home/its32ve1/.test-nvim/local/share/nvim/lazy/friendly-snippets
+    - /home/its32ve1/code/typescript/tws
+    - /home/its32ve1/code/typescript/tcommon
+    - /home/its32ve1/code/typescript/tpubsub
+    - /home/its32ve1/code/typescript/ka-clean-backend
+    - /home/its32ve1/.dotfiles-local
+    - /home/its32ve1/.dotfiles/zplug
+    - /home/its32ve1/.dotfiles/nvim
+startuppopupversion: 5
+lastversion: 0.46.0
+customcommandshistory:
+    - q
+hidecommandlog: true
+ignorewhitespaceindiffview: false
+diffcontextsize: 3
+renamesimilaritythreshold: 70
+localbranchsortorder: recency
+remotebranchsortorder: alphabetical
+gitlogorder: topo-order
+gitlogshowgraph: always
