@@ -2,3 +2,5 @@
 
 # Always sourced first.
 export ZDOTDIR=~/.dotfiles/zsh
+# custom config
+[ -f ~/.zcustom ] && source ~/.zcustom

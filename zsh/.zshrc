@@ -93,6 +93,13 @@ if [[ "${terminfo[kcbt]}" != "" ]]; then
   bindkey "${terminfo[kcbt]}" reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
 fi
 
+# piw wrapper for pi with editor-context
+ piw() {
+   EDITOR=pi-editor \
+   VISUAL=pi-editor \
+   PI_EDITOR_OPEN_MODE=auto \
+   pi "$@"
+ }
 
 # atuin shell history
 . "$HOME/.atuin/bin/env"
